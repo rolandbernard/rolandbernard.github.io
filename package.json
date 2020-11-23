@@ -1,0 +1,16 @@
+{
+  "name": "rolandbernard.github.io",
+  "version": "1.0.0",
+  "author": "Roland Bernard",
+  "license": "MIT",
+  "scripts": {
+    "dist": "node build/build.js",
+    "dev": "node build/dev-server.js"
+  },
+  "type": "module",
+  "devDependencies": {
+    "html-minifier-terser": "^5.1.1",
+    "prettier": "^2.2.0",
+    "serve": "^11.3.2"
+  }
+}
