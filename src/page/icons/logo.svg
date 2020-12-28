@@ -5,15 +5,11 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="510"
    height="400"
    version="1.1"
    viewBox="0 0 134.94 105.83"
-   id="svg12"
-   sodipodi:docname="logo.svg"
-   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+   id="svg12">
   <metadata
      id="metadata18">
     <rdf:RDF>
@@ -22,48 +18,12 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <defs
      id="defs16" />
-  <sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="1916"
-     inkscape:window-height="997"
-     id="namedview14"
-     showgrid="false"
-     inkscape:zoom="1.6175"
-     inkscape:cx="170.22649"
-     inkscape:cy="199.13435"
-     inkscape:window-x="0"
-     inkscape:window-y="1281"
-     inkscape:window-maximized="0"
-     inkscape:current-layer="g852"
-     showguides="false"
-     inkscape:snap-bbox="true"
-     inkscape:bbox-paths="true"
-     inkscape:snap-bbox-edge-midpoints="true"
-     inkscape:snap-bbox-midpoints="true"
-     inkscape:bbox-nodes="true"
-     inkscape:snap-intersection-paths="true"
-     inkscape:object-paths="true"
-     inkscape:snap-smooth-nodes="true"
-     inkscape:snap-center="true"
-     inkscape:snap-object-midpoints="true"
-     inkscape:snap-midpoints="true"
-     inkscape:snap-text-baseline="true"
-     inkscape:snap-grids="true"
-     inkscape:snap-page="true"
-     inkscape:document-rotation="0" />
   <g
      id="g883"
      transform="translate(-6.6513112)">

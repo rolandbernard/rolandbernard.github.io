@@ -4,6 +4,7 @@ import { html } from './build-util.js';
 import { fontCss } from './fonts.js';
 import { themeCss } from './theme.js';
 import { pageHeader } from './header.js';
+import { pageFooter } from './footer.js';
 
 export function htmlTemplate(title, content, lang = 'en') {
     return html`
@@ -19,6 +20,7 @@ export function htmlTemplate(title, content, lang = 'en') {
             <body>
                 ${pageHeader(lang)}
                 ${content}
+                ${pageFooter(lang)}
             </body>
         </html>
     `;

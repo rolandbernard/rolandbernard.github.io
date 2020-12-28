@@ -68,19 +68,26 @@ export function pageHeader(lang = 'en') {
             .header-logo {
                 fill: white;
             }
+            .header-nav {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
         </style>
-        <div class="header">
+        <header class="header">
             <span class="header-logo">
                 ${readFile("src/page/icons/logo.svg")}
             </span>
             <span class="header-spacer"></span>
-            <span class="lang-select">${lang.toUpperCase()}</span>
-            <span class="link"><a href="/${lang}/index.html">Home</a></span>
-            <span class="line-seperator"></span>
-            <span class="link"><a href="/${lang}/projects.html">Projects</a></span>
-            <span class="line-seperator"></span>
-            <span class="link"><a href="/${lang}/blog.html">Posts</a></span>
-        </div>
+            <nav class="header-nav">
+                <span class="lang-select">${lang.toUpperCase()}</span>
+                <span class="link"><a href="/${lang}/index.html">Home</a></span>
+                <span class="line-seperator"></span>
+                <span class="link"><a href="/${lang}/projects.html">Projects</a></span>
+                <span class="line-seperator"></span>
+                <span class="link"><a href="/${lang}/blog.html">Posts</a></span>
+            </nav>
+        </header>
         <div class="header-placeholder"></div>
     `;
 }
