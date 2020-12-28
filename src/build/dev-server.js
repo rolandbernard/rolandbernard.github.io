@@ -12,7 +12,7 @@ server.listen(8080, () => {
 });
 
 function build() {
-    exec('node build/build.js -d', (err, _, stderr) => {
+    exec('node src/build/build.js -d', (err, _, stderr) => {
         if(stderr || err) {
             console.error('Failed to compile:');
             console.error(stderr);
@@ -37,4 +37,3 @@ function recursiveWatch(dir) {
 
 build();
 recursiveWatch('src/');
-recursiveWatch('build/');

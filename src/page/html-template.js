@@ -12,6 +12,7 @@ export function htmlTemplate(title, content, lang = 'en') {
             <head>
                 <title>${title}</title>
                 <meta name="viewport" content="height=device-height,width=device-width,initial-scale=1.0" />
+                <link rel="shortcut icon" href="/favicon.svg" />
                 <style>${fontCss()}</style>
                 <style>${themeCss()}</style>
             </head>

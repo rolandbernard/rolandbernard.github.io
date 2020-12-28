@@ -4,8 +4,8 @@
   "author": "Roland Bernard",
   "license": "MIT",
   "scripts": {
-    "dist": "node build/build.js",
-    "dev": "node build/dev-server.js"
+    "dist": "node src/build/build.js",
+    "dev": "node src/build/dev-server.js"
   },
   "type": "module",
   "devDependencies": {

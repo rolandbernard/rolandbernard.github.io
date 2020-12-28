@@ -4,12 +4,12 @@ import { css } from './build-util.js';
 export function themeCss() {
     return css`
         * {
-            --background-dark: #373f51;
-            --background-darkish: #454d61;
+            --background-dark: #070022;
+            --background-darkish: #051233;
             --background-light: #F8F8F8;
-            --primary: #008DD5;
-            --secondary: #CE8147;
-            --accent: #B3001B;
+            --primary: #0026ff;
+            --secondary: #e96e10;
+            --accent: #c90522;
             --shadow-large: 0px 2px 4px -1px rgba(0,0,0,0.2),
                 0px 4px 5px 0px rgba(0,0,0,0.14),
                 0px 1px 10px 0px rgba(0,0,0,0.12);

@@ -18,10 +18,11 @@ export function pageHeader(lang = 'en') {
                 user-select: none;
                 box-shadow: var(--shadow-large);
                 box-sizing: border-box;
+                border-bottom: 2px solid var(--primary);
             }
             .header svg {
                 flex: 0 0 auto;
-                height: 2rem;
+                height: 1.5rem;
                 width: 4rem;
                 filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
             }
@@ -59,15 +60,19 @@ export function pageHeader(lang = 'en') {
                 color: white;
             }
             .header .line-seperator {
-                width: 1px;
+                width: 0;
                 height: 1.75rem;
-                border: none;
-                background: grey;
+                /* border: 1px solid var(--primary); */
                 box-sizing: border-box;
+            }
+            .header-logo {
+                fill: white;
             }
         </style>
         <div class="header">
-            ${readFile("src/icons/logo.svg")}
+            <span class="header-logo">
+                ${readFile("src/page/icons/logo.svg")}
+            </span>
             <span class="header-spacer"></span>
             <span class="lang-select">${lang.toUpperCase()}</span>
             <span class="link"><a href="/${lang}/index.html">Home</a></span>

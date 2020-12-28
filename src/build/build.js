@@ -1,7 +1,7 @@
 
 import { Builder } from './builder.js';
         
-import { notFoundView } from '../src/views/not-found-view.js';
+import { notFoundView } from '../page/views/not-found-view.js';
 
 const debug = process.argv.includes('-d');
 
