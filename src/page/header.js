@@ -1,5 +1,6 @@
 
 import { html, readFile } from './build-util.js';
+import { languages } from '../config.js';
 
 export function pageHeader(lang = 'en') {
     return html`
@@ -57,6 +58,7 @@ export function pageHeader(lang = 'en') {
                 border-radius: 0px;
                 border-style: dashed;
                 border: none;
+                text-align: center;
             }
             .header .lang-select select:hover {
                 cursor: pointer;
@@ -116,39 +118,46 @@ export function pageHeader(lang = 'en') {
                 ${readFile("src/page/icons/logo.svg")}
             </span>
             <nav class="header-nav">
-                <span class="link"><a href="/${lang}/index.html">Home</a></span>
+                <span class="link"><a href="/${lang}">Home</a></span>
                 <span class="line-seperator"></span>
-                <span class="link"><a href="/${lang}/projects.html">Projects</a></span>
+                <span class="link"><a href="/${lang}/projects">Projects</a></span>
                 <span class="line-seperator"></span>
-                <span class="link"><a href="/${lang}/blog.html">Posts</a></span>
+                <span class="link"><a href="/${lang}/blog">Posts</a></span>
                 <span class="header-spacer"></span>
                 <div class="lang-select">
                     <select>
-                        <option>${lang.toUpperCase()}</option>
+                        ${languages.map(language => html`
+                            <option value="${language}" ${language === lang ? 'selected' : ''}>${language.toUpperCase()}</option>
+                        `)}
                     </select>
                 </div>
             </nav>
         </header>
         <div class="header-placeholder"></div>
         <script>
-            function changeLanguage(lang) {
-                
+            const select_wrap = document.querySelector('.header .lang-select');
+            const select = document.querySelector('.header .lang-select select');
+            function changeLanguage(event) {
+                const matched = window.location.pathname.match(/^\\/([^\\/]+)(\\/?.*)$/);
+                console.log(matched);
+                if (matched) {
+                    window.location.pathname = '/' + event.target.value + matched[2];
+                }
             }
-            const select = document.querySelector('.header .lang-select');
-            const select_wrap = document.querySelector('.header .lang-select select');
+            select.addEventListener('change', changeLanguage);
             function languageSelectClose(event) {
                 select_wrap.classList.remove('open');
-                console.log('close');
+                event.stopPropagation();
                 window.removeEventListener('mousedown', languageSelectClose);
-                select.addEventListener('mousedown', languageSelectOpen);
+                select_wrap.addEventListener('mousedown', languageSelectOpen);
             }
             function languageSelectOpen(event) {
                 select_wrap.classList.add('open');
-                console.log('open');
-                select.removeEventListener('mousedown', languageSelectOpen);
+                event.stopPropagation();
+                select_wrap.removeEventListener('mousedown', languageSelectOpen);
                 window.addEventListener('mousedown', languageSelectClose);
             }
-            select.addEventListener('mousedown', languageSelectOpen);
+            select_wrap.addEventListener('mousedown', languageSelectOpen);
         </script>
     `;
 }

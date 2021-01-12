@@ -27,6 +27,7 @@ export function pageFooter(lang = 'en') {
                 padding-left: 0.25rem;
                 padding-right: 0.25rem;
                 padding-bottom: 0.25rem;
+                text-decoration: none;
             }
             .footer-contacts a svg {
                 width: 1.25rem;

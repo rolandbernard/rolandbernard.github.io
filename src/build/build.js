@@ -12,6 +12,5 @@ builder.copyDirContent('assets/');
 
 for(const lang of ['', ...languages]) {
 
+    builder.addHtmlFile(`${lang}/404.html`, notFoundView(lang || 'en'));
 }
-
-builder.addHtmlFile(`404.html`, notFoundView());
