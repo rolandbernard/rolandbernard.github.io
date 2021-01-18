@@ -15,22 +15,13 @@ export function notFoundView(lang = 'en') {
                 height: 100%;
                 font-family: OpenSans;
                 user-select: none;
+                text-align: center;
             }
             .not-found-title {
                 font-size: 3rem;
             }
             .not-found-text {
                 font-size: 1.5rem;
-            }
-            html {
-                height: 100%;
-            }
-            body {
-                display: flex;
-                height: 100%;
-                padding: 0;
-                margin: 0;
-                flex-flow: column;
             }
         </style>
         <div class="not-found-container">

@@ -16,10 +16,25 @@ export function htmlTemplate(title, content, lang = 'en') {
                 <link rel="shortcut icon" href="/favicon.svg" />
                 <style>${fontCss()}</style>
                 <style>${themeCss()}</style>
+                <style>
+                    html {
+                        height: 100%;
+                    }
+                    body {
+                        display: flex;
+                        height: 100%;
+                        padding: 0;
+                        margin: 0;
+                        flex-flow: column;
+                    }
+                    .page-content {
+                        flex: 1 1 auto;
+                    }
+                </style>
             </head>
             <body>
                 ${pageHeader(lang)}
-                ${content}
+                <div class="page-content">${content}</div>
                 ${pageFooter(lang)}
             </body>
         </html>

@@ -5,6 +5,7 @@ export function pageFooter(lang = 'en') {
     return html`
         <style>
             .footer {
+                flex: 0 0 auto;
                 width: 100%;
                 padding-top: 0.5rem;
                 padding-bottom: 0.25rem;
@@ -42,10 +43,13 @@ export function pageFooter(lang = 'en') {
             .footer-copyright {
                 padding-top: 0.25rem;
             }
+            .link-disabled {
+                opacity: 0.5;
+            }
         </style>
         <footer class="footer">
             <span class="footer-contacts">
-                <a href="mailto:rolli.bernard+website@gmail.com">
+                <a class="link-disabled" href="mailto:forbidden">
                     ${readFile("src/page/icons/mail.svg")}
                     <span>Mail</span>
                 </a>

@@ -26,7 +26,8 @@ export function pageHeader(lang = 'en') {
             }
             .header-placeholder {
                 width: 100%;
-                height: 2.75rem;
+                height: 3.5rem;
+                flex: 0 0 auto;
             }
             .header .link {
                 flex: 0 0 auto;
@@ -67,6 +68,11 @@ export function pageHeader(lang = 'en') {
             .header .lang-select {
                 position: relative;
             }
+            @media (max-width: 350px) {
+                .header .lang-select {
+                    display: none;
+                }
+            }
             .header .lang-select:after {
                 position: absolute;
                 content: "";
@@ -100,6 +106,11 @@ export function pageHeader(lang = 'en') {
                 align-items: center;
                 justify-content: center;
             }
+            @media (max-width: 400px) {
+                .header .header-logo {
+                    display: none;
+                }
+            }
             .header .header-logo svg {
                 fill: white;
                 height: 1.5rem;
@@ -118,11 +129,23 @@ export function pageHeader(lang = 'en') {
                 ${readFile("src/page/icons/logo.svg")}
             </span>
             <nav class="header-nav">
-                <span class="link"><a href="/${lang}">Home</a></span>
+                <span class="link"><a href="/${lang}">${{
+                    'en': 'Home',
+                    'de': 'Home',
+                    'it': 'Home',
+                }[lang]}</a></span>
                 <span class="line-seperator"></span>
-                <span class="link"><a href="/${lang}/projects">Projects</a></span>
+                <span class="link"><a href="/${lang}/projects">${{
+                    'en': 'Projects',
+                    'de': 'Projekte',
+                    'it': 'Progetti',
+                }[lang]}</a></span>
                 <span class="line-seperator"></span>
-                <span class="link"><a href="/${lang}/blog">Posts</a></span>
+                <span class="link"><a href="/${lang}/blog">${{
+                    'en': 'Posts',
+                    'de': 'Posts',
+                    'it': 'Posti',
+                }[lang]}</a></span>
                 <span class="header-spacer"></span>
                 <div class="lang-select">
                     <select>
