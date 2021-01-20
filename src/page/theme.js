@@ -6,7 +6,7 @@ export function themeCss() {
         * {
             --background-dark: #070022;
             --background-darkish: #051233;
-            --background-light: #F8F8F8;
+            --background-light: #F5F5F5;
             --primary: #0026ff;
             --secondary: #e96e10;
             --accent: #c90522;

@@ -30,6 +30,10 @@ export function htmlTemplate(title, content, lang = 'en') {
                     .page-content {
                         flex: 1 1 auto;
                     }
+                    a {
+                        text-decoration: none;
+                        color: var(--primary);
+                    }
                 </style>
             </head>
             <body>

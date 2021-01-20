@@ -10,7 +10,7 @@ export function pageHeader(lang = 'en') {
                 top: 0;
                 left: 0;
                 width: 100%;
-                height: 3.5rem;
+                height: 3rem;
                 padding: 0.5rem;
                 background: var(--background-dark);
                 display: flex;
@@ -20,13 +20,14 @@ export function pageHeader(lang = 'en') {
                 box-shadow: var(--shadow-large);
                 box-sizing: border-box;
                 border-bottom: 2px solid var(--primary);
+                z-index: 10;
             }
             .header .header-spacer {
                 flex: 1 1 100%;
             }
             .header-placeholder {
                 width: 100%;
-                height: 3.5rem;
+                height: 3rem;
                 flex: 0 0 auto;
             }
             .header .link {
@@ -36,7 +37,7 @@ export function pageHeader(lang = 'en') {
                 padding: 0.5rem;
             }
             .header .link a {
-                font-size: 1.3rem;
+                font-size: 1.2rem;
                 font-weight: 400;
                 font-family: Roland;
                 font-style: normal;
@@ -48,7 +49,7 @@ export function pageHeader(lang = 'en') {
             }
             .header .lang-select select {
                 padding: 0.25rem 1rem;
-                font-size: 1.2rem;
+                font-size: 1.1rem;
                 font-weight: 400;
                 font-family: Roland;
                 font-style: normal;
@@ -113,7 +114,7 @@ export function pageHeader(lang = 'en') {
             }
             .header .header-logo svg {
                 fill: white;
-                height: 1.5rem;
+                height: 1.4rem;
                 width: 2.5rem;
                 filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
             }
@@ -162,9 +163,10 @@ export function pageHeader(lang = 'en') {
             const select = document.querySelector('.header .lang-select select');
             function changeLanguage(event) {
                 const matched = window.location.pathname.match(/^\\/([^\\/]+)(\\/?.*)$/);
-                console.log(matched);
                 if (matched) {
                     window.location.pathname = '/' + event.target.value + matched[2];
+                } else {
+                    window.location.pathname = '/' + event.target.value;
                 }
             }
             select.addEventListener('change', changeLanguage);
