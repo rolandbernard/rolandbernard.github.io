@@ -205,6 +205,44 @@ export function homeView(lang = 'en') {
                             'de': 'Wettbewerbe',
                             'it': 'Competizioni',
                         }[lang]}</h2>
+                        <div class="sub-experience-content">
+                            <span class="experience-item">
+                                <div>
+                                    <a href="https://sites.google.com/aldini.istruzioneer.it/olimpiadi-informatica-squadre/homepage">
+                                        OIS 2019/2020
+                                    </a>
+                                    - ${{
+                                        'en': 'Regional champion',
+                                        'de': 'Regionalmeister',
+                                        'it': 'Campione regionale',
+                                    }[lang]}
+                                </div>
+                            </span>
+                            <span class="experience-item">
+                                <div>
+                                    <a href="https://www.olimpiadi-informatica.it/index.php/olimpiadi-italiane-19.html">
+                                        OII 2018/2019
+                                    </a>
+                                    - ${{
+                                        'en': 'Gold medal',
+                                        'de': 'Goldmedaille',
+                                        'it': 'Medaglia d\'oro',
+                                    }[lang]}
+                                </div>
+                            </span>
+                            <span class="experience-item">
+                                <div>
+                                    <a href="https://www.olimpiadi-informatica.it/index.php/selezione-territoriale-18.html">
+                                        OII 2017/2018
+                                    </a>
+                                    - ${{
+                                        'en': 'Regional champion',
+                                        'de': 'Regionalmeister',
+                                        'it': 'Campione regionale',
+                                    }[lang]}
+                                </div>
+                            </span>
+                        </div>
                     </div>
                     <div class="sub-experience">
                         <h2>${{
@@ -212,6 +250,8 @@ export function homeView(lang = 'en') {
                             'de': 'Nebenprojekte',
                             'it': 'Progetti collaterali',
                         }[lang]}</h2>
+                        <div class="sub-experience-content">
+                        </div>
                     </div>
                 </div>
             </div>
