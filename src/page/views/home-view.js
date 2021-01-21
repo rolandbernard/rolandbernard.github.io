@@ -4,7 +4,7 @@ import { html } from '../build-util.js';
 import { htmlTemplate } from '../html-template.js';
 
 export function homeView(lang = 'en') {
-    return htmlTemplate('Page not found', html`
+    return htmlTemplate('Roland Bernard - Home', html`
         <style>
             .main-info-wrap {
                 display: flex;
@@ -147,6 +147,11 @@ export function homeView(lang = 'en') {
                                     }[lang]}</a>
                                     (2020&nbsp;-&nbsp;today)
                                 </div>
+                                <div>${{
+                                    'en': 'Faculty of Computer Science',
+                                    'de': 'Fakultät für Informatik',
+                                    'it': 'Facoltà di Informatica',
+                                }[lang]}</div>
                             </span>
                             <span class="experience-item">
                                 <div>
@@ -157,6 +162,11 @@ export function homeView(lang = 'en') {
                                     }[lang]}</a>
                                     (2015&nbsp;-&nbsp;2020)
                                 </div>
+                                <div>${{
+                                    'en': 'Subject area computer science',
+                                    'de': 'Fachrichtung Informatik',
+                                    'it': 'Area tematica informatica',
+                                }[lang]}</div>
                             </span>
                         </div>
                     </div>
@@ -212,9 +222,21 @@ export function homeView(lang = 'en') {
                                         OIS 2019/2020
                                     </a>
                                     - ${{
-                                        'en': 'Regional champion',
+                                        'en': 'Regional&nbsp;champion',
                                         'de': 'Regionalmeister',
-                                        'it': 'Campione regionale',
+                                        'it': 'Campione&nbsp;regionale',
+                                    }[lang]}
+                                </div>
+                            </span>
+                            <span class="experience-item">
+                                <div>
+                                    <a href="https://codingcompetitions.withgoogle.com/hashcode/">
+                                        Google Hash Code 2020
+                                    </a>
+                                    - ${{
+                                        'en': '88th&nbsp;worldwide (1st&nbsp;in&nbsp;Italy)',
+                                        'de': '88.&nbsp;weltweit (1.&nbsp;in&nbsp;Italien)',
+                                        'it': '88°&nbsp;al&nbsp;mondo (1°&nbsp;in&nbsp;Italia)',
                                     }[lang]}
                                 </div>
                             </span>

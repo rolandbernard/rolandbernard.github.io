@@ -14,6 +14,7 @@ export function htmlTemplate(title, content, lang = 'en') {
                 <title>${title}</title>
                 <meta name="viewport" content="height=device-height,width=device-width,initial-scale=1.0" />
                 <link rel="shortcut icon" href="/favicon.svg" />
+                <meta name="description" content="Personal website of Roland Bernard">
                 <style>${fontCss()}</style>
                 <style>${themeCss()}</style>
                 <style>
