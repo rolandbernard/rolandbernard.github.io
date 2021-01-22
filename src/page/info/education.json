@@ -1,0 +1,34 @@
+[
+    {
+        "name": {
+            "en": "Free University of Bozen-Bolzano",
+            "de": "Freie Universität Bozen",
+            "it": "Libera Università di Bolzano"
+        },
+        "time": {
+            "en": "2020 - today",
+            "de": "2020 - heute",
+            "it": "2020 - oggi"
+        },
+        "info": {
+            "en": "Faculty of Computer Science",
+            "de": "Fakultät für Informatik",
+            "it": "Facoltà di Informatica"
+        },
+        "link": "http://www.unibz.it"
+    },
+    {
+        "name": {
+            "en": "Technological High School “Max&nbsp;Valier”",
+            "de": "Technologische Fachoberschule „Max&nbsp;Valier“",
+            "it": "Istituto industriale “Max&nbsp;Valier”"
+        },
+        "time": "2015 - 2020",
+        "info": {
+            "en": "Subject area computer science",
+            "de": "Fachrichtung Informatik",
+            "it": "Area tematica informatica"
+        },
+        "link": "http://tfobz.it"
+    }
+]

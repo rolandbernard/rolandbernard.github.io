@@ -1,0 +1,135 @@
+[
+    {
+        "name": "Reply Code Challenge Standard 2020",
+        "info": {
+            "en": "38th worldwide",
+            "de": "38. weltweit",
+            "it": "38° al mondo"
+        },
+        "link": "https://challenges.reply.com/"
+    },
+    {
+        "name": {
+            "en": "Team Computer Science Olympiad 2019/2020",
+            "de": "Team Informatik-Olympiade 2019/2020",
+            "it": "Olimpiadi di Informatica a Squadre 2019/2020"
+        },
+        "info": {
+            "en": "Regional champion",
+            "de": "Regionalmeister",
+            "it": "Campione regionale"
+        },
+        "link": "https://sites.google.com/aldini.istruzioneer.it/olimpiadi-informatica-squadre/"
+    },
+    {
+        "name": {
+            "en": "Italian Maths Olympiad 2019/2020",
+            "de": "Italienische Mathematik-Olympiade 2019/2020",
+            "it": "Olimpiadi della matematica italiana 2019/2020"
+        },
+        "info": {
+            "en": "Regional champion",
+            "de": "Regionalmeister",
+            "it": "Campione regionale"
+        },
+        "link": "http://olimpiadi.dm.unibo.it/"
+    },
+    {
+        "name": "Google Hash Code 2020",
+        "info": {
+            "en": "88th worldwide (1st in Italy)",
+            "de": "88. weltweit (1. in Italien)",
+            "it": "88° al mondo (1° in Italia)"
+        },
+        "link": "https://codingcompetitions.withgoogle.com/hashcode/"
+    },
+    {
+        "name": {
+            "en": "Italian Physics Olympiad 2019/2020",
+            "de": "Italienische Physik-Olympiade 2019/2020",
+            "it": "Olimpiadi Italiane di Fisica 2019/2020"
+        },
+        "info": {
+            "en": "Regional champion",
+            "de": "Regionalmeister",
+            "it": "Campione regionale"
+        },
+        "link": "https://www.olifis.it/"
+    },
+    {
+        "name": {
+            "en": "Italian Informatics Olympiad 2018/2019",
+            "de": "Italienische Informatik-Olympiade 2018/2019",
+            "it": "Olimpiadi Italiane di Informatica 2018/2019"
+        },
+        "info": {
+            "en": "Gold medal",
+            "de": "Goldmedaille",
+            "it": "Medaglia d'oro"
+        },
+        "link": "https://www.olimpiadi-informatica.it/"
+    },
+    {
+        "name": {
+            "en": "Kangaroo of Mathematics (South Tyrol) 2019",
+            "de": "Känguru der Mathematik (Südtirol) 2019",
+            "it": "Canguro della matematica (Alto Adige) 2019"
+        },
+        "info": {
+            "en": "1st in my category",
+            "de": "1. in meiner Kategorie",
+            "it": "1. nella mia categoria"
+        },
+        "link": "http://www.kaenguru.at/"
+    },
+    {
+        "name": {
+            "en": "Italian Physics Olympiad 2018/2019",
+            "de": "Italienische Physik-Olympiade 2018/2019",
+            "it": "Olimpiadi Italiane di Fisica 2018/2019"
+        },
+        "link": "https://www.olifis.it/"
+    },
+    {
+        "name": {
+            "en": "Italian Maths Olympiad 2018/2019",
+            "de": "Italienische Mathematik-Olympiade 2018/2019",
+            "it": "Olimpiadi della matematica italiana 2018/2019"
+        },
+        "link": "http://olimpiadi.dm.unibo.it/"
+    },
+    {
+        "name": {
+            "en": "Italian Informatics Olympiad 2017/2018",
+            "de": "Italienische Informatik-Olympiade 2017/2018",
+            "it": "Olimpiadi Italiane di Informatica 2017/2018"
+        },
+        "info": {
+            "en": "Regional champion",
+            "de": "Regionalmeister",
+            "it": "Campione regionale"
+        },
+        "link": "https://www.olimpiadi-informatica.it/"
+    },
+    {
+        "name": {
+            "en": "Kangaroo of Mathematics (South Tyrol) 2018",
+            "de": "Känguru der Mathematik (Südtirol) 2018",
+            "it": "Canguro della matematica (Alto Adige) 2018"
+        },
+        "info": {
+            "en": "1st in my category",
+            "de": "1. in meiner Kategorie",
+            "it": "1. nella mia categoria"
+        },
+        "link": "http://www.kaenguru.at/"
+    },
+    {
+        "name": {
+            "en": "Italian Maths Olympiad 2017/2018",
+            "de": "Italienische Mathematik-Olympiade 2017/2018",
+            "it": "Olimpiadi della matematica italiana 2017/2018"
+        },
+        "link": "http://olimpiadi.dm.unibo.it/"
+    }
+]

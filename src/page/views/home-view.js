@@ -1,7 +1,32 @@
 
-import { html } from '../build-util.js';
+import { html, readJsonFile } from '../build-util.js';
 
 import { htmlTemplate } from '../html-template.js';
+
+function experienceElement(info, lang) {
+    function extractData(obj, lang) {
+        if (typeof(obj) === 'string') {
+            return obj;
+        } else {
+            return obj[lang] || Object.values(obj)[0];
+        }
+    }
+    return html`
+        <span class="experience-item">
+            <div>
+                <a href="${extractData(info.link, lang)}">
+                    ${extractData(info.name, lang)}
+                </a>
+                ${info.time && html`
+                    <span>(${extractData(info.time, lang)})</span>
+                `}
+            </div>
+            ${info.info && html`
+                <div>${extractData(info.info, lang)}</div>
+            `}
+        </span>
+    `;
+}
 
 export function homeView(lang = 'en') {
     return htmlTemplate('Roland Bernard - Home', html`
@@ -70,12 +95,14 @@ export function homeView(lang = 'en') {
             .experience .experience-grid {
                 display: grid;
                 width: 90%;
+                max-width: 1200px;
                 grid-template-columns: 1fr 1fr;
                 grid-gap: 0.5rem;
             }
-            @media (max-width: 1200px) {
+            @media (max-width: 1000px) {
                 .experience .experience-grid {
                     grid-template-columns: 1fr;
+                    width: 100%;
                 }
             }
             .experience .experience-grid .sub-experience {
@@ -104,9 +131,11 @@ export function homeView(lang = 'en') {
                 flex-flow: column;
                 flex-flow: column;
                 align-items: center;
-                justify-content: center;
                 flex: 1 1 auto;
                 font-family: OpenSans;
+            }
+            .experience .experience-grid .sub-experience span {
+                display: inline-block;
             }
         </style>
         <div>
@@ -138,36 +167,7 @@ export function homeView(lang = 'en') {
                             'it': 'Educazione',
                         }[lang]}</h2>
                         <div class="sub-experience-content">
-                            <span class="experience-item">
-                                <div>
-                                    <a href="http://www.unibz.it/${lang}/">${{
-                                        'en': 'Free University of Bozen-Bolzano',
-                                        'de': 'Freie Universität Bozen',
-                                        'it': 'Libera Università di Bolzano',
-                                    }[lang]}</a>
-                                    (2020&nbsp;-&nbsp;today)
-                                </div>
-                                <div>${{
-                                    'en': 'Faculty of Computer Science',
-                                    'de': 'Fakultät für Informatik',
-                                    'it': 'Facoltà di Informatica',
-                                }[lang]}</div>
-                            </span>
-                            <span class="experience-item">
-                                <div>
-                                    <a href="http://tfobz.it">${{
-                                        'en': 'Technological High School “Max Valier”',
-                                        'de': 'Technologische Fachoberschule „Max Valier“',
-                                        'it': 'Istituto industriale “Max Valier”',
-                                    }[lang]}</a>
-                                    (2015&nbsp;-&nbsp;2020)
-                                </div>
-                                <div>${{
-                                    'en': 'Subject area computer science',
-                                    'de': 'Fachrichtung Informatik',
-                                    'it': 'Area tematica informatica',
-                                }[lang]}</div>
-                            </span>
+                            ${readJsonFile('src/page/info/education.json').map(el => experienceElement(el, lang))}
                         </div>
                     </div>
                     <div class="sub-experience">
@@ -177,36 +177,7 @@ export function homeView(lang = 'en') {
                             'it': 'Esperienze lavorative',
                         }[lang]}</h2>
                         <div class="sub-experience-content">
-                            <span class="experience-item">
-                                <div>
-                                    <a href="https://www.infominds.eu/&lang=${{
-                                        'en': 'de',
-                                        'de': 'de',
-                                        'it': 'it',
-                                    }[lang]}">Infominds</a>
-                                    (2019&nbsp;-&nbsp;2019)
-                                </div>
-                                <div>${{
-                                    'en': 'Internship in software development',
-                                    'de': 'Praktikum in der Softwareentwicklung',
-                                    'it': 'Stage nello sviluppo di software',
-                                }[lang]}</div>
-                            </span>
-                            <span class="experience-item">
-                                <div>
-                                    <a href="https://www.raiffeisenverband.it/${{
-                                        'en': '',
-                                        'de': '',
-                                        'it': 'it.html',
-                                    }[lang]}">Raiffeisenverband Südtirol</a>
-                                    (2019&nbsp;-&nbsp;2019)
-                                </div>
-                                <div>${{
-                                    'en': 'Internship in software development',
-                                    'de': 'Praktikum in der Softwareentwicklung',
-                                    'it': 'Stage nello sviluppo di software',
-                                }[lang]}</div>
-                            </span>
+                            ${readJsonFile('src/page/info/work.json').map(el => experienceElement(el, lang))}
                         </div>
                     </div>
                     <div class="sub-experience">
@@ -216,54 +187,7 @@ export function homeView(lang = 'en') {
                             'it': 'Competizioni',
                         }[lang]}</h2>
                         <div class="sub-experience-content">
-                            <span class="experience-item">
-                                <div>
-                                    <a href="https://sites.google.com/aldini.istruzioneer.it/olimpiadi-informatica-squadre/homepage">
-                                        OIS 2019/2020
-                                    </a>
-                                    - ${{
-                                        'en': 'Regional&nbsp;champion',
-                                        'de': 'Regionalmeister',
-                                        'it': 'Campione&nbsp;regionale',
-                                    }[lang]}
-                                </div>
-                            </span>
-                            <span class="experience-item">
-                                <div>
-                                    <a href="https://codingcompetitions.withgoogle.com/hashcode/">
-                                        Google Hash Code 2020
-                                    </a>
-                                    - ${{
-                                        'en': '88th&nbsp;worldwide (1st&nbsp;in&nbsp;Italy)',
-                                        'de': '88.&nbsp;weltweit (1.&nbsp;in&nbsp;Italien)',
-                                        'it': '88°&nbsp;al&nbsp;mondo (1°&nbsp;in&nbsp;Italia)',
-                                    }[lang]}
-                                </div>
-                            </span>
-                            <span class="experience-item">
-                                <div>
-                                    <a href="https://www.olimpiadi-informatica.it/index.php/olimpiadi-italiane-19.html">
-                                        OII 2018/2019
-                                    </a>
-                                    - ${{
-                                        'en': 'Gold medal',
-                                        'de': 'Goldmedaille',
-                                        'it': 'Medaglia d\'oro',
-                                    }[lang]}
-                                </div>
-                            </span>
-                            <span class="experience-item">
-                                <div>
-                                    <a href="https://www.olimpiadi-informatica.it/index.php/selezione-territoriale-18.html">
-                                        OII 2017/2018
-                                    </a>
-                                    - ${{
-                                        'en': 'Regional champion',
-                                        'de': 'Regionalmeister',
-                                        'it': 'Campione regionale',
-                                    }[lang]}
-                                </div>
-                            </span>
+                            ${readJsonFile('src/page/info/competitions.json').map(el => experienceElement(el, lang))}
                         </div>
                     </div>
                     <div class="sub-experience">
@@ -273,6 +197,14 @@ export function homeView(lang = 'en') {
                             'it': 'Progetti collaterali',
                         }[lang]}</h2>
                         <div class="sub-experience-content">
+                            ${readJsonFile('src/page/info/projects.json').map(el => experienceElement(el, lang))}
+                            <span class="experience-item">
+                                <a href="/${lang}/projects">${{
+                                    'en': 'More',
+                                    'de': 'Mehr',
+                                    'it': 'Altro',
+                                }[lang]}</a>
+                            </span>
                         </div>
                     </div>
                 </div>

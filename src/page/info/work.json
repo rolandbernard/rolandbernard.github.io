@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Infominds",
+        "time": "2019 - 2019",
+        "info": {
+            "en": "Internship in software development",
+            "de": "Praktikum in der Softwareentwicklung",
+            "it": "Stage nello sviluppo di software"
+        },
+        "link": "https://www.infominds.eu"
+    },
+    {
+        "name": "Raiffeisenverband Südtirol",
+        "time": "2019 - 2019",
+        "info": {
+            "en": "Internship in software development",
+            "de": "Praktikum in der Softwareentwicklung",
+            "it": "Stage nello sviluppo di software"
+        },
+        "link": "https://www.raiffeisenverband.it"
+    }
+]
