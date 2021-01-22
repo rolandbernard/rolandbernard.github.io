@@ -99,6 +99,14 @@ export function homeView(lang = 'en') {
                 grid-template-columns: 1fr 1fr;
                 grid-gap: 0.5rem;
             }
+            @media (min-width: 1001px) {
+                .experience .experience-grid {
+                    grid-template-rows: auto auto 1fr;
+                }
+                .experience .experience-grid .exp-competitions {
+                    grid-row: 2/4;
+                }
+            }
             @media (max-width: 1000px) {
                 .experience .experience-grid {
                     grid-template-columns: 1fr;
@@ -160,7 +168,7 @@ export function homeView(lang = 'en') {
                     'it': 'Esperienza',
                 }[lang]}</h1>
                 <div class="experience-grid">
-                    <div class="sub-experience">
+                    <div class="sub-experience exp-education">
                         <h2>${{
                             'en': 'Education',
                             'de': 'Ausbildung',
@@ -170,7 +178,7 @@ export function homeView(lang = 'en') {
                             ${readJsonFile('src/page/info/education.json').map(el => experienceElement(el, lang))}
                         </div>
                     </div>
-                    <div class="sub-experience">
+                    <div class="sub-experience exp-work">
                         <h2>${{
                             'en': 'Work experience',
                             'de': 'Berufserfahrung',
@@ -180,7 +188,7 @@ export function homeView(lang = 'en') {
                             ${readJsonFile('src/page/info/work.json').map(el => experienceElement(el, lang))}
                         </div>
                     </div>
-                    <div class="sub-experience">
+                    <div class="sub-experience exp-competitions">
                         <h2>${{
                             'en': 'Competitions',
                             'de': 'Wettbewerbe',
@@ -190,7 +198,7 @@ export function homeView(lang = 'en') {
                             ${readJsonFile('src/page/info/competitions.json').map(el => experienceElement(el, lang))}
                         </div>
                     </div>
-                    <div class="sub-experience">
+                    <div class="sub-experience exp-projects">
                         <h2>${{
                             'en': 'Side projects',
                             'de': 'Nebenprojekte',
@@ -205,6 +213,16 @@ export function homeView(lang = 'en') {
                                     'it': 'Altro',
                                 }[lang]}</a>
                             </span>
+                        </div>
+                    </div>
+                    <div class="sub-experience exp-other">
+                        <h2>${{
+                            'en': 'Other',
+                            'de': 'Sonstiges',
+                            'it': 'Altro',
+                        }[lang]}</h2>
+                        <div class="sub-experience-content">
+                            ${readJsonFile('src/page/info/other.json').map(el => experienceElement(el, lang))}
                         </div>
                     </div>
                 </div>

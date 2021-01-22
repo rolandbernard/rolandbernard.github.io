@@ -1,0 +1,11 @@
+[
+    {
+        "name": "Test",
+        "info": {
+            "en": "Test info",
+            "de": "Test info",
+            "it": "Test info"
+        },
+        "link": "https://github.com/rolandbernard/sgx"
+    }
+]

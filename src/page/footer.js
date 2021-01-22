@@ -58,7 +58,7 @@ export function pageFooter(lang = 'en') {
                     <span>GitHub</span>
                 </a>
             </span>
-            <span class="footer-copyright">© 2020 - ${(new Date()).getFullYear()} Roland Bernard. MIT License</span>
+            <span class="footer-copyright">© 2020 - ${(new Date()).getFullYear()} Roland Bernard.</span>
         </footer>
     `;
 }
