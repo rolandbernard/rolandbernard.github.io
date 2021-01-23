@@ -1,11 +1,15 @@
 [
     {
-        "name": "Test",
-        "info": {
-            "en": "Test info",
-            "de": "Test info",
-            "it": "Test info"
+        "name": {
+            "en": "European Forum Alpbach 2018",
+            "de": "Europäisches Forum Alpbach 2018",
+            "it": "European Forum Alpbach 2018"
         },
-        "link": "https://github.com/rolandbernard/sgx"
+        "info": {
+            "en": "Technology Symposium",
+            "de": "Technologiegespräche",
+            "it": "Technology Symposium"
+        },
+        "link": "https://www.alpbach.org/en/event/tec18/"
     }
 ]

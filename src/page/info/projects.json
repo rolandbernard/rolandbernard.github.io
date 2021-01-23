@@ -1,11 +1,38 @@
 [
     {
-        "name": "Test",
-        "info": {
-            "en": "Test info",
-            "de": "Test info",
-            "it": "Test info"
-        },
-        "link": "https://github.com/rolandbernard/sgx"
+        "name": "Geo-Draw",
+        "info": "A simple web application for creating map visualizations",
+        "link": "https://github.com/rolandbernard/geo-draw",
+        "desc": "This is a simple web application that allows the generation of map visualizations. All the processing happens on the client and the server can simply be a static web server. This is only a small project I started, to learn lit-html/LitElement, WebGl and try out the Rust programming language a bit more."
+    },
+    {
+        "name": "BASIC-JIT",
+        "info": "A JIT compiler for the BASIC programming language",
+        "link": "https://github.com/rolandbernard/basic-jit",
+        "desc": "This is a small JIT compiler for a version of the BASIC programming language, running on the x86-64 or 64-bit ARM (aarch64) architecture."
+    },
+    {
+        "name": "Marvin",
+        "info": "A keystroke launcher for Linux",
+        "link": "https://github.com/rolandbernard/marvin",
+        "desc": "This is a keystroke launcher for Linux. It is build using electron but it has not been ported to Windows or MacOs yet."
+    },
+    {
+        "name": "Pathtrace",
+        "info": "A simple path tracing implementation written in C",
+        "link": "https://github.com/rolandbernard/pathtrace",
+        "desc": "A simple path tracing implementation written in C. You should probably not use it because it is insanely slow and noisy."
+    },
+    {
+        "name": "Calculator",
+        "info": "One of my first programming projects",
+        "link": "https://github.com/rolandbernard/calculator",
+        "desc": "This is one of my oldest projects, and as such it is quite bad. I myself don't realy know what exactly is going in. I wrote it before I had any formal education in computer science or programming. It was originaly developed to be run on a Arduino compatible microcontroller and was later ported to Visual C++ and SDL.I have now made the program compile and run using g++ or clang++. I have not changed more than neccesary, and therefore the program still contains memory leaks, compiling it will generate a lot of warnings and is generaly not programmed well."
+    },
+    {
+        "name": "Parsed",
+        "info": "A small parser generator that generates recursive decent parsers",
+        "link": "https://github.com/rolandbernard/parsed",
+        "desc": "A small parser generator that generates recursive descent parsers. It also generates a lexer form the token defined in the grammar.This parser generator is relatively simple. It can handle direct left recursion, but indirect recursion will result in an infinite loop."
     }
 ]
