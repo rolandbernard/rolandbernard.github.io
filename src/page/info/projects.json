@@ -1,9 +1,15 @@
 [
     {
-        "name": "Geo Draw",
-        "info": "A simple web application for creating map visualizations",
-        "link": "https://github.com/rolandbernard/geo-draw",
-        "desc": "This is a simple web application that allows the generation of map visualizations. All the processing happens on the client and the server can simply be a static web server. This is only a small project I started, to learn lit-html/LitElement, WebGl and try out the Rust programming language a bit more."
+        "name": "Marvin",
+        "info": "A keystroke launcher for Linux",
+        "link": "https://github.com/rolandbernard/marvin",
+        "desc": "This is a keystroke launcher for Linux. It is build using electron but it has not been ported to Windows or MacOs yet."
+    },
+    {
+        "name": "Tumbleweed",
+        "info": "A small compiled toy programming language",
+        "link": "https://github.com/rolandbernard/tumbleweed",
+        "desc": "Tumbleweed is a small strongly typed programming language. Just like real tumbleweed this programming language is useless and unwanted."
     },
     {
         "name": "BASIC Jit",
@@ -12,10 +18,28 @@
         "desc": "This is a small JIT compiler for a version of the BASIC programming language, running on the x86-64 or 64-bit ARM (aarch64) architecture."
     },
     {
-        "name": "Marvin",
-        "info": "A keystroke launcher for Linux",
-        "link": "https://github.com/rolandbernard/marvin",
-        "desc": "This is a keystroke launcher for Linux. It is build using electron but it has not been ported to Windows or MacOs yet."
+        "name": "Wakan",
+        "info": "A small interpreted toy programming language",
+        "link": "https://github.com/rolandbernard/wakan",
+        "desc": "Wakan is a small programming language designed as an educational project. It was not designed for any particular application and is not complete."
+    },
+    {
+        "name": "Roland Font",
+        "info": "My first attempt at creating a font",
+        "link": "https://github.com/rolandbernard/roland-font",
+        "desc": "I was wondering how one would go about creating a font. I did a bit of research and created this font as my first font using Inkscape, FontForge, Python, FontTools and Fontmake."
+    },
+    {
+        "name": "Regex",
+        "info": "A small regular expression C library",
+        "link": "https://github.com/rolandbernard/regex",
+        "desc": "A small regular expression library for C. This regex implementation first compiles the regex into a NFA and then transforms that NFA into a DFA. The DFA can then be appliend to an input string of length n in O(n)."
+    },
+    {
+        "name": "Geo Draw",
+        "info": "A simple web application for creating map visualizations",
+        "link": "https://github.com/rolandbernard/geo-draw",
+        "desc": "This is a simple web application that allows the generation of map visualizations. All the processing happens on the client and the server can simply be a static web server. This is only a small project I started, to learn lit-html/LitElement, WebGl and try out the Rust programming language a bit more."
     },
     {
         "name": "Pathtrace",
@@ -36,40 +60,16 @@
         "desc": "A small parser generator that generates recursive descent parsers. It also generates a lexer form the token defined in the grammar.This parser generator is relatively simple. It can handle direct left recursion, but indirect recursion will result in an infinite loop."
     },
     {
-        "name": "Regex",
-        "info": "A small regular expression C library",
-        "link": "https://github.com/rolandbernard/regex",
-        "desc": "A small regular expression library for C. This regex implementation first compiles the regex into a NFA and then transforms that NFA into a DFA. The DFA can then be appliend to an input string of length n in O(n)."
-    },
-    {
         "name": "Tinycloud",
         "info": "Web application focused on storing files",
         "link": "https://github.com/rolandbernard/tinycloud",
         "desc": "Tinycloud is a small web application focused on storing and sharing files."
     },
     {
-        "name": "Tumbleweed",
-        "info": "A small and simple toy programming language",
-        "link": "https://github.com/rolandbernard/tumbleweed",
-        "desc": "Tumbleweed is a small strongly typed programming language. Just like real tumbleweed this programming language is useless and unwanted."
-    },
-    {
         "name": "Suedtirol Weather",
         "info": "Web frontend for displaying the weather data of the Open Data Hub Südtirol",
         "link": "https://github.com/rolandbernard/suedtirol-weather",
         "desc": "Web frontend for displaying the weather data of the Open Data Hub Südtirol, written using the Angular framework."
-    },
-    {
-        "name": "Wakan",
-        "info": "An interpreted C implementation of the small toy programming language Wakan",
-        "link": "https://github.com/rolandbernard/wakan",
-        "desc": "Wakan is a small programming language designed as an educational project. It was not designed for any particular application and is not complete."
-    },
-    {
-        "name": "Roland Font",
-        "info": "My first attempt at creating a font",
-        "link": "https://github.com/rolandbernard/roland-font",
-        "desc": "I was wondering how one would go about creating a font. I did a bit of research and created this font as my first font using Inkscape, FontForge, Python, FontTools and Fontmake."
     },
     {
         "name": "Terminal Image Renderer",
