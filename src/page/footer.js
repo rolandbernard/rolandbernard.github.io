@@ -7,6 +7,7 @@ export function pageFooter(lang = 'en') {
             .footer {
                 flex: 0 0 auto;
                 width: 100%;
+                margin-top: 1rem;
                 padding-top: 0.5rem;
                 padding-bottom: 0.25rem;
                 background: var(--background-dark);

@@ -12,7 +12,7 @@ function experienceElement(info, lang) {
         }
     }
     return html`
-        <span class="experience-item">
+        <div class="experience-item">
             <div>
                 <a href="${extractData(info.link, lang)}">
                     ${extractData(info.name, lang)}
@@ -24,7 +24,7 @@ function experienceElement(info, lang) {
             ${info.info && html`
                 <div>${extractData(info.info, lang)}</div>
             `}
-        </span>
+        </div>
     `;
 }
 
