@@ -1,5 +1,5 @@
 
-import { html, readFile } from './build-util.js';
+import { html, readFile } from '../build/build-util.js';
 
 export function pageFooter(lang = 'en') {
     return html`

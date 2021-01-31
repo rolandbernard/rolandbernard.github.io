@@ -1,5 +1,5 @@
 
-import { html, readFile } from './build-util.js';
+import { html, readFile } from '../build/build-util.js';
 import { languages } from '../config.js';
 
 export function pageHeader(lang = 'en') {

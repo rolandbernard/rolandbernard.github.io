@@ -1,5 +1,5 @@
 
-import { html, readJsonFile } from '../build-util.js';
+import { html, readJsonFile } from '../../build/build-util.js';
 
 import { htmlTemplate } from '../html-template.js';
 

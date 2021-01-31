@@ -1,5 +1,5 @@
 
-import { html } from '../build-util.js';
+import { html } from '../../build/build-util.js';
 
 import { htmlTemplate } from '../html-template.js';
 

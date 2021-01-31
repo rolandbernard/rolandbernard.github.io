@@ -1,5 +1,5 @@
 
-import { css } from './build-util.js';
+import { css } from '../build/build-util.js';
 
 export function fontCss() {
     return css`
