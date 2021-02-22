@@ -42,6 +42,7 @@ export function homeView(lang = 'en') {
                 justify-content: center;
                 align-items: center;
                 position: relative;
+                margin-top: 1rem;
             }
             .main-info-image {
                 flex: 0 0 auto;

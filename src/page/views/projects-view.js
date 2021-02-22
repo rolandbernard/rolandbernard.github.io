@@ -93,8 +93,32 @@ export function projectsView(lang = 'en') {
                 max-width: 30rem;
                 max-height: 30rem;
             }
+            div.note {
+                margin: 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            div.note div {
+                font-family: OpenSans;
+                font-size: 0.75rem;
+                color: var(--background-darkish);
+                display: flex;
+                flex-flow: row wrap;
+                align-items: center;
+                justify-content: center;
+                padding: 0.25rem 0.5rem;
+                border-radius: 2rem;
+                background: var(--background-lighter);
+            }
         </style>
         <div>
+            ${lang !== 'en' ? html`
+                <div class="note"><div>${{
+                    'de': 'Hinweis: Diese Seite ist nur in englischer Sprache verfügbar.',
+                    'it': 'Nota: Questa pagina è disponibile solo in inglese.',
+                }[lang]}</div></div>
+            ` : ''}
             ${readJsonFile('src/page/info/projects.json').map(el => projectElement(el, lang))}
         </div>
     `, lang);
