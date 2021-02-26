@@ -43,11 +43,13 @@ export function pageHeader(lang = 'en') {
                 font-style: normal;
                 text-decoration: none;
                 color: white;
+                position: relative;
             }
-            .header .link a:hover {
-                text-decoration: underline;
+            .header .lang-select .lang-select-current {
+                position: relative;
+                width: 1.5rem;
             }
-            .header .lang-select select {
+            .header .lang-select {
                 padding: 0.25rem 1rem;
                 font-size: 1.1rem;
                 font-weight: 400;
@@ -61,12 +63,7 @@ export function pageHeader(lang = 'en') {
                 border-style: dashed;
                 border: none;
                 text-align: center;
-            }
-            .header .lang-select select:hover {
                 cursor: pointer;
-                text-decoration: underline;
-            }
-            .header .lang-select {
                 position: relative;
             }
             @media (max-width: 350px) {
@@ -90,9 +87,37 @@ export function pageHeader(lang = 'en') {
             .header .lang-select.open:after {
                 transform: rotate(180deg);
             }
-            .header .lang-select option {
+            .header .lang-select .lang-select-options {
+                display: block;
+                position: absolute;
+                top: 0;
+                right: 0;
+                z-index: 100;
+                border-radius: 4px;
+                overflow: hidden;
+                box-shadow: var(--shadow-small);
+                clip-path: circle(0 at 100% 0);
+                transition: clip-path 0.2s ease-in-out;
+            }
+            .header .lang-select.open .lang-select-options {
+                clip-path: circle(200% at 100% 0);
+            }
+            @media (prefers-reduced-motion) {
+                .header .lang-select .lang-select-options {
+                    transition: none;
+                }
+            }
+            .header .lang-select .lang-option {
                 background: var(--background-darkish);
                 border: none;
+                padding: 1rem;
+            }
+            .header .lang-select .lang-option span {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 1.5rem;
             }
             .header .line-seperator {
                 width: 0;
@@ -124,6 +149,33 @@ export function pageHeader(lang = 'en') {
                 justify-content: center;
                 width: 100%;
             }
+            .header .link a::after,
+            .header .lang-select .lang-select-options .lang-option span::after,
+            .header .lang-select .lang-select-current::after {
+                content: '';
+                position: absolute;
+                bottom: -1px;
+                left: 0;
+                width: 100%;
+                height: 1px;
+                background: currentColor;
+                transform: scaleX(0);
+                transform-origin: 0% 50%;
+                transition: transform 0.2s ease-in-out;
+                z-index: 1;
+            }
+            @media (prefers-reduced-motion) {
+                .header .link a::after,
+                .header .lang-select .lang-select-options .lang-option span::after,
+                .header .lang-select .lang-select-current::after {
+                    transition: none;
+                }
+            }
+            .header .link:hover a::after,
+            .header .lang-select .lang-select-options .lang-option:hover span::after,
+            .header .lang-select:hover .lang-select-current::after {
+                transform: scaleX(1);
+            }
         </style>
         <header class="header">
             <span class="header-logo">
@@ -149,40 +201,44 @@ export function pageHeader(lang = 'en') {
                 }[lang]}</a></span>
                 <span class="header-spacer"></span>
                 <div class="lang-select">
-                    <select>
+                    <div class="lang-select-current">${lang.toUpperCase()}</div>
+                    <div class="lang-select-options">
                         ${languages.map(language => html`
-                            <option value="${language}" ${language === lang ? 'selected' : ''}>${language.toUpperCase()}</option>
+                            <div class="lang-option">
+                                <span>${language.toUpperCase()}</span>
+                            </div>
                         `)}
-                    </select>
+                    </div>
                 </div>
             </nav>
         </header>
         <div class="header-placeholder"></div>
         <script>
-            const select_wrap = document.querySelector('.header .lang-select');
-            const select = document.querySelector('.header .lang-select select');
-            function changeLanguage(event) {
+            function changeLanguage(lang) {
                 const matched = window.location.pathname.match(/^\\/([^\\/]+)(\\/?.*)$/);
                 if (matched) {
-                    window.location.pathname = '/' + event.target.value + matched[2];
+                    window.location.pathname = '/' + lang + matched[2];
                 } else {
-                    window.location.pathname = '/' + event.target.value;
+                    window.location.pathname = '/' + lang;
                 }
             }
-            select.addEventListener('change', changeLanguage);
+            document.querySelectorAll('.header .lang-select .lang-select-options .lang-option').forEach((elem, i) => {
+                elem.addEventListener('click', () => changeLanguage(${JSON.stringify(languages)}[i]));
+            });
+            const lang_select = document.querySelector('.header .lang-select');
             function languageSelectClose(event) {
-                select_wrap.classList.remove('open');
+                lang_select.classList.remove('open');
                 event.stopPropagation();
-                window.removeEventListener('mousedown', languageSelectClose);
-                select_wrap.addEventListener('mousedown', languageSelectOpen);
+                window.removeEventListener('click', languageSelectClose);
+                lang_select.addEventListener('click', languageSelectOpen);
             }
             function languageSelectOpen(event) {
-                select_wrap.classList.add('open');
+                lang_select.classList.add('open');
                 event.stopPropagation();
-                select_wrap.removeEventListener('mousedown', languageSelectOpen);
-                window.addEventListener('mousedown', languageSelectClose);
+                lang_select.removeEventListener('click', languageSelectOpen);
+                window.addEventListener('click', languageSelectClose);
             }
-            select_wrap.addEventListener('mousedown', languageSelectOpen);
+            lang_select.addEventListener('click', languageSelectOpen);
         </script>
     `;
 }
