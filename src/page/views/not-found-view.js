@@ -3,7 +3,7 @@ import { html } from '../../build/build-util.js';
 
 import { htmlTemplate } from '../html-template.js';
 
-export function notFoundView(lang = 'en') {
+export function notFoundView(lang = 'en', url = '/') {
     return htmlTemplate('Page not found', html`
         <style>
             .not-found-container {
@@ -32,5 +32,5 @@ export function notFoundView(lang = 'en') {
                 'it':'Sito non poteva essere trovato',
             }[lang]}</div>
         </div>
-    `, lang);
+    `, lang, url);
 }

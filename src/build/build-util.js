@@ -24,3 +24,12 @@ export function readFile(filename) {
 export function readJsonFile(filename) {
     return JSON.parse(readFileSync(filename, { encoding: 'utf-8' }));
 }
+
+export function changeUrlLanguage(url, lang) {
+    const matched = url.match(/^\/([^\/]+)(\/?.*)$/);
+    if (matched) {
+        return '/' + lang + matched[2];
+    } else {
+        return '/' + lang;
+    }
+}

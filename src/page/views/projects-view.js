@@ -38,7 +38,7 @@ function projectElement(info, lang) {
     `;
 }
 
-export function projectsView(lang = 'en') {
+export function projectsView(lang = 'en', url = '/') {
     return htmlTemplate('Roland Bernard - Home', html`
         <style>
             .project-item {
@@ -121,5 +121,5 @@ export function projectsView(lang = 'en') {
             ` : ''}
             ${readJsonFile('src/page/info/projects.json').map(el => projectElement(el, lang))}
         </div>
-    `, lang);
+    `, lang, url);
 }

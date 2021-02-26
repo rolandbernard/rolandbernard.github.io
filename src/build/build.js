@@ -14,7 +14,7 @@ builder.copyDirContent('assets/');
 
 for(const path of ['', ...languages]) {
     const lang = path || 'en';
-    builder.addHtmlFile(`${path}/404.html`, notFoundView(lang));
-    builder.addHtmlFile(`${path}/index.html`, homeView(lang));
-    builder.addHtmlFile(`${path}/projects.html`, projectsView(lang));
+    builder.generateHtmlFile(`${path}/404.html`, lang, notFoundView);
+    builder.generateHtmlFile(`${path}/index.html`, lang, homeView);
+    builder.generateHtmlFile(`${path}/projects.html`, lang, projectsView);
 }

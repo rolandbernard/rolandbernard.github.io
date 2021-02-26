@@ -1,7 +1,7 @@
 
 import { html, readFile } from '../build/build-util.js';
 
-export function pageFooter(lang = 'en') {
+export function pageFooter(lang = 'en', url = '/') {
     return html`
         <style>
             .footer {

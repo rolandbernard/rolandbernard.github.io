@@ -1,8 +1,8 @@
 
-import { html, readFile } from '../build/build-util.js';
+import { html, readFile, changeUrlLanguage } from '../build/build-util.js';
 import { languages } from '../config.js';
 
-export function pageHeader(lang = 'en') {
+export function pageHeader(lang = 'en', url = '/') {
     return html`
         <style>
             .header {
@@ -71,6 +71,22 @@ export function pageHeader(lang = 'en') {
                     display: none;
                 }
             }
+            .header .lang-select input {
+                appearance: none;
+                /* visibility: hidden; */
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                margin: 0;
+                z-index: 10;
+                cursor: pointer;
+            }
+            .header .lang-select input:checked {
+                position: fixed;
+                cursor: auto;
+            }
             .header .lang-select:after {
                 position: absolute;
                 content: "";
@@ -99,7 +115,7 @@ export function pageHeader(lang = 'en') {
                 clip-path: circle(0 at 100% 0);
                 transition: clip-path 0.2s ease-in-out;
             }
-            .header .lang-select.open .lang-select-options {
+            .header .lang-select input:checked ~ .lang-select-options {
                 clip-path: circle(200% at 100% 0);
             }
             @media (prefers-reduced-motion) {
@@ -108,11 +124,13 @@ export function pageHeader(lang = 'en') {
                 }
             }
             .header .lang-select .lang-option {
+                display: block;
                 background: var(--background-darkish);
                 border: none;
                 padding: 1rem;
             }
             .header .lang-select .lang-option span {
+                color: white;
                 position: relative;
                 display: flex;
                 align-items: center;
@@ -201,44 +219,18 @@ export function pageHeader(lang = 'en') {
                 }[lang]}</a></span>
                 <span class="header-spacer"></span>
                 <div class="lang-select">
+                    <input type="checkbox" />
                     <div class="lang-select-current">${lang.toUpperCase()}</div>
                     <div class="lang-select-options">
                         ${languages.map(language => html`
-                            <div class="lang-option">
+                            <a class="lang-option" href="${changeUrlLanguage(url, language)}">
                                 <span>${language.toUpperCase()}</span>
-                            </div>
+                            </a>
                         `)}
                     </div>
                 </div>
             </nav>
         </header>
         <div class="header-placeholder"></div>
-        <script>
-            function changeLanguage(lang) {
-                const matched = window.location.pathname.match(/^\\/([^\\/]+)(\\/?.*)$/);
-                if (matched) {
-                    window.location.pathname = '/' + lang + matched[2];
-                } else {
-                    window.location.pathname = '/' + lang;
-                }
-            }
-            document.querySelectorAll('.header .lang-select .lang-select-options .lang-option').forEach((elem, i) => {
-                elem.addEventListener('click', () => changeLanguage(${JSON.stringify(languages)}[i]));
-            });
-            const lang_select = document.querySelector('.header .lang-select');
-            function languageSelectClose(event) {
-                lang_select.classList.remove('open');
-                event.stopPropagation();
-                window.removeEventListener('click', languageSelectClose);
-                lang_select.addEventListener('click', languageSelectOpen);
-            }
-            function languageSelectOpen(event) {
-                lang_select.classList.add('open');
-                event.stopPropagation();
-                lang_select.removeEventListener('click', languageSelectOpen);
-                window.addEventListener('click', languageSelectClose);
-            }
-            lang_select.addEventListener('click', languageSelectOpen);
-        </script>
     `;
 }

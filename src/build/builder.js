@@ -12,6 +12,10 @@ export class Builder {
         rmSync(this.output_dir, { recursive: true, force: true });
         mkdirSync(this.output_dir, { recursive: true });
     }
+    
+    generateHtmlFile(filename, lang, func) {
+        this.addHtmlFile(filename, func(lang, `/${filename}`));
+    }
 
     addHtmlFile(filename, html) {
         let content = html;

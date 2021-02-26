@@ -6,7 +6,7 @@ import { themeCss } from './theme.js';
 import { pageHeader } from './header.js';
 import { pageFooter } from './footer.js';
 
-export function htmlTemplate(title, content, lang = 'en') {
+export function htmlTemplate(title, content, lang = 'en', url = '/') {
     return html`
         <!DOCTYPE html>
         <html>
@@ -38,9 +38,9 @@ export function htmlTemplate(title, content, lang = 'en') {
                 </style>
             </head>
             <body>
-                ${pageHeader(lang)}
+                ${pageHeader(lang, url)}
                 <div class="page-content">${content}</div>
-                ${pageFooter(lang)}
+                ${pageFooter(lang, url)}
             </body>
         </html>
     `;
