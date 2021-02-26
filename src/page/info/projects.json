@@ -64,20 +64,20 @@
         "desc": "A simple path tracing implementation written in C. You should probably not use it because it is insanely slow and noisy."
     },
     {
-        "name": "Calculator",
-        "info": "One of my first programming projects",
-        "link": "https://github.com/rolandbernard/calculator",
-        "image": "calculator.png",
-        "tags": [ "calculator", "port", "old-project", "old-stuff" ],
-        "desc": "This is one of my oldest projects, and as such it is quite bad. I myself don't realy know what exactly is going in. I wrote it before I had any formal education in computer science or programming. It was originaly developed to be run on a Arduino compatible microcontroller and was later ported to Visual C++ and SDL.I have now made the program compile and run using g++ or clang++. I have not changed more than neccesary, and therefore the program still contains memory leaks, compiling it will generate a lot of warnings and is generaly not programmed well."
-    },
-    {
         "name": "Parsed",
         "info": "A small parser generator that generates recursive decent parsers",
         "link": "https://github.com/rolandbernard/parsed",
         "image": "parsed.png",
         "tags": [ "parser", "parser-generator", "recursive-descent-parser" ],
         "desc": "A small parser generator that generates recursive descent parsers. It also generates a lexer form the token defined in the grammar.This parser generator is relatively simple. It can handle direct left recursion, but indirect recursion will result in an infinite loop."
+    },
+    {
+        "name": "Calculator",
+        "info": "One of my first programming projects",
+        "link": "https://github.com/rolandbernard/calculator",
+        "image": "calculator.png",
+        "tags": [ "calculator", "port", "old-project", "old-stuff" ],
+        "desc": "This is one of my oldest projects, and as such it is quite bad. I myself don't realy know what exactly is going in. I wrote it before I had any formal education in computer science or programming. It was originaly developed to be run on a Arduino compatible microcontroller and was later ported to Visual C++ and SDL.I have now made the program compile and run using g++ or clang++. I have not changed more than neccesary, and therefore the program still contains memory leaks, compiling it will generate a lot of warnings and is generaly not programmed well."
     },
     {
         "name": "Tinycloud",

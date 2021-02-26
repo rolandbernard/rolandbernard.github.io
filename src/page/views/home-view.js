@@ -206,7 +206,7 @@ export function homeView(lang = 'en') {
                             'it': 'Progetti collaterali',
                         }[lang]}</h2>
                         <div class="sub-experience-content">
-                            ${readJsonFile('src/page/info/projects.json').slice(0, 6).map(el => experienceElement(el, lang))}
+                            ${readJsonFile('src/page/info/projects.json').slice(0, 9).map(el => experienceElement(el, lang))}
                             <span class="experience-item">
                                 <a href="/${lang}/projects">${{
                                     'en': 'More',

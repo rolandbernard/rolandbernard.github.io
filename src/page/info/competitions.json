@@ -1,5 +1,9 @@
 [
     {
+        "name": "Google Hash Code 2021",
+        "link": "https://codingcompetitions.withgoogle.com/hashcode/"
+    },
+    {
         "name": "Reply Code Challenge Standard 2020",
         "info": {
             "en": "38th worldwide",
@@ -44,6 +48,10 @@
         "link": "https://codingcompetitions.withgoogle.com/hashcode/"
     },
     {
+        "name": "Google Code Jam 2020",
+        "link": "https://codingcompetitions.withgoogle.com/codejam/"
+    },
+    {
         "name": {
             "en": "Italian Physics Olympiad 2019/2020",
             "de": "Italienische Physik-Olympiade 2019/2020",
@@ -55,6 +63,10 @@
             "it": "Campione regionale"
         },
         "link": "https://www.olifis.it/"
+    },
+    {
+        "name": "Google Kick Start 2020",
+        "link": "https://codingcompetitions.withgoogle.com/kickstart/"
     },
     {
         "name": {
