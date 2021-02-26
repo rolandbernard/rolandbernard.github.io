@@ -150,7 +150,7 @@ export function homeView(lang = 'en') {
         <div>
             <div class="main-info-wrap">
                 <div class="main-info">
-                    <img class="main-info-image" src="profile.jpg" />
+                    <img class="main-info-image" src="/img/profile.jpg" />
                     <div class="main-info-text">
                         <div class="main-info-name">Roland Bernard</div>
                         <div class="main-info-desc">${{
