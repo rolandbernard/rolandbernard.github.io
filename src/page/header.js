@@ -73,7 +73,9 @@ export function pageHeader(lang = 'en', url = '/') {
             }
             .header .lang-select input {
                 appearance: none;
-                /* visibility: hidden; */
+                background: none;
+                border: none;
+                outline: none;
                 position: absolute;
                 width: 100%;
                 height: 100%;
@@ -143,24 +145,6 @@ export function pageHeader(lang = 'en', url = '/') {
                 /* border: 1px solid var(--primary); */
                 box-sizing: border-box;
             }
-            .header .header-logo {
-                flex: 0 0 auto;
-                padding-right: 1rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            @media (max-width: 400px) {
-                .header .header-logo {
-                    display: none;
-                }
-            }
-            .header .header-logo svg {
-                fill: white;
-                height: 1.4rem;
-                width: 2.5rem;
-                filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
-            }
             .header .header-nav {
                 display: flex;
                 align-items: center;
@@ -196,9 +180,6 @@ export function pageHeader(lang = 'en', url = '/') {
             }
         </style>
         <header class="header">
-            <span class="header-logo">
-                ${readFile("src/page/icons/logo.svg")}
-            </span>
             <nav class="header-nav">
                 <span class="link"><a href="/${lang}">${{
                     'en': 'Home',
