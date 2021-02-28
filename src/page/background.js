@@ -9,7 +9,7 @@ export function background(id, content) {
             <style>
                 .background-wrap-${id} {
                     color: ${colors[id % colors.length][1]};
-                    margin-top: -2.5rem;
+                    margin-top: -2.6rem;
                     padding-top: 7.5rem;
                     padding-bottom: 10rem;
                     display: flex;

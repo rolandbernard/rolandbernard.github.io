@@ -44,11 +44,6 @@ export function htmlTemplate(title, content, lang = 'en', url = '/') {
                 <div class="page-content">${content}</div>
                 ${pageFooter(lang, url)}
             </body>
-            <script>
-                document.addEventListener('scroll', (_) => {
-                    document.body.style.setProperty("--scroll", (100 * window.scrollY / (document.body.scrollHeight - window.innerHeight)));
-                });
-            </script>
         </html>
     `;
 }

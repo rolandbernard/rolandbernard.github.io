@@ -2,6 +2,7 @@
 import { html, readJsonFile } from '../../build/build-util.js';
 
 import { htmlTemplate } from '../html-template.js';
+import { background } from '../background.js';
 
 function projectElement(info, lang) {
     function extractData(obj, lang) {
@@ -32,7 +33,18 @@ function projectElement(info, lang) {
                 </div>
             </div>
             ${info.image && html`
-                <img class="project-image" src="/projimg/${extractData(info.image, lang)}" alt="Example image for the project"/>
+                <img
+                    class="project-image"
+                    src="/projimg/${extractData(info.image, lang)}"
+                    alt="Example image for the project"
+                    width="480" height="480"
+                />
+            `}
+            ${info.video && html`
+                <video class="project-image" autoplay loop muted playsinline width="480" height="480">
+                    <source src="/projimg/${extractData(info.video, lang)}" type="video/mp4" >
+                    <p>Example image for the project</p>
+                </video>
             `}
         </div>
     `;
@@ -44,12 +56,11 @@ export function projectsView(lang = 'en', url = '/') {
             .project-item {
                 padding: 1rem;
                 margin: 1rem;
-                border-radius: 4px;
-                box-shadow: var(--shadow-small);
-                background: var(--background-lighter);
                 display: flex;
                 flex-flow: row;
                 align-items: center;
+                width: 90%;
+                max-width: 70rem;
             }
             @media (max-width: 60rem) {
                 .project-item {
@@ -68,7 +79,7 @@ export function projectsView(lang = 'en', url = '/') {
                 font-size: 1.5rem;
             }
             .project-tags {
-                font-size: 0.75rem;
+                font-size: 0.85rem;
                 color: var(--background-darkish);
                 display: flex;
                 flex-flow: row wrap;
@@ -76,7 +87,7 @@ export function projectsView(lang = 'en', url = '/') {
                 justify-content: center;
             }
             .project-tags span {
-                padding: 0.25rem 0.5rem;
+                padding: 0.3rem 0.65rem;
                 margin: 0.25rem;
                 border-radius: 2rem;
                 background: var(--background-light);
@@ -89,15 +100,17 @@ export function projectsView(lang = 'en', url = '/') {
                 width: 100%;
                 height: 100%;
                 border-radius: 4px;
-                box-shadow: var(--shadow-small);
                 max-width: 30rem;
                 max-height: 30rem;
+                padding: 1rem;
             }
             div.note {
-                margin: 1rem;
+                position: absolute;
+                top: 4rem;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                width: 100%;
             }
             div.note div {
                 font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
@@ -119,7 +132,7 @@ export function projectsView(lang = 'en', url = '/') {
                     'it': 'Nota: Questa pagina è disponibile solo in inglese.',
                 }[lang]}</div></div>
             ` : ''}
-            ${readJsonFile('src/page/info/projects.json').map(el => projectElement(el, lang))}
+            ${readJsonFile('src/page/info/projects.json').map((el, i) => background(i + 1, projectElement(el, lang)))}
         </div>
     `, lang, url);
 }

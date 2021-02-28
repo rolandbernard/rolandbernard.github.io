@@ -8,7 +8,7 @@ export function themeCss() {
             --background-darkish: #191330;
             --background-light: #fdfdf6;
             --background-lighter: #FEFEFE;
-            --primary: #0026ff;
+            --primary: #0021df;
             --shadow-large: 0px 2px 4px -1px rgba(0,0,0,0.2),
                 0px 4px 5px 0px rgba(0,0,0,0.14),
                 0px 1px 10px 0px rgba(0,0,0,0.12);
@@ -29,13 +29,8 @@ export function themeCss() {
 }
 
 export const colors = [
-    ['#F5EE9E', 'black'],
-    ['#fdfdf6', 'black'], 
-    ['#363732', 'white'], 
-    ['#DCE1E9', 'black'],
-    ['#D4AFB9', 'black'],
-    ['#AB3428', 'white'],
-    ['#F49E4C', 'black'],
-    ['#FEC0AA', 'black'],
-    ['#EC4E20', 'white'],
+    ['#E2C044', 'black'],
+    ['#99E1D9', 'black'], 
+    ['#EE9480', 'black'],
+    ['#A09BE7', 'black'],
 ];
