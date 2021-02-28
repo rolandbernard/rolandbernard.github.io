@@ -13,7 +13,7 @@ function projectElement(info, lang) {
         }
     }
     return html`
-        <div class="project-item">
+        <section class="project-item" id="${info.name.toLowerCase().replace(/ /g, '')}" title="${info.name}">
             <div class="project-text">
                 <a class="project-name" href="${extractData(info.link, lang)}">
                     ${extractData(info.name, lang)}
@@ -46,7 +46,7 @@ function projectElement(info, lang) {
                     <p>Example image for the project</p>
                 </video>
             `}
-        </div>
+        </section>
     `;
 }
 
@@ -93,7 +93,7 @@ export function projectsView(lang = 'en', url = '/') {
                 background: var(--background-light);
             }
             .project-desc {
-                padding: 0.5rem;
+                padding: 1rem;
             }
             .project-image {
                 flex: 0 0 auto;
@@ -125,7 +125,7 @@ export function projectsView(lang = 'en', url = '/') {
                 background: var(--background-lighter);
             }
         </style>
-        <div>
+        <main>
             ${lang !== 'en' ? html`
                 <div class="note"><div>${{
                     'de': 'Hinweis: Diese Seite ist nur in englischer Sprache verfügbar.',
@@ -133,6 +133,6 @@ export function projectsView(lang = 'en', url = '/') {
                 }[lang]}</div></div>
             ` : ''}
             ${readJsonFile('src/page/info/projects.json').map((el, i) => background(i + 1, projectElement(el, lang)))}
-        </div>
+        </main>
     `, lang, url);
 }

@@ -24,13 +24,13 @@ export function notFoundView(lang = 'en', url = '/') {
                 font-size: 1.5rem;
             }
         </style>
-        <div class="not-found-container">
+        <main class="not-found-container">
             <div class="not-found-title">404</div>
             <div class="not-found-text">${{
                 'en':'Page cannot be found',
                 'de':'Seite konnte nicht gefunden werden',
                 'it':'Sito non poteva essere trovato',
             }[lang]}</div>
-        </div>
+        </main>
     `, lang, url);
 }

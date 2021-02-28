@@ -44,6 +44,7 @@ export function homeView(lang = 'en', url = '/') {
                 align-items: center;
                 position: relative;
                 margin-top: 1rem;
+                margin-bottom: 2.5rem;
             }
             .main-info-image {
                 flex: 0 0 auto;
@@ -162,7 +163,7 @@ export function homeView(lang = 'en', url = '/') {
                 display: inline-block;
             }
         </style>
-        <div>
+        <main>
            ${background(0, html`
                <div class="main-info-wrap">
                     <div class="main-info">
@@ -195,7 +196,7 @@ export function homeView(lang = 'en', url = '/') {
                         'it': 'Esperienza',
                     }[lang]}</h1>
                     <div class="experience-grid">
-                        <div class="sub-experience exp-education" id="education">
+                        <section class="sub-experience exp-education" id="education">
                             <h2>${{
                                 'en': 'Education',
                                 'de': 'Ausbildung',
@@ -204,8 +205,8 @@ export function homeView(lang = 'en', url = '/') {
                             <div class="sub-experience-content">
                                 ${readJsonFile('src/page/info/education.json').map(el => experienceElement(el, lang))}
                             </div>
-                        </div>
-                        <div class="sub-experience exp-work" id="work">
+                        </section>
+                        <section class="sub-experience exp-work" id="work">
                             <h2>${{
                                 'en': 'Work experience',
                                 'de': 'Berufserfahrung',
@@ -214,8 +215,8 @@ export function homeView(lang = 'en', url = '/') {
                             <div class="sub-experience-content">
                                 ${readJsonFile('src/page/info/work.json').map(el => experienceElement(el, lang))}
                             </div>
-                        </div>
-                        <div class="sub-experience exp-competitions" id="competitions">
+                        </section>
+                        <section class="sub-experience exp-competitions" id="competitions">
                             <h2>${{
                                 'en': 'Competitions',
                                 'de': 'Wettbewerbe',
@@ -224,8 +225,8 @@ export function homeView(lang = 'en', url = '/') {
                             <div class="sub-experience-content">
                                 ${readJsonFile('src/page/info/competitions.json').map(el => experienceElement(el, lang))}
                             </div>
-                        </div>
-                        <div class="sub-experience exp-projects" id="projects">
+                        </section>
+                        <section class="sub-experience exp-projects" id="projects">
                             <h2>${{
                                 'en': 'Side projects',
                                 'de': 'Nebenprojekte',
@@ -241,8 +242,8 @@ export function homeView(lang = 'en', url = '/') {
                                     }[lang]}</a>
                                 </span>
                             </div>
-                        </div>
-                        <div class="sub-experience exp-other" id="other">
+                        </section>
+                        <section class="sub-experience exp-other" id="other">
                             <h2>${{
                                 'en': 'Other',
                                 'de': 'Sonstiges',
@@ -251,10 +252,10 @@ export function homeView(lang = 'en', url = '/') {
                             <div class="sub-experience-content">
                                 ${readJsonFile('src/page/info/other.json').map(el => experienceElement(el, lang))}
                             </div>
-                        </div>
+                        </section>
                     </div>
                 </div>
             `)}
-        </div>
+        </main>
     `, lang, url);
 }

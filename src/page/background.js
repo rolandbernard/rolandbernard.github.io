@@ -10,8 +10,8 @@ export function background(id, content) {
                 .background-wrap-${id} {
                     color: ${colors[id % colors.length][1]};
                     margin-top: -2.6rem;
-                    padding-top: 7.5rem;
-                    padding-bottom: 10rem;
+                    padding-top: 5rem;
+                    padding-bottom: 7.5rem;
                     display: flex;
                     align-items: center;
                     justify-content: center;
