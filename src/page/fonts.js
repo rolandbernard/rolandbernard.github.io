@@ -11,18 +11,6 @@ export function fontCss() {
         }
         @font-face {
             font-family: Roland;
-            font-weight: 500;
-            src: url("/font/Roland-Medium.woff2") format("woff2"),
-                 url("/font/Roland-Medium.ttf") format("truetype");
-        }
-        @font-face {
-            font-family: Roland;
-            font-weight: 600;
-            src: url("/font/Roland-Semi-Bold.woff2") format("woff2"),
-                 url("/font/Roland-Semi-Bold.ttf") format("truetype");
-        }
-        @font-face {
-            font-family: Roland;
             font-weight: 700;
             src: url("/font/Roland-Bold.woff2") format("woff2"),
                  url("/font/Roland-Bold.ttf") format("truetype");
@@ -32,6 +20,12 @@ export function fontCss() {
             font-weight: 400;
             src: url("/font/OpenSans-Regular.woff2") format("woff2"),
                  url("/font/OpenSans-Regular.ttf") format("truetype");
+        }
+        @font-face {
+            font-family: 'Plex Mono';
+            font-weight: 400;
+            src: url("/font/IBMPlexMono-Regular.woff2") format("woff2"),
+                 url("/font/IBMPlexMono-Regular.ttf") format("truetype");
         }
     `;
 }
