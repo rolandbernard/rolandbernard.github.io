@@ -1,7 +1,11 @@
 [
     {
         "name": "Marvin",
-        "info": "A keystroke launcher for Linux",
+        "info": {
+            "en": "A keystroke launcher for Linux",
+            "de": "Ein Anwendungsstarter für Linux",
+            "it": "Un lanciatore di applicazioni per Linux"
+        },
         "link": "https://github.com/rolandbernard/marvin",
         "image": "marvin.jpeg",
         "tags": [ "launcher", "electron", "linux", "application-launcher", "menu" ],
@@ -9,7 +13,11 @@
     },
     {
         "name": "Tumbleweed",
-        "info": "A small compiled toy programming language",
+        "info": {
+            "en": "A small compiled toy programming language",
+            "de": "Eine kleine kompilierte Programmiersprache",
+            "it": "Un piccolo linguaggio di programmazione compilato"
+        },
         "link": "https://github.com/rolandbernard/tumbleweed",
         "image": "tumbleweed.jpeg",
         "tags": [ "llvm", "compiler", "programming-language" ],
@@ -17,7 +25,11 @@
     },
     {
         "name": "BASIC Jit",
-        "info": "A JIT compiler for the BASIC programming language",
+        "info": {
+            "en": "A JIT compiler for the BASIC programming language",
+            "de": "Ein JIT-Compiler für die Programmiersprache BASIC",
+            "it": "Un compilatore JIT per il linguaggio di programmazione BASIC"
+        },
         "link": "https://github.com/rolandbernard/basic-jit",
         "video": "basic-jit.mp4",
         "tags": [ "basic", "jit", "jit-compiler", "x86-64", "aarch64" ],
@@ -25,7 +37,11 @@
     },
     {
         "name": "Wakan",
-        "info": "A small interpreted toy programming language",
+        "info": {
+            "en": "A small interpreted toy programming language",
+            "de": "Eine kleine interpretierte Programmiersprache",
+            "it": "Un piccolo linguaggio di programmazione interpretato"
+        },
         "link": "https://github.com/rolandbernard/wakan",
         "image": "wakan.jpeg",
         "tags": [ "programming-language", "interpreter" ],
@@ -33,7 +49,11 @@
     },
     {
         "name": "Roland Font",
-        "info": "My first attempt at creating a font",
+        "info": {
+            "en": "My first attempt at creating a font",
+            "de": "Mein erster Versuch, eine Schriftart zu erstellen",
+            "it": "Il mio primo tentativo di creare un font"
+        },
         "link": "https://github.com/rolandbernard/roland-font",
         "video": "roland-font.mp4",
         "tags": [ "font" ],
@@ -41,7 +61,11 @@
     },
     {
         "name": "Regex",
-        "info": "A small regular expression C library",
+        "info": {
+            "en": "A small regular expression C library",
+            "de": "Eine C-Bibliothek für reguläre Ausdrücke",
+            "it": "Una libreria C di espressioni regolari"
+        },
         "link": "https://github.com/rolandbernard/regex",
         "image": "regex.jpeg",
         "tags": [ "regex", "regular-expression", "library" ],
@@ -49,7 +73,11 @@
     },
     {
         "name": "Geo Draw",
-        "info": "A simple web application for creating map visualizations",
+        "info": {
+            "en": "A simple web application for creating map visualizations",
+            "de": "Eine Webanwendung zur Erstellung von Kartenvisualisierungen",
+            "it": "Un'applicazione web per creare visualizzazioni di mappe"
+        },
         "link": "https://github.com/rolandbernard/geo-draw",
         "image": "geo-draw.jpeg",
         "tags": [ "visualization", "map", "lit-element", "lit-html", "rust" ],
@@ -57,7 +85,11 @@
     },
     {
         "name": "Pathtrace",
-        "info": "A simple path tracing implementation written in C",
+        "info": {
+            "en": "A simple path tracing implementation written in C",
+            "de": "Eine path tracing Implementierung, geschrieben in C",
+            "it": "Una implementazione di path tracing scritta in C"
+        },
         "link": "https://github.com/rolandbernard/pathtrace",
         "image": "pathtrace.jpeg",
         "tags": [ "pathtracing", "c", "openmp", "experiment" ],
@@ -65,7 +97,11 @@
     },
     {
         "name": "Parsed",
-        "info": "A small parser generator that generates recursive decent parsers",
+        "info": {
+            "en": "A parser generator that generates recursive decent parsers",
+            "de": "Ein Parser-Generator, der rekursive Parser erzeugt",
+            "it": "Un generatore di parser che genera parser ricorsivi"
+        },
         "link": "https://github.com/rolandbernard/parsed",
         "image": "parsed.jpeg",
         "tags": [ "parser", "parser-generator", "recursive-descent-parser" ],

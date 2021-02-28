@@ -165,7 +165,14 @@ export function homeView(lang = 'en', url = '/') {
         </style>
         <main>
            ${background(0, html`
-               <div class="main-info-wrap">
+                <section
+                    class="main-info-wrap"
+                    title="${{
+                        'en': 'Who am I?',
+                        'de': 'Wer bin ich?',
+                        'it': 'Chi sono?',
+                    }[lang]}"
+                >
                     <div class="main-info">
                         <img class="main-info-image" src="/img/profile.jpeg" alt="Not a photo of me" width="160" height="160" />
                         <div class="main-info-text">
@@ -186,17 +193,31 @@ export function homeView(lang = 'en', url = '/') {
                         </div>
                         <hr class="home-divider" />
                     </div>
-                </div>
+                </section>
             `)}
             ${background(1, html`
-                <div class="experience" id="experience">
+                <section
+                    class="experience" id="experience"
+                    title="${{
+                        'en': 'Experience',
+                        'de': 'Erfahrung',
+                        'it': 'Esperienza',
+                    }[lang]}"
+                >
                     <h1>${{
                         'en': 'Experience',
                         'de': 'Erfahrung',
                         'it': 'Esperienza',
                     }[lang]}</h1>
                     <div class="experience-grid">
-                        <section class="sub-experience exp-education" id="education">
+                        <section
+                            class="sub-experience exp-education" id="education"
+                            title="${{
+                                'en': 'Education',
+                                'de': 'Ausbildung',
+                                'it': 'Educazione',
+                            }[lang]}"
+                        >
                             <h2>${{
                                 'en': 'Education',
                                 'de': 'Ausbildung',
@@ -206,7 +227,14 @@ export function homeView(lang = 'en', url = '/') {
                                 ${readJsonFile('src/page/info/education.json').map(el => experienceElement(el, lang))}
                             </div>
                         </section>
-                        <section class="sub-experience exp-work" id="work">
+                        <section
+                            class="sub-experience exp-work" id="work"
+                            title="${{
+                                'en': 'Work experience',
+                                'de': 'Berufserfahrung',
+                                'it': 'Esperienze lavorative',
+                            }[lang]}"
+                        >
                             <h2>${{
                                 'en': 'Work experience',
                                 'de': 'Berufserfahrung',
@@ -216,7 +244,14 @@ export function homeView(lang = 'en', url = '/') {
                                 ${readJsonFile('src/page/info/work.json').map(el => experienceElement(el, lang))}
                             </div>
                         </section>
-                        <section class="sub-experience exp-competitions" id="competitions">
+                        <section
+                            class="sub-experience exp-competitions" id="competitions"
+                            title="${{
+                                'en': 'Competitions',
+                                'de': 'Wettbewerbe',
+                                'it': 'Competizioni',
+                            }[lang]}"
+                        >
                             <h2>${{
                                 'en': 'Competitions',
                                 'de': 'Wettbewerbe',
@@ -226,7 +261,14 @@ export function homeView(lang = 'en', url = '/') {
                                 ${readJsonFile('src/page/info/competitions.json').map(el => experienceElement(el, lang))}
                             </div>
                         </section>
-                        <section class="sub-experience exp-projects" id="projects">
+                        <section
+                            class="sub-experience exp-projects" id="projects"
+                            title="${{
+                                'en': 'Side projects',
+                                'de': 'Nebenprojekte',
+                                'it': 'Progetti collaterali',
+                            }[lang]}"
+                        >
                             <h2>${{
                                 'en': 'Side projects',
                                 'de': 'Nebenprojekte',
@@ -243,7 +285,14 @@ export function homeView(lang = 'en', url = '/') {
                                 </span>
                             </div>
                         </section>
-                        <section class="sub-experience exp-other" id="other">
+                        <section
+                            class="sub-experience exp-other" id="other"
+                            title="${{
+                                'en': 'Other',
+                                'de': 'Sonstiges',
+                                'it': 'Altro',
+                            }[lang]}"
+                        >
                             <h2>${{
                                 'en': 'Other',
                                 'de': 'Sonstiges',
@@ -254,7 +303,7 @@ export function homeView(lang = 'en', url = '/') {
                             </div>
                         </section>
                     </div>
-                </div>
+                </section>
             `)}
         </main>
     `, lang, url);
