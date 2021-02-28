@@ -50,9 +50,9 @@ export function homeView(lang = 'en', url = '/') {
                 width: 10rem;
                 height: 10rem;
                 border-radius: 50%;
+                margin: 1rem;
                 object-fit: cover;
                 box-shadow: var(--shadow-small);
-                margin: 1rem;
                 pointer-events: none;
                 animation: morph 50s ease-in-out infinite;
             }
@@ -166,7 +166,7 @@ export function homeView(lang = 'en', url = '/') {
            ${background(0, html`
                <div class="main-info-wrap">
                     <div class="main-info">
-                        <img class="main-info-image" src="/img/profile.webp" alt="Not a photo of me" width="160" height="160" />
+                        <img class="main-info-image" src="/img/profile.jpeg" alt="Not a photo of me" width="160" height="160" />
                         <div class="main-info-text">
                             <div class="main-info-name">Roland Bernard</div>
                             <div class="main-info-desc">
@@ -188,14 +188,14 @@ export function homeView(lang = 'en', url = '/') {
                 </div>
             `)}
             ${background(1, html`
-                <div class="experience">
+                <div class="experience" id="experience">
                     <h1>${{
                         'en': 'Experience',
                         'de': 'Erfahrung',
                         'it': 'Esperienza',
                     }[lang]}</h1>
                     <div class="experience-grid">
-                        <div class="sub-experience exp-education">
+                        <div class="sub-experience exp-education" id="education">
                             <h2>${{
                                 'en': 'Education',
                                 'de': 'Ausbildung',
@@ -205,7 +205,7 @@ export function homeView(lang = 'en', url = '/') {
                                 ${readJsonFile('src/page/info/education.json').map(el => experienceElement(el, lang))}
                             </div>
                         </div>
-                        <div class="sub-experience exp-work">
+                        <div class="sub-experience exp-work" id="work">
                             <h2>${{
                                 'en': 'Work experience',
                                 'de': 'Berufserfahrung',
@@ -215,7 +215,7 @@ export function homeView(lang = 'en', url = '/') {
                                 ${readJsonFile('src/page/info/work.json').map(el => experienceElement(el, lang))}
                             </div>
                         </div>
-                        <div class="sub-experience exp-competitions">
+                        <div class="sub-experience exp-competitions" id="competitions">
                             <h2>${{
                                 'en': 'Competitions',
                                 'de': 'Wettbewerbe',
@@ -225,7 +225,7 @@ export function homeView(lang = 'en', url = '/') {
                                 ${readJsonFile('src/page/info/competitions.json').map(el => experienceElement(el, lang))}
                             </div>
                         </div>
-                        <div class="sub-experience exp-projects">
+                        <div class="sub-experience exp-projects" id="projects">
                             <h2>${{
                                 'en': 'Side projects',
                                 'de': 'Nebenprojekte',
@@ -242,7 +242,7 @@ export function homeView(lang = 'en', url = '/') {
                                 </span>
                             </div>
                         </div>
-                        <div class="sub-experience exp-other">
+                        <div class="sub-experience exp-other" id="other">
                             <h2>${{
                                 'en': 'Other',
                                 'de': 'Sonstiges',
