@@ -166,7 +166,7 @@ export function homeView(lang = 'en', url = '/') {
            ${background(0, html`
                <div class="main-info-wrap">
                     <div class="main-info">
-                        <img class="main-info-image" src="/img/profile.jpg" />
+                        <img class="main-info-image" src="/img/profile.webp" alt="Not a photo of me" width="160" height="160" />
                         <div class="main-info-text">
                             <div class="main-info-name">Roland Bernard</div>
                             <div class="main-info-desc">

@@ -3,7 +3,7 @@
         "name": "Marvin",
         "info": "A keystroke launcher for Linux",
         "link": "https://github.com/rolandbernard/marvin",
-        "image": "marvin.png",
+        "image": "marvin.webp",
         "tags": [ "launcher", "electron", "linux", "application-launcher", "menu" ],
         "desc": "This is a keystroke launcher for Linux. It is build using electron but it has not been ported to Windows or MacOs yet."
     },
@@ -11,7 +11,7 @@
         "name": "Tumbleweed",
         "info": "A small compiled toy programming language",
         "link": "https://github.com/rolandbernard/tumbleweed",
-        "image": "tumbleweed.png",
+        "image": "tumbleweed.webp",
         "tags": [ "llvm", "compiler", "programming-language" ],
         "desc": "Tumbleweed is a small strongly typed programming language. Just like real tumbleweed this programming language is useless and unwanted."
     },
@@ -27,7 +27,7 @@
         "name": "Wakan",
         "info": "A small interpreted toy programming language",
         "link": "https://github.com/rolandbernard/wakan",
-        "image": "wakan.png",
+        "image": "wakan.webp",
         "tags": [ "programming-language", "interpreter" ],
         "desc": "Wakan is a small programming language designed as an educational project. It was not designed for any particular application and is not complete."
     },
@@ -43,7 +43,7 @@
         "name": "Regex",
         "info": "A small regular expression C library",
         "link": "https://github.com/rolandbernard/regex",
-        "image": "regex.png",
+        "image": "regex.webp",
         "tags": [ "regex", "regular-expression", "library" ],
         "desc": "A small regular expression library for C. This regex implementation first compiles the regex into a NFA and then transforms that NFA into a DFA. The DFA can then be appliend to an input string of length n in O(n)."
     },
@@ -51,7 +51,7 @@
         "name": "Geo Draw",
         "info": "A simple web application for creating map visualizations",
         "link": "https://github.com/rolandbernard/geo-draw",
-        "image": "geo-draw.png",
+        "image": "geo-draw.webp",
         "tags": [ "visualization", "map", "lit-element", "lit-html", "rust" ],
         "desc": "This is a simple web application that allows the generation of map visualizations. All the processing happens on the client and the server can simply be a static web server. This is only a small project I started, to learn lit-html/LitElement, WebGl and try out the Rust programming language a bit more."
     },
@@ -59,7 +59,7 @@
         "name": "Pathtrace",
         "info": "A simple path tracing implementation written in C",
         "link": "https://github.com/rolandbernard/pathtrace",
-        "image": "pathtrace.png",
+        "image": "pathtrace.webp",
         "tags": [ "pathtracing", "c", "openmp", "experiment" ],
         "desc": "A simple path tracing implementation written in C. You should probably not use it because it is insanely slow and noisy."
     },
@@ -67,7 +67,7 @@
         "name": "Parsed",
         "info": "A small parser generator that generates recursive decent parsers",
         "link": "https://github.com/rolandbernard/parsed",
-        "image": "parsed.png",
+        "image": "parsed.webp",
         "tags": [ "parser", "parser-generator", "recursive-descent-parser" ],
         "desc": "A small parser generator that generates recursive descent parsers. It also generates a lexer form the token defined in the grammar.This parser generator is relatively simple. It can handle direct left recursion, but indirect recursion will result in an infinite loop."
     },
@@ -75,7 +75,7 @@
         "name": "Calculator",
         "info": "One of my first programming projects",
         "link": "https://github.com/rolandbernard/calculator",
-        "image": "calculator.png",
+        "image": "calculator.webp",
         "tags": [ "calculator", "port", "old-project", "old-stuff" ],
         "desc": "This is one of my oldest projects, and as such it is quite bad. I myself don't realy know what exactly is going in. I wrote it before I had any formal education in computer science or programming. It was originaly developed to be run on a Arduino compatible microcontroller and was later ported to Visual C++ and SDL.I have now made the program compile and run using g++ or clang++. I have not changed more than neccesary, and therefore the program still contains memory leaks, compiling it will generate a lot of warnings and is generaly not programmed well."
     },
@@ -83,7 +83,7 @@
         "name": "Tinycloud",
         "info": "Web application focused on storing files",
         "link": "https://github.com/rolandbernard/tinycloud",
-        "image": "tinycloud.png",
+        "image": "tinycloud.webp",
         "tags": [ "cloud-storage", "web-application" ],
         "desc": "Tinycloud is a small web application focused on storing and sharing files."
     },
@@ -91,7 +91,7 @@
         "name": "Suedtirol Weather",
         "info": "Web frontend for displaying the weather data of the Open Data Hub Südtirol",
         "link": "https://github.com/rolandbernard/suedtirol-weather",
-        "image": "suedtirol-weather.png",
+        "image": "suedtirol-weather.webp",
         "tags": [ "open-data", "weather-app", "angular" ],
         "desc": "Web frontend for displaying the weather data of the Open Data Hub Südtirol, written using the Angular framework."
     },
@@ -99,7 +99,7 @@
         "name": "Terminal Image Renderer",
         "info": "A way to draw image buffers to termnal",
         "link": "https://github.com/rolandbernard/tir",
-        "image": "tir.png",
+        "image": "tir.webp",
         "tags": [ "image-display", "terminal-based" ],
         "desc": "Implements a way to draw image buffers to termnal in C. The implementation only supports terminals with true color and the ability to display Unicode block characters."
     },
@@ -107,7 +107,7 @@
         "name": "Chat",
         "info": "A small chat server and client in the terminal",
         "link": "https://github.com/rolandbernard/chat",
-        "image": "chat.png",
+        "image": "chat.webp",
         "tags": [ "chat", "socket-programming" ],
         "desc": "This is a simple chat server and client that can be run in the terminal."
     },
@@ -115,7 +115,7 @@
         "name": "Simple Graphics",
         "info": "A simple general software 3D graphics API written in C",
         "link": "https://github.com/rolandbernard/sgx",
-        "image": "sgx.png",
+        "image": "sgx.webp",
         "tags": [ "3d-graphics", "graphics-api" ],
         "desc": "A simple general software 3D graphics API written in C. The implementation still needs a lot of optimisation."
     },
@@ -123,7 +123,7 @@
         "name": "Task Planner",
         "info": "This software tries to solve a version of the vehicle routing problem",
         "link": "https://github.com/rolandbernard/task-planner",
-        "image": "task-planner.png",
+        "image": "task-planner.webp",
         "tags": [ "optimization", "cpp", "webassembly", "vrp", "genetic-algorithm", "react", "material-ui" ],
         "desc": "This software tries to solve a version of the vehicle routing problem. It uses a genetic algorithm to optimize the routes of multiple workers serving multiple clients at different locations with different priorities.The actual algorithm is implemented in C++ and is used by the UI, which is written using the React framework, using Web Assembly."
     },
@@ -138,7 +138,7 @@
         "name": "Mandelbrot",
         "info": "Mandelbrot visualization written in C++ and OpenCL",
         "link": "https://github.com/rolandbernard/mandelbrot",
-        "image": "mandelbrot.png",
+        "image": "mandelbrot.webp",
         "tags": [ "visualization", "opencl", "fractal", "mandelbrot" ],
         "desc": "Mandelbrot visualization written in C++ and OpenCL."
     },
@@ -154,7 +154,7 @@
         "name": "Classroom",
         "info": "Virtual peer-to-peer classrooms throught a web application",
         "link": "https://github.com/rolandbernard/classroom",
-        "image": "classroom.png",
+        "image": "classroom.webp",
         "tags": [ "webrtc", "socket-io", "react", "material-ui", "quill" ],
         "desc": "This application was inspired by the COVID-19-Virus out brake and the resulting school closings in many countries. The application allows users to create new virtual classrooms and using the rooms id other users can join the room as listeners. The creator of a room is able to talk to the listeners and write in a rich text editor, all using peer-to-peer connections. The speaker can also allow certain listeners to talk and manipulate the editor. Listeners that have a question can use the 'Ask to speak' button to notify the speaker that they want to talk. The speaker also has the option to kick users if he so desires. There is no video, mainly because I find that to be useless and the fact that it would use up valuable bandwidth for people with a poor internet connection."
     }
