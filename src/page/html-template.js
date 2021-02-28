@@ -9,7 +9,7 @@ import { pageFooter } from './footer.js';
 export function htmlTemplate(title, content, lang = 'en', url = '/') {
     return html`
         <!DOCTYPE html>
-        <html>
+        <html lang="${lang}">
             <head>
                 <title>${title}</title>
                 <meta name="viewport" content="height=device-height,width=device-width,initial-scale=1.0" />

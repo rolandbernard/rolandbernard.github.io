@@ -75,12 +75,12 @@ export function homeView(lang = 'en', url = '/') {
                 text-align: center;
             }
             .main-info-name {
-                font-family: Roland;
+                font-family: Roland, OpenSans, Arial, Helvetica, sans-serif;
                 font-size: 2.25rem;
                 font-weight: bold;
             }
             .main-info-desc {
-                font-family: OpenSans;
+                font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
                 font-size: 1.25rem;
             }
             .main-info-desc span {
@@ -94,19 +94,18 @@ export function homeView(lang = 'en', url = '/') {
                 background: var(--primary);
             }
             .experience {
-                font-family: OpenSans;
+                font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
                 font-size: 1rem;
-                padding: 1rem;
                 display: flex;
                 flex-flow: column;
                 align-items: center;
+                width: 100%;
             }
             .experience h1 {
-                font-family: OpenSans;
-                font-weight: bold;
+                font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
+                /* font-weight: bold; */
+                font-weight: 500;
                 font-size: 1.75rem;
-                margin-top: 2rem;
-                margin-bottom: 1rem;
             }
             .experience .experience-grid {
                 display: grid;
@@ -137,10 +136,11 @@ export function homeView(lang = 'en', url = '/') {
             }
             .experience .experience-grid .sub-experience h2 {
                 flex: 0 0 auto;
-                font-family: OpenSans;
+                font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
                 font-size: 1.25rem;
                 text-decoration: underline;
                 font-weight: normal;
+                padding-top: 2rem;
             }
             .experience .experience-grid .sub-experience .sub-experience-content .experience-item {
                 display: flex;
@@ -156,7 +156,7 @@ export function homeView(lang = 'en', url = '/') {
                 flex-flow: column;
                 align-items: center;
                 flex: 1 1 auto;
-                font-family: OpenSans;
+                font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
             }
             .experience .experience-grid .sub-experience span {
                 display: inline-block;
@@ -187,72 +187,74 @@ export function homeView(lang = 'en', url = '/') {
                     </div>
                 </div>
             `)}
-            <div class="experience">
-                <h1>${{
-                    'en': 'Experience',
-                    'de': 'Erfahrung',
-                    'it': 'Esperienza',
-                }[lang]}</h1>
-                <div class="experience-grid">
-                    <div class="sub-experience exp-education">
-                        <h2>${{
-                            'en': 'Education',
-                            'de': 'Ausbildung',
-                            'it': 'Educazione',
-                        }[lang]}</h2>
-                        <div class="sub-experience-content">
-                            ${readJsonFile('src/page/info/education.json').map(el => experienceElement(el, lang))}
+            ${background(1, html`
+                <div class="experience">
+                    <h1>${{
+                        'en': 'Experience',
+                        'de': 'Erfahrung',
+                        'it': 'Esperienza',
+                    }[lang]}</h1>
+                    <div class="experience-grid">
+                        <div class="sub-experience exp-education">
+                            <h2>${{
+                                'en': 'Education',
+                                'de': 'Ausbildung',
+                                'it': 'Educazione',
+                            }[lang]}</h2>
+                            <div class="sub-experience-content">
+                                ${readJsonFile('src/page/info/education.json').map(el => experienceElement(el, lang))}
+                            </div>
                         </div>
-                    </div>
-                    <div class="sub-experience exp-work">
-                        <h2>${{
-                            'en': 'Work experience',
-                            'de': 'Berufserfahrung',
-                            'it': 'Esperienze lavorative',
-                        }[lang]}</h2>
-                        <div class="sub-experience-content">
-                            ${readJsonFile('src/page/info/work.json').map(el => experienceElement(el, lang))}
+                        <div class="sub-experience exp-work">
+                            <h2>${{
+                                'en': 'Work experience',
+                                'de': 'Berufserfahrung',
+                                'it': 'Esperienze lavorative',
+                            }[lang]}</h2>
+                            <div class="sub-experience-content">
+                                ${readJsonFile('src/page/info/work.json').map(el => experienceElement(el, lang))}
+                            </div>
                         </div>
-                    </div>
-                    <div class="sub-experience exp-competitions">
-                        <h2>${{
-                            'en': 'Competitions',
-                            'de': 'Wettbewerbe',
-                            'it': 'Competizioni',
-                        }[lang]}</h2>
-                        <div class="sub-experience-content">
-                            ${readJsonFile('src/page/info/competitions.json').map(el => experienceElement(el, lang))}
+                        <div class="sub-experience exp-competitions">
+                            <h2>${{
+                                'en': 'Competitions',
+                                'de': 'Wettbewerbe',
+                                'it': 'Competizioni',
+                            }[lang]}</h2>
+                            <div class="sub-experience-content">
+                                ${readJsonFile('src/page/info/competitions.json').map(el => experienceElement(el, lang))}
+                            </div>
                         </div>
-                    </div>
-                    <div class="sub-experience exp-projects">
-                        <h2>${{
-                            'en': 'Side projects',
-                            'de': 'Nebenprojekte',
-                            'it': 'Progetti collaterali',
-                        }[lang]}</h2>
-                        <div class="sub-experience-content">
-                            ${readJsonFile('src/page/info/projects.json').slice(0, 9).map(el => experienceElement(el, lang))}
-                            <span class="experience-item">
-                                <a href="/${lang}/projects">${{
-                                    'en': 'More',
-                                    'de': 'Mehr',
-                                    'it': 'Altro',
-                                }[lang]}</a>
-                            </span>
+                        <div class="sub-experience exp-projects">
+                            <h2>${{
+                                'en': 'Side projects',
+                                'de': 'Nebenprojekte',
+                                'it': 'Progetti collaterali',
+                            }[lang]}</h2>
+                            <div class="sub-experience-content">
+                                ${readJsonFile('src/page/info/projects.json').slice(0, 9).map(el => experienceElement(el, lang))}
+                                <span class="experience-item">
+                                    <a href="/${lang}/projects">${{
+                                        'en': 'More',
+                                        'de': 'Mehr',
+                                        'it': 'Altro',
+                                    }[lang]}</a>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="sub-experience exp-other">
-                        <h2>${{
-                            'en': 'Other',
-                            'de': 'Sonstiges',
-                            'it': 'Altro',
-                        }[lang]}</h2>
-                        <div class="sub-experience-content">
-                            ${readJsonFile('src/page/info/other.json').map(el => experienceElement(el, lang))}
+                        <div class="sub-experience exp-other">
+                            <h2>${{
+                                'en': 'Other',
+                                'de': 'Sonstiges',
+                                'it': 'Altro',
+                            }[lang]}</h2>
+                            <div class="sub-experience-content">
+                                ${readJsonFile('src/page/info/other.json').map(el => experienceElement(el, lang))}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            `)}
         </div>
     `, lang, url);
 }

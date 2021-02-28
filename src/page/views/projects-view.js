@@ -58,7 +58,7 @@ export function projectsView(lang = 'en', url = '/') {
             }
             .project-text {
                 flex: 1 1 auto;
-                font-family: OpenSans;
+                font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
                 font-size: 1rem;
                 display: flex;
                 flex-flow: column;
@@ -100,7 +100,7 @@ export function projectsView(lang = 'en', url = '/') {
                 justify-content: center;
             }
             div.note div {
-                font-family: OpenSans;
+                font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
                 font-size: 0.75rem;
                 color: var(--background-darkish);
                 display: flex;

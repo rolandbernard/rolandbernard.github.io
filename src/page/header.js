@@ -39,7 +39,7 @@ export function pageHeader(lang = 'en', url = '/') {
             .header .link a {
                 font-size: 1.2rem;
                 font-weight: 400;
-                font-family: Roland;
+                font-family: Roland, OpenSans, Arial, Helvetica, sans-serif;
                 font-style: normal;
                 text-decoration: none;
                 color: white;
@@ -53,7 +53,7 @@ export function pageHeader(lang = 'en', url = '/') {
                 padding: 0.25rem 1rem;
                 font-size: 1.1rem;
                 font-weight: 400;
-                font-family: Roland;
+                font-family: Roland, OpenSans, Arial, Helvetica, sans-serif;
                 font-style: normal;
                 text-decoration: none;
                 color: white;
@@ -120,11 +120,6 @@ export function pageHeader(lang = 'en', url = '/') {
             .header .lang-select input:checked ~ .lang-select-options {
                 clip-path: circle(200% at 100% 0);
             }
-            @media (prefers-reduced-motion) {
-                .header .lang-select .lang-select-options {
-                    transition: none;
-                }
-            }
             .header .lang-select .lang-option {
                 display: block;
                 background: var(--background-darkish);
@@ -166,13 +161,6 @@ export function pageHeader(lang = 'en', url = '/') {
                 transition: transform 0.2s ease-in-out;
                 z-index: 1;
             }
-            @media (prefers-reduced-motion) {
-                .header .link a::after,
-                .header .lang-select .lang-select-options .lang-option span::after,
-                .header .lang-select .lang-select-current::after {
-                    transition: none;
-                }
-            }
             .header .link:hover a::after,
             .header .lang-select .lang-select-options .lang-option:hover span::after,
             .header .lang-select:hover .lang-select-current::after {
@@ -200,7 +188,7 @@ export function pageHeader(lang = 'en', url = '/') {
                 }[lang]}</a></span>
                 <span class="header-spacer"></span>
                 <div class="lang-select">
-                    <input type="checkbox" />
+                    <input type="checkbox" aria-label="Open the language selection" />
                     <div class="lang-select-current">${lang.toUpperCase()}</div>
                     <div class="lang-select-options">
                         ${languages.map(language => html`

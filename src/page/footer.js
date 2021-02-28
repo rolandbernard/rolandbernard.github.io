@@ -7,9 +7,8 @@ export function pageFooter(lang = 'en', url = '/') {
             .footer {
                 flex: 0 0 auto;
                 width: 100%;
-                margin-top: 1rem;
-                padding-top: 0.5rem;
-                padding-bottom: 0.25rem;
+                padding-top: 0.75rem;
+                padding-bottom: 0.5rem;
                 background: var(--background-dark);
                 display: flex;
                 flex-direction: column;
@@ -20,7 +19,7 @@ export function pageFooter(lang = 'en', url = '/') {
                 color: white;
                 font-size: 0.75rem;
                 font-weight: 400;
-                font-family: OpenSans;
+                font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
                 box-shadow: var(--shadow-small);
                 white-space: nowrap;
                 overflow: hidden;

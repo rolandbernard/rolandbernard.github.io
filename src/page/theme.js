@@ -19,16 +19,23 @@ export function themeCss() {
         html {
             background: var(--background-light);
         }
+        @media (prefers-reduced-motion) {
+            * {
+                transition: none;
+                animation: none;
+            }
+        }
     `;
 }
 
 export const colors = [
     ['#F5EE9E', 'black'],
+    ['#fdfdf6', 'black'], 
     ['#363732', 'white'], 
     ['#DCE1E9', 'black'],
     ['#D4AFB9', 'black'],
-    ['#F49E4C', 'black'],
     ['#AB3428', 'white'],
+    ['#F49E4C', 'black'],
     ['#FEC0AA', 'black'],
     ['#EC4E20', 'white'],
 ];

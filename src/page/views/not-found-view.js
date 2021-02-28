@@ -13,7 +13,7 @@ export function notFoundView(lang = 'en', url = '/') {
                 justify-content: center;
                 width: 100%;
                 height: 100%;
-                font-family: OpenSans;
+                font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
                 user-select: none;
                 text-align: center;
             }

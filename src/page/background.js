@@ -1,5 +1,5 @@
 
-import { html } from '../build/build-util.js';
+import { html, css } from '../build/build-util.js';
 
 import { colors } from './theme.js';
 
@@ -9,10 +9,14 @@ export function background(id, content) {
             <style>
                 .background-wrap-${id} {
                     color: ${colors[id % colors.length][1]};
-                    position: relative;
-                    margin-top: -5rem;
-                    padding-top: 10rem;
+                    margin-top: -2.5rem;
+                    padding-top: 7.5rem;
                     padding-bottom: 10rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                    width: 100%;
                 }
                 .background-${id} {
                     position: absolute;
@@ -21,7 +25,8 @@ export function background(id, content) {
                     top: 0;
                     left: 0;
                     background: ${colors[id % colors.length][0]};
-                    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
+                    clip-path: polygon(0 0, 100% 2.5rem, 100% 100%, 0 100%);
+                    z-index: -1;
                 }
             </style>
             <div class="background-${id}">
