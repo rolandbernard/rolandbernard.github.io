@@ -2,6 +2,7 @@
 import { html, readJsonFile } from '../../build/build-util.js';
 
 import { htmlTemplate } from '../html-template.js';
+import { background } from '../background.js';
 
 function experienceElement(info, lang) {
     function extractData(obj, lang) {
@@ -82,11 +83,15 @@ export function homeView(lang = 'en', url = '/') {
                 font-family: OpenSans;
                 font-size: 1.25rem;
             }
+            .main-info-desc span {
+                display:inline-block;
+            }
             .home-divider {
                 position: absolute;
                 bottom: -1rem;
                 width: 80%;
                 border-color: var(--primary);
+                background: var(--primary);
             }
             .experience {
                 font-family: OpenSans;
@@ -158,20 +163,30 @@ export function homeView(lang = 'en', url = '/') {
             }
         </style>
         <div>
-            <div class="main-info-wrap">
-                <div class="main-info">
-                    <img class="main-info-image" src="/img/profile.jpg" />
-                    <div class="main-info-text">
-                        <div class="main-info-name">Roland Bernard</div>
-                        <div class="main-info-desc">${{
-                            'en': 'Software Developer & Computer Science Student.',
-                            'de': 'Software-Entwickler & Informatik-Student.',
-                            'it': 'Sviluppatore di software e studente di informatica.',
-                        }[lang]}</div>
+           ${background(0, html`
+               <div class="main-info-wrap">
+                    <div class="main-info">
+                        <img class="main-info-image" src="/img/profile.jpg" />
+                        <div class="main-info-text">
+                            <div class="main-info-name">Roland Bernard</div>
+                            <div class="main-info-desc">
+                                ${{
+                                'en': html`
+                                    <span>Software Developer</span> & <span>Computer Science Student.</span>
+                                `,
+                                'de': html`
+                                    <span>Software-Entwickler</span> & <span>Informatik-Student.</span>
+                                `,
+                                'it': html`
+                                    <span>Sviluppatore di software</span> e <span>studente di informatica.</span>
+                                `,
+                                }[lang]}
+                            </div>
+                        </div>
+                        <hr class="home-divider" />
                     </div>
-                    <hr class="home-divider" />
                 </div>
-            </div>
+            `)}
             <div class="experience">
                 <h1>${{
                     'en': 'Experience',

@@ -4,9 +4,9 @@ import { readFileSync } from 'fs';
 function templateJoin(str, ...vals) {
     return str.map((s, i) => {
         if (vals[i] instanceof Array) {
-            return s + (vals[i].flat().join('') || '')
+            return s + (vals[i].flat(Infinity).map(el => el.toString()).join('') || '')
         } else {
-            return s + (vals[i] || '')
+            return s + (vals[i]?.toString() || '')
         }
     }).join('');
 }

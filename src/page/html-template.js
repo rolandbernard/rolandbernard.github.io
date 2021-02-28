@@ -27,6 +27,8 @@ export function htmlTemplate(title, content, lang = 'en', url = '/') {
                         padding: 0;
                         margin: 0;
                         flex-flow: column;
+                        overflow-x: hidden;
+                        --scroll: 0;
                     }
                     .page-content {
                         flex: 1 1 auto;
@@ -42,6 +44,11 @@ export function htmlTemplate(title, content, lang = 'en', url = '/') {
                 <div class="page-content">${content}</div>
                 ${pageFooter(lang, url)}
             </body>
+            <script>
+                document.addEventListener('scroll', (_) => {
+                    document.body.style.setProperty("--scroll", (100 * window.scrollY / (document.body.scrollHeight - window.innerHeight)));
+                });
+            </script>
         </html>
     `;
 }
