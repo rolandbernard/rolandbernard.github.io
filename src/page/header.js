@@ -1,5 +1,5 @@
 
-import { html, readFile, changeUrlLanguage } from '../build/build-util.js';
+import { html, changeUrlLanguage } from '../build/build-util.js';
 import { languages } from '../config.js';
 
 export function pageHeader(lang = 'en', url = '/') {
@@ -36,7 +36,7 @@ export function pageHeader(lang = 'en', url = '/') {
                 overflow: hidden;
                 padding: 0.5rem;
             }
-            .header .link a {
+            .header .link span {
                 font-size: 1.2rem;
                 font-weight: 400;
                 font-family: Roland, OpenSans, Arial, Helvetica, sans-serif;
@@ -50,7 +50,7 @@ export function pageHeader(lang = 'en', url = '/') {
                 width: 1.5rem;
             }
             .header .lang-select {
-                padding: 0.25rem 1rem;
+                padding: 0.5rem 1rem;
                 font-size: 1.1rem;
                 font-weight: 400;
                 font-family: Roland, OpenSans, Arial, Helvetica, sans-serif;
@@ -146,7 +146,7 @@ export function pageHeader(lang = 'en', url = '/') {
                 justify-content: center;
                 width: 100%;
             }
-            .header .link a::after,
+            .header .link span::after,
             .header .lang-select .lang-select-options .lang-option span::after,
             .header .lang-select .lang-select-current::after {
                 content: '';
@@ -161,7 +161,7 @@ export function pageHeader(lang = 'en', url = '/') {
                 transition: transform 0.2s ease-in-out;
                 z-index: 1;
             }
-            .header .link:hover a::after,
+            .header .link:hover span::after,
             .header .lang-select .lang-select-options .lang-option:hover span::after,
             .header .lang-select:hover .lang-select-current::after {
                 transform: scaleX(1);
@@ -169,23 +169,23 @@ export function pageHeader(lang = 'en', url = '/') {
         </style>
         <header class="header">
             <nav class="header-nav">
-                <span class="link"><a href="/${lang}">${{
+                <a class="link" href="/${lang}"><span>${{
                     'en': 'Home',
                     'de': 'Home',
                     'it': 'Home',
-                }[lang]}</a></span>
+                }[lang]}</span></a>
                 <span class="line-seperator"></span>
-                <span class="link"><a href="/${lang}/projects">${{
+                <a class="link" href="/${lang}/projects"><span>${{
                     'en': 'Projects',
                     'de': 'Projekte',
                     'it': 'Progetti',
-                }[lang]}</a></span>
+                }[lang]}</span></a>
                 <span class="line-seperator"></span>
-                <span class="link"><a href="/${lang}/blog">${{
+                <a class="link" href="/${lang}/blog"><span>${{
                     'en': 'Posts',
                     'de': 'Posts',
                     'it': 'Posti',
-                }[lang]}</a></span>
+                }[lang]}</span></a>
                 <span class="header-spacer"></span>
                 <div class="lang-select">
                     <input type="checkbox" aria-label="Open the language selection" />

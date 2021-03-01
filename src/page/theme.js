@@ -8,7 +8,7 @@ export function themeCss() {
             --background-darkish: #191330;
             --background-light: #fdfdf6;
             --background-lighter: #FEFEFE;
-            --primary: #0021df;
+            --primary: #001ec5;
             --shadow-large: 0px 2px 4px -1px rgba(0,0,0,0.2),
                 0px 4px 5px 0px rgba(0,0,0,0.14),
                 0px 1px 10px 0px rgba(0,0,0,0.12);
