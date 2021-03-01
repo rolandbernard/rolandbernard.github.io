@@ -24,13 +24,22 @@ export function htmlTemplate(title, content, lang = 'en', url = '/') {
                     body {
                         display: flex;
                         height: 100%;
+                        width: 100%;
                         padding: 0;
                         margin: 0;
                         flex-flow: column;
-                        overflow-x: hidden;
-                        --scroll: 0;
+                        overflow: hidden;
                     }
                     .page-content {
+                        flex: 1 1 auto;
+                        display: flex;
+                        flex-flow: column;
+                        overflow: hidden;
+                        overflow-x: hidden;
+                        overflow-y: auto;
+                        scroll-behavior: smooth;
+                    }
+                    .main-content {
                         flex: 1 1 auto;
                     }
                     a {
@@ -41,8 +50,12 @@ export function htmlTemplate(title, content, lang = 'en', url = '/') {
             </head>
             <body>
                 ${pageHeader(lang, url)}
-                <div class="page-content">${content}</div>
-                ${pageFooter(lang, url)}
+                <div class="page-content">
+                    <div class="main-content">
+                        ${content}
+                    </div>
+                    ${pageFooter(lang, url)}
+                </div>
             </body>
         </html>
     `;

@@ -33,6 +33,7 @@ export function homeView(lang = 'en', url = '/') {
     return htmlTemplate('Roland Bernard - Home', html`
         <style>
             .main-info-wrap {
+                height: calc(100vh - 10rem);
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -162,6 +163,59 @@ export function homeView(lang = 'en', url = '/') {
             .experience .experience-grid .sub-experience span {
                 display: inline-block;
             }
+            .arrow-down {
+                width: 5rem;
+                height: 5rem;
+                position: absolute;
+                top: calc(100vh - 10rem);
+                left: calc(50vw);
+                transform: translate(-50%, -50%);
+            }
+            .arrow-down span {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .arrow-down span:before {
+                flex: 0 0 auto;
+                content: '';
+                display: block;
+                width: 0.1rem;
+                height: 7.5rem;
+                background: var(--primary);
+                animation: elasticus 2s cubic-bezier(1, 0, 0, 1) infinite;
+            }
+            .arrow-down span:after {
+                flex: 0 0 auto;
+                content: '';
+                display: block;
+                width: 1rem;
+                height: 1rem;
+                border-bottom: 0.14rem solid transparent;
+                border-left: 0.14rem solid transparent;
+                border-top: 0.14rem solid var(--primary);
+                border-right: 0.14rem solid var(--primary);
+                transform: rotate(135deg);
+                margin-top: -1.4rem;
+            }
+            @keyframes elasticus {
+                0% {
+                    transform-origin: 0% 0%;
+                    transform: scale(1, 0);
+                }
+                50% {
+                    transform-origin: 0% 0%;
+                    transform: scale(1, 1);
+                }
+                50.1% {
+                    transform-origin: 0% 100%;
+                    transform: scale(1, 1);
+                }
+                100% {
+                    transform-origin: 0% 100%;
+                    transform: scale(1, 0);
+                }
+            }
         </style>
         <main>
            ${background(0, html`
@@ -193,11 +247,14 @@ export function homeView(lang = 'en', url = '/') {
                         </div>
                         <hr class="home-divider" />
                     </div>
+                    <a class="arrow-down" href="#exerience">
+                        <span></span>
+                    </a>
                 </section>
             `)}
             ${background(1, html`
                 <section
-                    class="experience" id="experience"
+                    class="experience" id="exerience"
                     title="${{
                         'en': 'Experience',
                         'de': 'Erfahrung',
