@@ -67,6 +67,9 @@ export function projectsView(lang = 'en', url = '/') {
                     flex-direction: column;
                 }
             }
+            .project-more {
+                display: block;
+            }
             .project-text {
                 flex: 1 1 auto;
                 font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
@@ -93,7 +96,7 @@ export function projectsView(lang = 'en', url = '/') {
                 background: var(--background-light);
             }
             .project-desc {
-                padding: 1rem;
+                margin: 1rem;
             }
             .project-image {
                 flex: 0 0 auto;
@@ -102,7 +105,7 @@ export function projectsView(lang = 'en', url = '/') {
                 border-radius: 4px;
                 max-width: 30rem;
                 max-height: 30rem;
-                padding: 1rem;
+                margin: 1rem;
             }
             div.note {
                 position: absolute;
