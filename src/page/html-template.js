@@ -20,6 +20,7 @@ export function htmlTemplate(title, content, lang = 'en', url = '/') {
                 <style>
                     html {
                         scroll-behavior: smooth;
+                        height: 100%;
                     }
                     body {
                         display: flex;
