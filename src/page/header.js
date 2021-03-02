@@ -6,6 +6,8 @@ export function pageHeader(lang = 'en', url = '/') {
     return html`
         <style>
             .header {
+                position: fixed;
+                top: 0;
                 width: 100%;
                 height: 3rem;
                 padding: 0.5rem;
@@ -18,6 +20,10 @@ export function pageHeader(lang = 'en', url = '/') {
                 box-sizing: border-box;
                 border-bottom: 2px solid var(--primary);
                 z-index: 10;
+            }
+            .header-placeholder {
+                height: 3rem;
+                flex: 0 0 auto;
             }
             .header .header-spacer {
                 flex: 1 1 100%;
@@ -159,6 +165,7 @@ export function pageHeader(lang = 'en', url = '/') {
                 transform: scaleX(1);
             }
         </style>
+        <div class="header-placeholder"></div>
         <header class="header">
             <nav class="header-nav">
                 <a class="link" href="/${lang}"><span>${{

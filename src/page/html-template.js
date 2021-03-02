@@ -19,7 +19,7 @@ export function htmlTemplate(title, content, lang = 'en', url = '/') {
                 <style>${themeCss()}</style>
                 <style>
                     html {
-                        height: 100%;
+                        scroll-behavior: smooth;
                     }
                     body {
                         display: flex;
@@ -28,16 +28,11 @@ export function htmlTemplate(title, content, lang = 'en', url = '/') {
                         padding: 0;
                         margin: 0;
                         flex-flow: column;
-                        overflow: hidden;
                     }
                     .page-content {
                         flex: 1 1 auto;
                         display: flex;
-                        flex-flow: column;
-                        overflow: hidden;
-                        overflow-x: hidden;
-                        overflow-y: auto;
-                        scroll-behavior: smooth;
+                        flex-direction: column;
                     }
                     .main-content {
                         flex: 1 1 auto;

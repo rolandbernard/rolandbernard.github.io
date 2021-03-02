@@ -164,12 +164,10 @@ export function homeView(lang = 'en', url = '/') {
                 display: inline-block;
             }
             .arrow-down {
-                width: 5rem;
-                height: 5rem;
                 position: absolute;
-                top: calc(100vh - 10rem);
-                left: calc(50vw);
-                transform: translate(-50%, -50%);
+                top: 90vh;
+                left: 50vw;
+                transform: translate(-50%, -100%);
             }
             .arrow-down span {
                 display: flex;
@@ -180,8 +178,9 @@ export function homeView(lang = 'en', url = '/') {
                 flex: 0 0 auto;
                 content: '';
                 display: block;
-                width: 0.1rem;
+                width: 0.13rem;
                 height: 7.5rem;
+                max-height: 10vh;
                 background: var(--primary);
                 animation: elasticus 2s cubic-bezier(1, 0, 0, 1) infinite;
             }
@@ -219,6 +218,9 @@ export function homeView(lang = 'en', url = '/') {
         </style>
         <main>
            ${background(0, html`
+                <a class="arrow-down" href="#exerience">
+                    <span></span>
+                </a>
                 <section
                     class="main-info-wrap"
                     title="${{
@@ -247,121 +249,120 @@ export function homeView(lang = 'en', url = '/') {
                         </div>
                         <hr class="home-divider" />
                     </div>
-                    <a class="arrow-down" href="#exerience">
-                        <span></span>
-                    </a>
                 </section>
             `)}
-            ${background(1, html`
-                <section
-                    class="experience" id="exerience"
-                    title="${{
-                        'en': 'Experience',
-                        'de': 'Erfahrung',
-                        'it': 'Esperienza',
-                    }[lang]}"
-                >
-                    <h1>${{
-                        'en': 'Experience',
-                        'de': 'Erfahrung',
-                        'it': 'Esperienza',
-                    }[lang]}</h1>
-                    <div class="experience-grid">
-                        <section
-                            class="sub-experience exp-education" id="education"
-                            title="${{
-                                'en': 'Education',
-                                'de': 'Ausbildung',
-                                'it': 'Educazione',
-                            }[lang]}"
-                        >
-                            <h2>${{
-                                'en': 'Education',
-                                'de': 'Ausbildung',
-                                'it': 'Educazione',
-                            }[lang]}</h2>
-                            <div class="sub-experience-content">
-                                ${readJsonFile('src/page/info/education.json').map(el => experienceElement(el, lang))}
-                            </div>
-                        </section>
-                        <section
-                            class="sub-experience exp-work" id="work"
-                            title="${{
-                                'en': 'Work experience',
-                                'de': 'Berufserfahrung',
-                                'it': 'Esperienze lavorative',
-                            }[lang]}"
-                        >
-                            <h2>${{
-                                'en': 'Work experience',
-                                'de': 'Berufserfahrung',
-                                'it': 'Esperienze lavorative',
-                            }[lang]}</h2>
-                            <div class="sub-experience-content">
-                                ${readJsonFile('src/page/info/work.json').map(el => experienceElement(el, lang))}
-                            </div>
-                        </section>
-                        <section
-                            class="sub-experience exp-competitions" id="competitions"
-                            title="${{
-                                'en': 'Competitions',
-                                'de': 'Wettbewerbe',
-                                'it': 'Competizioni',
-                            }[lang]}"
-                        >
-                            <h2>${{
-                                'en': 'Competitions',
-                                'de': 'Wettbewerbe',
-                                'it': 'Competizioni',
-                            }[lang]}</h2>
-                            <div class="sub-experience-content">
-                                ${readJsonFile('src/page/info/competitions.json').map(el => experienceElement(el, lang))}
-                            </div>
-                        </section>
-                        <section
-                            class="sub-experience exp-projects" id="projects"
-                            title="${{
-                                'en': 'Side projects',
-                                'de': 'Nebenprojekte',
-                                'it': 'Progetti collaterali',
-                            }[lang]}"
-                        >
-                            <h2>${{
-                                'en': 'Side projects',
-                                'de': 'Nebenprojekte',
-                                'it': 'Progetti collaterali',
-                            }[lang]}</h2>
-                            <div class="sub-experience-content">
-                                ${readJsonFile('src/page/info/projects.json').slice(0, 9).map(el => experienceElement(el, lang))}
-                                <span class="experience-item">
-                                    <a href="/${lang}/projects">${{
-                                        'en': 'More',
-                                        'de': 'Mehr',
-                                        'it': 'Altro',
-                                    }[lang]}</a>
-                                </span>
-                            </div>
-                        </section>
-                        <section
-                            class="sub-experience exp-other" id="other"
-                            title="${{
-                                'en': 'Other',
-                                'de': 'Sonstiges',
-                                'it': 'Altro',
-                            }[lang]}"
-                        >
-                            <h2>${{
-                                'en': 'Other',
-                                'de': 'Sonstiges',
-                                'it': 'Altro',
-                            }[lang]}</h2>
-                            <div class="sub-experience-content">
-                                ${readJsonFile('src/page/info/other.json').map(el => experienceElement(el, lang))}
-                            </div>
-                        </section>
-                    </div>
-                </section>
-            `)}
+            <div id="exerience">
+                ${background(1, html`
+                    <section
+                        class="experience"
+                        title="${{
+                            'en': 'Experience',
+                            'de': 'Erfahrung',
+                            'it': 'Esperienza',
+                        }[lang]}"
+                    >
+                        <h1>${{
+                            'en': 'Experience',
+                            'de': 'Erfahrung',
+                            'it': 'Esperienza',
+                        }[lang]}</h1>
+                        <div class="experience-grid">
+                            <section
+                                class="sub-experience exp-education" id="education"
+                                title="${{
+                                    'en': 'Education',
+                                    'de': 'Ausbildung',
+                                    'it': 'Educazione',
+                                }[lang]}"
+                            >
+                                <h2>${{
+                                    'en': 'Education',
+                                    'de': 'Ausbildung',
+                                    'it': 'Educazione',
+                                }[lang]}</h2>
+                                <div class="sub-experience-content">
+                                    ${readJsonFile('src/page/info/education.json').map(el => experienceElement(el, lang))}
+                                </div>
+                            </section>
+                            <section
+                                class="sub-experience exp-work" id="work"
+                                title="${{
+                                    'en': 'Work experience',
+                                    'de': 'Berufserfahrung',
+                                    'it': 'Esperienze lavorative',
+                                }[lang]}"
+                            >
+                                <h2>${{
+                                    'en': 'Work experience',
+                                    'de': 'Berufserfahrung',
+                                    'it': 'Esperienze lavorative',
+                                }[lang]}</h2>
+                                <div class="sub-experience-content">
+                                    ${readJsonFile('src/page/info/work.json').map(el => experienceElement(el, lang))}
+                                </div>
+                            </section>
+                            <section
+                                class="sub-experience exp-competitions" id="competitions"
+                                title="${{
+                                    'en': 'Competitions',
+                                    'de': 'Wettbewerbe',
+                                    'it': 'Competizioni',
+                                }[lang]}"
+                            >
+                                <h2>${{
+                                    'en': 'Competitions',
+                                    'de': 'Wettbewerbe',
+                                    'it': 'Competizioni',
+                                }[lang]}</h2>
+                                <div class="sub-experience-content">
+                                    ${readJsonFile('src/page/info/competitions.json').map(el => experienceElement(el, lang))}
+                                </div>
+                            </section>
+                            <section
+                                class="sub-experience exp-projects" id="projects"
+                                title="${{
+                                    'en': 'Side projects',
+                                    'de': 'Nebenprojekte',
+                                    'it': 'Progetti collaterali',
+                                }[lang]}"
+                            >
+                                <h2>${{
+                                    'en': 'Side projects',
+                                    'de': 'Nebenprojekte',
+                                    'it': 'Progetti collaterali',
+                                }[lang]}</h2>
+                                <div class="sub-experience-content">
+                                    ${readJsonFile('src/page/info/projects.json').slice(0, 9).map(el => experienceElement(el, lang))}
+                                    <span class="experience-item">
+                                        <a href="/${lang}/projects">${{
+                                            'en': 'More',
+                                            'de': 'Mehr',
+                                            'it': 'Altro',
+                                        }[lang]}</a>
+                                    </span>
+                                </div>
+                            </section>
+                            <section
+                                class="sub-experience exp-other" id="other"
+                                title="${{
+                                    'en': 'Other',
+                                    'de': 'Sonstiges',
+                                    'it': 'Altro',
+                                }[lang]}"
+                            >
+                                <h2>${{
+                                    'en': 'Other',
+                                    'de': 'Sonstiges',
+                                    'it': 'Altro',
+                                }[lang]}</h2>
+                                <div class="sub-experience-content">
+                                    ${readJsonFile('src/page/info/other.json').map(el => experienceElement(el, lang))}
+                                </div>
+                            </section>
+                        </div>
+                    </section>
+                `)}
+            </div>
         </main>
     `, lang, url);
 }
