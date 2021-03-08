@@ -1,15 +1,77 @@
 
-export function markdownStyles() {
+import { css, html } from './build-util.js';
 
+import hljs from 'highlight.js';
+
+function markdownHighlightStyle() {
+    return css`
+        .hljs {
+            color: #c3d0dd;
+            background: #1c1e20;
+            display: block;
+            overflow-x: auto;
+            padding: 0.5em;
+        }
+        .hljs-number,
+        .hljs-literal,
+        .hljs-symbol,
+        .hljs-bullet {
+            color: #6897BB;
+        }
+        .hljs-keyword,
+        .hljs-selector-tag,
+        .hljs-deletion {
+            color: #cc7832;
+        }
+        .hljs-variable,
+        .hljs-template-variable,
+        .hljs-link {
+            color: #629755;
+        }
+        .hljs-comment,
+        .hljs-quote {
+            color: #808080;
+        }
+        .hljs-meta {
+            color: #bbb529;
+        }
+        .hljs-string,
+        .hljs-attribute,
+        .hljs-addition {
+            color: #6A8759;
+        }
+        .hljs-section,
+        .hljs-title,
+        .hljs-type {
+            color: #ffc66d;
+        }
+        .hljs-name,
+        .hljs-selector-id,
+        .hljs-selector-class {
+            color: #e8bf6a;
+        }
+        .hljs-emphasis {
+            font-style: italic;
+        }
+        .hljs-strong {
+            font-weight: bold;
+        }
+    `;
+}
+
+export function markdownStyles() {
+    return css `
+        ${markdownHighlightStyle()}
+    `;
 }
 
 function compileSimpleEmphasis(markdown) {
     return markdown
-        .replace(/\*\*(.*)\*\*/g, '<b class="md-bold">$1</b>')
-        .replace(/\*(.*)\*/g, '<i class="md-italic">$1</i>')
-        .replace(/__(.*)__/g, '<b class="md-bold">$1</b>')
-        .replace(/_(.*)_/g, '<i class="md-italic">$1</i>')
-        .replace(/`(.*)`/g, '<code class="md-inline-code">$1</code>')
+        .replace(/\*\*(.*)\*\*/g, html`<b class="md-bold">$1</b>`)
+        .replace(/\*(.*)\*/g, html`<i class="md-italic">$1</i>`)
+        .replace(/__(.*)__/g, html`<b class="md-bold">$1</b>`)
+        .replace(/_(.*)_/g, html`<i class="md-italic">$1</i>`)
+        .replace(/`(.*)`/g, html`<code class="md-inline-code">$1</code>`)
 }
 
 function escapeHtml(markdown) {
@@ -25,6 +87,14 @@ function linesToParagraph(lines, paragrapgs) {
     if (lines.length !== 0) {
         paragrapgs.push(`<p class="md-paragraph">${lines.join(' ')}</p>`);
         lines.splice(0);
+    }
+}
+
+function generateHighliting(code, language) {
+    if (language) {
+        return hljs.highlight(language, code, true).value;
+    } else {
+        return hljs.highlightAuto(code).value;
     }
 }
 
@@ -48,7 +118,7 @@ export function compileMarkdown(markdown) {
         } else if (line.startsWith('===') && !line.match(/[^=]/)) {
             converted_paragraphs.push(`<h1 class="md-header-1">${converted_lines.join(' ')}</h1>`);
             converted_lines.splice(0);
-        } else if (line === '```') {
+        } else if (line.endsWith('```')) {
             linesToParagraph(converted_lines, converted_paragraphs);
             let code = '';
             while (lines.length !== 0 && lines[0].trim() !== '```') {
@@ -56,7 +126,8 @@ export function compileMarkdown(markdown) {
                 code += next_line + '\n';
             }
             lines.shift();
-            converted_paragraphs.push(`<code class="md-code"><pre>${escapeHtml(code)}</pre></code>`);
+            code = generateHighliting(code, line.replace(/```/g, '').trim());
+            converted_paragraphs.push(`<code class="md-code hljs"><pre>${code}</pre></code>`);
         } else if (line.startsWith('[') && line.endsWith(']')) {
             linesToParagraph(converted_lines, converted_paragraphs);
         } else if (line.includes('|')) {
