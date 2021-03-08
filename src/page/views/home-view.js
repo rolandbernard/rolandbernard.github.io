@@ -15,7 +15,7 @@ function experienceElement(info, lang) {
     return html`
         <div class="experience-item">
             <span>
-                <a href="${extractData(info.link, lang)}">
+                <a href="${extractData(info.link, lang)}" target="_blank" title="${extractData(info.name, lang)}">
                     ${extractData(info.name, lang)}
                 </a>
                 ${info.time && html`
@@ -218,7 +218,7 @@ export function homeView(lang = 'en', url = '/') {
         </style>
         <main>
            ${background(0, html`
-                <a class="arrow-down" href="#exerience">
+                <a class="arrow-down" href="#exerience" title="Scroll down">
                     <span></span>
                 </a>
                 <section

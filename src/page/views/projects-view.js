@@ -15,9 +15,11 @@ function projectElement(info, lang) {
     return html`
         <section class="project-item" id="${info.name.toLowerCase().replace(/ /g, '')}" title="${info.name}">
             <div class="project-text">
-                <a class="project-name" href="${extractData(info.link, lang)}">
-                    ${extractData(info.name, lang)}
-                </a>
+                <h2>
+                    <a class="project-name" href="${extractData(info.link, lang)}" target="_blank">
+                        ${extractData(info.name, lang)}
+                    </a>
+                </h2>
                 ${info.tags && html`
                     <div class="project-tags">${
                         extractData(info.tags, lang).map(tag => html`
@@ -25,12 +27,12 @@ function projectElement(info, lang) {
                         `)
                     }</div>
                 `}
-                <div class="project-desc">
+                <p class="project-desc">
                     <span>${extractData(info.desc, lang)}</span>
-                    <a class="project-more" href="${extractData(info.link, lang)}">
+                    <a class="project-more" href="${extractData(info.link, lang)}" target="_blank">
                         More
                     </a>
-                </div>
+                </p>
             </div>
             ${info.image && html`
                 <img
