@@ -1,5 +1,19 @@
 [
     {
+        "name": "Lifeware",
+        "time": {
+            "en": "2021 - today",
+            "de": "2021 - heute",
+            "it": "2021 - oggi"
+        },
+        "info": {
+            "en": "Software developer",
+            "de": "Software-Entwickler",
+            "it": "Sviluppatore di software"
+        },
+        "link": "https://www.lifeware.ch/"
+    },
+    {
         "name": "Infominds",
         "time": "2019 - 2019",
         "info": {
