@@ -11,6 +11,7 @@ function templateJoin(str, ...vals) {
     }).join('');
 }
 
+// These are manly just to get the correct syntax highliting
 export {
     templateJoin as html,
     templateJoin as css,
