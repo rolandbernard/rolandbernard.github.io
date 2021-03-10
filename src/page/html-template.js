@@ -1,12 +1,12 @@
 
 import { html } from '../build/build-util.js';
 
-import { fontCss } from './fonts.js';
-import { themeCss } from './theme.js';
-import { pageHeader } from './header.js';
-import { pageFooter } from './footer.js';
+import { fontStyles } from './fonts.js';
+import { themeStyles } from './theme.js';
+import { pageHeader, pageHeaderStyles } from './header.js';
+import { pageFooter, pageFooterStyles } from './footer.js';
 
-export function htmlTemplate(title, content, lang = 'en', url = '/') {
+export function htmlTemplate(title, content, style, lang = 'en', url = '/') {
     return html`
         <!DOCTYPE html>
         <html lang="${lang}">
@@ -15,8 +15,6 @@ export function htmlTemplate(title, content, lang = 'en', url = '/') {
                 <meta name="viewport" content="height=device-height,width=device-width,initial-scale=1.0" />
                 <link rel="shortcut icon" href="/favicon.svg" />
                 <meta name="description" content="Personal website of Roland Bernard">
-                <style>${fontCss()}</style>
-                <style>${themeCss()}</style>
                 <style>
                     html {
                         scroll-behavior: smooth;
@@ -42,6 +40,11 @@ export function htmlTemplate(title, content, lang = 'en', url = '/') {
                         text-decoration: none;
                         color: var(--primary);
                     }
+                    ${themeStyles()}
+                    ${fontStyles()}
+                    ${pageHeaderStyles()}
+                    ${style}
+                    ${pageFooterStyles()}
                 </style>
             </head>
             <body>

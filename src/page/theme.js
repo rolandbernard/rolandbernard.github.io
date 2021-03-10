@@ -1,7 +1,7 @@
 
 import { css } from '../build/build-util.js';
 
-export function themeCss() {
+export function themeStyles() {
     return css`
         * {
             --background-dark: #070022;
@@ -20,9 +20,9 @@ export function themeCss() {
             background: var(--background-light);
         }
         @media (prefers-reduced-motion) {
-            * {
-                transition: none;
-                animation: none;
+            *, *::after, *::before {
+                transition: none !important;
+                animation: none !important;
             }
         }
     `;

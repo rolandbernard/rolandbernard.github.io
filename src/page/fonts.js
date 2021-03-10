@@ -1,7 +1,7 @@
 
 import { css } from '../build/build-util.js';
 
-export function fontCss() {
+export function fontStyles() {
     return css`
         @font-face {
             font-family: Roland;
