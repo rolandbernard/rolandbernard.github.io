@@ -65,6 +65,15 @@ export function markdownStyles() {
     `;
 }
 
+function escapeHtml(markdown) {
+    return markdown
+        .replace(/"/g, html`&quot;`)
+        .replace(/&/g, html`&amp;`)
+        .replace(/'/g, html`&#39;`)
+        .replace(/</g, html`&lt;`)
+        .replace(/>/g, html`&gt;`);
+}
+
 function compileSimpleEmphasis(markdown) {
     return markdown
         .replace(/\*\*(.+?)\*\*/g, html`<strong class="md-bold">$1</strong>`)
@@ -219,6 +228,8 @@ function compileLines(lines) {
             const language = line.replace(line.substr(0, 3), '').trim();
             if (language) {
                 code = generateHighliting(code, language);
+            } else {
+                code = escapeHtml(code);
             }
             converted_paragraphs.push(html`<code class="md-code hljs"><pre>${code}</pre></code>`);
         } else if (line_orig.startsWith('    ') || line_orig.startsWith('\t')) {
@@ -228,7 +239,7 @@ function compileLines(lines) {
                 const next_line = lines.shift();
                 code += next_line.substr(next_line.startsWith('    ') ? 4 : 1) + '\n';
             }
-            converted_paragraphs.push(html`<code class="md-code hljs"><pre>${code}</pre></code>`);
+            converted_paragraphs.push(html`<code class="md-code hljs"><pre>${escapeHtml(code)}</pre></code>`);
         // } else if (line.startsWith('[')) {
             // linesToParagraph(converted_lines, converted_paragraphs);
             // const to_wrap = converted_paragraphs.pop();
