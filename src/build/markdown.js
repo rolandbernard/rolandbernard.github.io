@@ -3,7 +3,7 @@ import { css, html } from './build-util.js';
 
 import hljs from 'highlight.js';
 
-function markdownHighlightStyle() {
+function markdownHighlightStyles() {
     return css`
         .hljs {
             color: #c3d0dd;
@@ -60,8 +60,8 @@ function markdownHighlightStyle() {
 }
 
 export function markdownStyles() {
-    return css `
-        ${markdownHighlightStyle()}
+    return css`
+        ${markdownHighlightStyles()}
     `;
 }
 
@@ -74,18 +74,9 @@ function compileSimpleEmphasis(markdown) {
         .replace(/``(.+?)``|`(.+?)`/g, html`<code class="md-inline-code">$1</code>`);
 }
 
-function escapeHtml(markdown) {
-    return markdown
-        .replace(/"/g, html`&quot;`)
-        .replace(/&/g, html`&amp;`)
-        .replace(/'/g, html`&#39;`)
-        .replace(/</g, html`&lt;`)
-        .replace(/>/g, html`&gt;`);
-}
-
 function linesToParagraph(lines, paragrapgs) {
     if (lines.length !== 0) {
-        paragrapgs.push(html`<p class="md-paragraph">${lines.join(' ')}</p>`);
+        paragrapgs.push(html`<p class="md-paragraph">${lines}</p>`);
         lines.splice(0);
     }
 }
@@ -112,9 +103,9 @@ function compileLines(lines) {
             while (line[header_num] === '#') {
                 header_num++;
             }
-            const text = compileSimpleEmphasis(line.substr(header_num).trim());
+            const text = compileLines([ line.substr(header_num).trim() ]);
             header_num = Math.min(header_num, 6);
-            converted_paragraphs.push(html`<h${header_num} class="md-header-${header_num}">${text}</h${header_num}>`);
+            converted_paragraphs.push(`<h${header_num} class="md-header-${header_num}">${text}</h${header_num}>`);
         } else if (line.startsWith('===') && !line.match(/[^=]/) && converted_lines.length !== 0) {
             converted_paragraphs.push(html`<h1 class="md-header-1">${converted_lines.join(' ')}</h1>`);
             converted_lines.splice(0);
@@ -128,6 +119,86 @@ function compileLines(lines) {
         ) {
             linesToParagraph(converted_lines, converted_paragraphs);
             converted_paragraphs.push(html`<hr class="md-hrule"/>`);
+        } else if (line.includes('|')) {
+            linesToParagraph(converted_lines, converted_paragraphs);
+        } else if (line.match(/^\s*([0-9]+[.)]|[+*-] )/)) {
+            linesToParagraph(converted_lines, converted_paragraphs);
+            const regex = /^\s*([0-9]+[.)]|[+*-] )/;
+            function listTypeAndOrder(line) {
+                const match = line.match(regex);
+                if (match[0].includes(')')) {
+                    return [ /^\s*[0-9]+[)]/, true ];
+                } else if (match[0].includes('.')) {
+                    return [ /^\s*[0-9]+[.]/, true ];
+                } else if (match[0].includes('*')) {
+                    return [ /^\s*[*] /, false ];
+                } else if (match[0].includes('+')) {
+                    return [ /^\s*[+] /, false ];
+                } else if (match[0].includes('-')) {
+                    return [ /^\s*[-] /, false ];
+                }
+            }
+            function generateList() {
+                if (ordered) {
+                    return html`<ol class="md-ordered-list">${
+                        items.map(item => html`<li>${compileLines(item)}</li>`)
+                    }</ol>`;
+                } else {
+                    return html`<ul class="md-unordered-list">${
+                        items.map(item => html`<li>${compileLines(item)}</li>`)
+                    }</ul>`;
+                }
+            }
+            const nesting_stack = [ ];
+            let [ type, ordered ] = listTypeAndOrder(line);
+            let items = [ [ line.replace(regex, '') ] ];
+            let last_indent = 0;
+            while (line_orig[last_indent] === ' ' || line_orig[last_indent] === '\t') {
+                last_indent++;
+            }
+            while (lines.length !== 0 && lines[0].trim().length !== 0) {
+                const next_line = lines.shift();
+                if (next_line.match(regex)) {
+                    let indent = 0;
+                    while (next_line[indent] === ' ' || next_line[indent] === '\t') {
+                        indent++;
+                    }
+                    if (indent > last_indent) {
+                        nesting_stack.push([ items, type, last_indent, ordered ]);
+                        items = [];
+                        [ type, ordered ] = listTypeAndOrder(next_line);
+                    } else if (indent < last_indent && nesting_stack.length !== 0) {
+                        while (nesting_stack.length !== 0 && indent < last_indent) {
+                            let sub_list = generateList();
+                            [ items, type, last_indent, ordered ] = nesting_stack.pop();
+                            items[items.length - 1].push(sub_list);
+                        }
+                    }
+                    if (!next_line.match(type)) {
+                        if (nesting_stack.length !== 0) {
+                            const sub_list = generateList();
+                            [ items, type, last_indent, ordered ] = nesting_stack.pop();
+                            items[items.length - 1].push(sub_list);
+                            nesting_stack.push([ items, type, last_indent, ordered ]);
+                            items = [];
+                        } else {
+                            converted_paragraphs.push(generateList());
+                            items = [];
+                        }
+                        [ type, ordered ] = listTypeAndOrder(next_line);
+                    }
+                    items.push([ next_line.replace(regex, '') ]);
+                    last_indent = indent;
+                } else {
+                    items[items.length - 1].push(next_line);
+                }
+            }
+            while (nesting_stack.length !== 0) {
+                let sub_list = generateList();
+                [ items, type, last_indent, ordered ] = nesting_stack.pop();
+                items[items.length - 1].push(sub_list);
+            }
+            converted_paragraphs.push(generateList());
         } else if (line.startsWith('```') || line.startsWith('~~~')) {
             linesToParagraph(converted_lines, converted_paragraphs);
             let code = '';
@@ -154,19 +225,21 @@ function compileLines(lines) {
             converted_paragraphs.push(html`
                 <div class="md-info-wrap">
                     ${to_wrap}
-                    <p class="md-info">${compileSimpleEmphasis(line.substr(1, line.length - 2))}</p>
+                    <p class="md-info">${compileLines([ line.substr(1, line.length - 2) ])}</p>
                 </div>
             `);
         } else if (line.startsWith('>')) {
             linesToParagraph(converted_lines, converted_paragraphs);
             let quote_lines = [ line.substr(1) ];
-            while (lines.length !== 0 && lines[0].trim().startsWith('>')) {
-                const next_line = lines.shift().trim();
-                quote_lines.push(next_line.substr(1));
+            while (lines.length !== 0 && lines[0].trim().length !== 0) {
+                const next_line = lines.shift();
+                if (next_line.trim().startsWith('>')) {
+                    quote_lines.push(next_line.trim().substr(1));
+                } else {
+                    quote_lines.push(next_line);
+                }
             }
             converted_paragraphs.push(html`<div class="md-quote">${compileLines(quote_lines)}</div>`)
-        } else if (line.includes('|')) {
-            linesToParagraph(converted_lines, converted_paragraphs);
         } else {
             let actual_line = line;
             if (line.endsWith('\\')) {
@@ -178,7 +251,7 @@ function compileLines(lines) {
         }
     }
     linesToParagraph(converted_lines, converted_paragraphs);
-    return converted_paragraphs.join('');
+    return converted_paragraphs;
 }
 
 export function compileMarkdown(markdown) {
