@@ -18,22 +18,19 @@ export class Builder {
     }
 
     addHtmlFile(filename, html) {
-        let content = html;
+        let content = minify(html, {
+            minifyCSS: true,
+            minifyJS: true,
+            collapseBooleanAttributes: true,
+            collapseWhitespace: true,
+            removeComments: true,
+            removeOptionalTags: true,
+            removeRedundantAttributes: true,
+            removeScriptTypeAttributes: true,
+            removeTagWhitespace: true,
+        });
         if(this.options.debug) {
-            content = prettier.format(html, { parser: 'html', tabWidth: 4 });
-        } else {
-            content = minify(html, {
-                minifyCSS: true,
-                minifyJS: true,
-                collapseBooleanAttributes: true,
-                collapseWhitespace: true,
-                collapseInlineTagWhitespace: true,
-                removeComments: true,
-                removeOptionalTags: true,
-                removeRedundantAttributes: true,
-                removeScriptTypeAttributes: true,
-                removeTagWhitespace: true,
-            });
+            content = prettier.format(content, { parser: 'html', tabWidth: 4 });
         }
         this.addFile(filename, content);
     }
