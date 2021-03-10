@@ -76,7 +76,7 @@ function compileSimpleEmphasis(markdown) {
 
 function linesToParagraph(lines, paragrapgs) {
     if (lines.length !== 0) {
-        paragrapgs.push(html`<p class="md-paragraph">${lines}</p>`);
+        paragrapgs.push(html`<p class="md-paragraph">${lines.join(' ')}</p>`);
         lines.splice(0);
     }
 }
@@ -156,7 +156,8 @@ function compileLines(lines) {
             while (line_orig[last_indent] === ' ' || line_orig[last_indent] === '\t') {
                 last_indent++;
             }
-            while (lines.length !== 0 && lines[0].trim().length !== 0) {
+            let was_empty = false;
+            while (lines.length !== 0) {
                 const next_line = lines.shift();
                 if (next_line.match(regex)) {
                     let indent = 0;
@@ -189,9 +190,17 @@ function compileLines(lines) {
                     }
                     items.push([ next_line.replace(regex, '') ]);
                     last_indent = indent;
+                } else if (next_line.substr(last_indent).startsWith('    ') || next_line.substr(last_indent).startsWith('\t')) {
+                    items[items.length - 1].push(next_line.substr(last_indent + (next_line.substr(last_indent).startsWith('    ') ? 4 : 1)));
                 } else {
-                    items[items.length - 1].push(next_line);
+                    if (was_empty) {
+                        lines.unshift(next_line);
+                        break;
+                    } else {
+                        items[items.length - 1].push(next_line);
+                    }
                 }
+                was_empty  = next_line.trim().length === 0;
             }
             while (nesting_stack.length !== 0) {
                 let sub_list = generateList();
@@ -213,21 +222,22 @@ function compileLines(lines) {
             }
             converted_paragraphs.push(html`<code class="md-code hljs"><pre>${code}</pre></code>`);
         } else if (line_orig.startsWith('    ') || line_orig.startsWith('\t')) {
+            linesToParagraph(converted_lines, converted_paragraphs);
             let code = line_orig.substr(line_orig.startsWith('    ') ? 4 : 1) + '\n';
             while (lines.length !== 0 && (lines[0].startsWith('    ') || lines[0].startsWith('\t'))) {
                 const next_line = lines.shift();
                 code += next_line.substr(next_line.startsWith('    ') ? 4 : 1) + '\n';
             }
             converted_paragraphs.push(html`<code class="md-code hljs"><pre>${code}</pre></code>`);
-        } else if (line.startsWith('[') && line.endsWith(']')) {
-            linesToParagraph(converted_lines, converted_paragraphs);
-            const to_wrap = converted_paragraphs.pop();
-            converted_paragraphs.push(html`
-                <div class="md-info-wrap">
-                    ${to_wrap}
-                    <p class="md-info">${compileLines([ line.substr(1, line.length - 2) ])}</p>
-                </div>
-            `);
+        // } else if (line.startsWith('[')) {
+            // linesToParagraph(converted_lines, converted_paragraphs);
+            // const to_wrap = converted_paragraphs.pop();
+            // converted_paragraphs.push(html`
+            //     <div class="md-info-wrap">
+            //         ${to_wrap}
+            //         <p class="md-info">${compileLines([ line.substr(1, line.length - 2) ])}</p>
+            //     </div>
+            // `);
         } else if (line.startsWith('>')) {
             linesToParagraph(converted_lines, converted_paragraphs);
             let quote_lines = [ line.substr(1) ];
