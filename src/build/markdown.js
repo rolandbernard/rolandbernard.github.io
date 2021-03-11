@@ -75,12 +75,76 @@ function escapeHtml(markdown) {
 }
 
 function compileSimpleEmphasis(markdown) {
-    return markdown
-        .replace(/\*\*(.+?)\*\*/g, html`<strong class="md-bold">$1</strong>`)
-        .replace(/\*(.+?)\*/g, html`<em class="md-italic">$1</em>`)
-        .replace(/__(.+?)__/g, html`<strong class="md-bold">$1</strong>`)
-        .replace(/_(.+?)_/g, html`<em class="md-italic">$1</em>`)
-        .replace(/``(.+?)``|`(.+?)`/g, html`<code class="md-inline-code">$1</code>`);
+    let output = '';
+    let offset = 0;
+    let last_copy = 0;
+    while (offset < markdown.length) {
+        if (markdown[offset] === '*') {
+            output += markdown.substr(last_copy, offset - last_copy);
+            if (markdown[offset + 1] === '*') {
+                offset += 2;
+                const start = offset;
+                while (offset < markdown.length && markdown.substr(offset, 2) !== '**') {
+                    offset++;
+                }
+                output += html`<strong class="md-bold">${compileSimpleEmphasis(markdown.substr(start, offset - start))}</strong>`;
+                offset += 2;
+            } else {
+                offset++;
+                const start = offset;
+                while (offset < markdown.length && markdown[offset] !== '*') {
+                    offset++;
+                }
+                output += html`<em class="md-italic">${compileSimpleEmphasis(markdown.substr(start, offset - start))}</em>`;
+                offset++;
+            }
+            last_copy = offset;
+        } else if (markdown[offset] === '_') {
+            output += markdown.substr(last_copy, offset - last_copy);
+            if (markdown[offset + 1] === '_') {
+                offset += 2;
+                const start = offset;
+                while (offset < markdown.length && markdown.substr(offset, 2) !== '__') {
+                    offset++;
+                }
+                output += html`<strong class="md-bold">${compileSimpleEmphasis(markdown.substr(start, offset - start))}</strong>`;
+                offset += 2;
+            } else {
+                offset++;
+                const start = offset;
+                while (offset < markdown.length && markdown[offset] !== '_') {
+                    offset++;
+                }
+                output += html`<em class="md-italic">${compileSimpleEmphasis(markdown.substr(start, offset - start))}</em>`;
+                offset++;
+            }
+            last_copy = offset;
+        } else if (markdown[offset] === '`') {
+            output += markdown.substr(last_copy, offset - last_copy);
+            if (markdown[offset + 1] === '`') {
+                offset += 2;
+                const start = offset;
+                while (offset < markdown.length && markdown.substr(offset, 2) !== '``') {
+                    offset++;
+                }
+                output += html`<code class="md-inline-code">${escapeHtml(markdown.substr(start, offset - start))}</code>`;
+                offset += 2;
+            } else {
+                offset++;
+                const start = offset;
+                while (offset < markdown.length && markdown[offset] !== '`') {
+                    offset++;
+                }
+                output += html`<code class="md-inline-code">${escapeHtml(markdown.substr(start, offset - start))}</code>`;
+                offset++;
+            }
+            last_copy = offset;
+        } else {
+            offset++;
+        }
+    }
+    output += markdown.substr(last_copy, offset - last_copy);
+    return output;
 }
 
 function linesToParagraph(lines, paragrapgs) {
