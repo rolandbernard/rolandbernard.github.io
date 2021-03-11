@@ -12,14 +12,14 @@ server.listen(8080, () => {
 });
 
 function build() {
-    console.log(`[${new Date()}] Started rebuilding...`);
+    console.log(`[${(new Date()).toLocaleString()}] Started rebuilding...`);
     exec('node src/build/build.js -d', (err, _, stderr) => {
         if(stderr || err) {
             console.error('Failed to compile:');
             console.error(stderr);
         }
     });
-    console.log(`[${new Date()}] Finished rebuild.`);
+    console.log(`[${(new Date()).toLocaleString()}] Finished rebuild.`);
 }
 
 let last_timeout = null;
