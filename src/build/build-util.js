@@ -1,5 +1,6 @@
 
-import { readFileSync } from 'fs';
+import { languages } from '../config.js';
+import { existsSync, readFileSync } from 'fs';
 
 function templateJoin(str, ...vals) {
     return str.map((s, i) => {
@@ -24,6 +25,15 @@ export function readFile(filename) {
 
 export function readJsonFile(filename) {
     return JSON.parse(readFileSync(filename, { encoding: 'utf-8' }));
+}
+
+export function readPostFile(filename, prefered_lang) {
+    for (const lang of [prefered_lang, ...languages]) {
+        if (existsSync(`src/page/posts/${lang}/${filename}.md`)) {
+            return [readFileSync(`src/page/posts/${lang}/${filename}.md`, { encoding: 'utf-8' }), lang];
+        }
+    }
+    return ['', ''];
 }
 
 export function changeUrlLanguage(url, lang) {

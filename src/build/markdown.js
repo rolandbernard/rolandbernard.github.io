@@ -6,55 +6,69 @@ import hljs from 'highlight.js';
 function markdownHighlightStyles() {
     return css`
         .hljs {
-            color: #c3d0dd;
-            background: #1c1e20;
             display: block;
             overflow-x: auto;
             padding: 0.5em;
-        }
-        .hljs-number,
-        .hljs-literal,
-        .hljs-symbol,
-        .hljs-bullet {
-            color: #6897BB;
-        }
-        .hljs-keyword,
-        .hljs-selector-tag,
-        .hljs-deletion {
-            color: #cc7832;
-        }
-        .hljs-variable,
-        .hljs-template-variable,
-        .hljs-link {
-            color: #629755;
+            color: #abb2bf;
+            background: #282c34;
         }
         .hljs-comment,
         .hljs-quote {
-            color: #808080;
+            color: #5c6370;
+            font-style: italic;
         }
-        .hljs-meta {
-            color: #bbb529;
-        }
-        .hljs-string,
-        .hljs-attribute,
-        .hljs-addition {
-            color: #6A8759;
+        .hljs-doctag,
+        .hljs-keyword,
+        .hljs-formula {
+            color: #c678dd;
         }
         .hljs-section,
-        .hljs-title,
-        .hljs-type {
-            color: #ffc66d;
-        }
         .hljs-name,
+        .hljs-selector-tag,
+        .hljs-deletion,
+        .hljs-subst {
+            color: #e06c75;
+        }
+        .hljs-literal {
+            color: #56b6c2;
+        }
+        .hljs-string,
+        .hljs-regexp,
+        .hljs-addition,
+        .hljs-attribute,
+        .hljs-meta-string {
+            color: #98c379;
+        }
+        .hljs-built_in,
+        .hljs-class .hljs-title {
+            color: #e6c07b;
+        }
+        .hljs-attr,
+        .hljs-variable,
+        .hljs-template-variable,
+        .hljs-type,
+        .hljs-selector-class,
+        .hljs-selector-attr,
+        .hljs-selector-pseudo,
+        .hljs-number {
+            color: #d19a66;
+        }
+        .hljs-symbol,
+        .hljs-bullet,
+        .hljs-link,
+        .hljs-meta,
         .hljs-selector-id,
-        .hljs-selector-class {
-            color: #e8bf6a;
+        .hljs-title {
+            color: #61aeee;
         }
         .hljs-emphasis {
             font-style: italic;
         }
         .hljs-strong {
             font-weight: bold;
+        }
+        .hljs-link {
+            text-decoration: underline;
         }
     `;
 }
@@ -66,6 +80,7 @@ export function markdownStyles() {
             font-family: OpenSans, Arial, Helvetica, sans-serif;
             font-size: 1rem;
             line-height: 150%;
+            box-sizing: border-box;
         }
         .md-header-1, .md-header-2 {
             padding-bottom: 0.1rem;
@@ -99,18 +114,19 @@ export function markdownStyles() {
             padding: 0;
             margin: 0;
             font-family: 'Plex Mono', monospace;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
         }
-        .md-code  {
+        .md-code {
             padding: 1rem;
             border-radius: 4px;
+            width: 100%;
         }
         .md-inline-code  {
             background: #00000010;
             padding: 0.1rem 0.25rem;
             border-radius: 4px;
             font-family: 'Plex Mono', monospace;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             display: inline-block;
         }
         .md-quote {
@@ -172,13 +188,23 @@ export function markdownStyles() {
             background: #00000005;
         }
         .md-info-wrap {
-            width: max-content;
+            /* width: max-content; */
             display: flex;
             flex-flow: column;
             align-items: center;
         }
+        .md-info-wrap p {
+            margin-bottom: 0;
+        }
         .md-info {
             margin-top: 0.25rem;
+        }
+        .md-inline-info {
+            display: inline-flex;
+            vertical-align: middle;
+        }
+        .md-image {
+            vertical-align: middle;
         }
     `;
 }
@@ -550,7 +576,7 @@ function compileLines(lines, data) {
         } else if (line.match(/^\|?(([^`]|`.*?`)*\|)+([^`]|`.*?`)*\|?$/)) {
             linesToParagraph(lines_to_convert, converted_paragraphs, data);
             const table = [ line.split('|') ];
-            while (lines[0].includes('|')) {
+            while (lines.length !== 0 && lines[0].match(/^\|?(([^`]|`.*?`)*\|)+([^`]|`.*?`)*\|?$/)) {
                 const next_line = lines.shift().trim();
                 table.push(next_line.split('|'));
             }
@@ -572,12 +598,8 @@ function compileLines(lines, data) {
                         .filter((field, j) => field.length !== 0 || (j !== 0 && j !== row.length))
                         .map((field, j) => (
                             (i === 0 && alignment)
-                                ? html`<th class="markdown md-table-header ${alignment?.[j] || ''}">
-                                        ${compileInlineConstructs(field)}
-                                    </th>`
-                                : html`<td class="markdown md-table-data ${alignment?.[j] || ''}">
-                                        ${compileInlineConstructs(field)}
-                                    </td>`
+                                ? html`<th class="markdown md-table-header ${alignment?.[j] || ''}">${compileInlineConstructs(field)}</th>`
+                                : html`<td class="markdown md-table-data ${alignment?.[j] || ''}">${compileInlineConstructs(field)}</td>`
                         ))
                     }</tr>
                 `)}</table>
@@ -758,14 +780,18 @@ function compileLines(lines, data) {
                     </ol>
                 `);
             }
-        } else if (line.startsWith('[') && line.endsWith(']') && !line.substr(1, line.length - 2).match(/[(!^\]]/)) {
+        } else if (line.startsWith('[') && line.endsWith(']') && !line.substr(1, line.length - 2).match(/[(!\]]/)) {
             linesToParagraph(lines_to_convert, converted_paragraphs);
+            let inline = false;
+            if (line[1] === '^') {
+                inline = true;
+            }
             const to_wrap = converted_paragraphs.pop();
             converted_paragraphs.push(html`
-                <div class="markdown md-info-wrap">
+                <figure class="markdown md-info-wrap ${inline ? 'md-inline-info' : ''}">
                     ${to_wrap}
-                    <p class="markdown md-info">${compileInlineConstructs(line.substr(1, line.length - 2))}</p>
-                </div>
+                    <figcaption class="markdown md-info">${compileInlineConstructs(line.substr(inline ? 2 : 1, line.length - (inline ? 3 : 2)))}</figcaption>
+                </figure>
             `);
         } else {
             let actual_line = line;

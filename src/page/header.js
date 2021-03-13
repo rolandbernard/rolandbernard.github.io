@@ -183,7 +183,7 @@ export function pageHeader(lang = 'en', url = '/') {
                     'it': 'Progetti',
                 }[lang]}</span></a>
                 <span class="line-seperator"></span>
-                <a class="link" href="/${lang}/blog"><span>${{
+                <a class="link" href="/${lang}/posts"><span>${{
                     'en': 'Posts',
                     'de': 'Posts',
                     'it': 'Posti',

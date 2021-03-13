@@ -18,6 +18,7 @@ export function pageFooterStyles() {
             color: white;
             font-size: 0.75rem;
             font-weight: 400;
+            color: lightgray;
             font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
             box-shadow: var(--shadow-small);
             white-space: nowrap;
@@ -32,12 +33,13 @@ export function pageFooterStyles() {
         .footer-contacts a svg {
             width: 1.25rem;
             height: 1.25rem;
+            color: lightgray;
         }
         .footer-contacts a svg, .footer-contacts a span {
             display: inline;
             vertical-align: middle;
             fill: white;
-            color: white;
+            color: lightgray;
         }
         .footer-copyright {
             padding-top: 0.25rem;

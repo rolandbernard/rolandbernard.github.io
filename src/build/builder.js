@@ -13,24 +13,26 @@ export class Builder {
         mkdirSync(this.output_dir, { recursive: true });
     }
     
-    generateHtmlFile(filename, lang, func) {
-        this.addHtmlFile(filename, func(lang, `/${filename}`));
+    generateHtmlFile(filename, lang, func, ...args) {
+        this.addHtmlFile(filename, func(lang, `/${filename}`, ...args));
     }
 
     addHtmlFile(filename, html) {
-        let content = minify(html, {
-            minifyCSS: true,
-            minifyJS: true,
-            collapseBooleanAttributes: true,
-            collapseWhitespace: true,
-            removeComments: true,
-            removeOptionalTags: true,
-            removeRedundantAttributes: true,
-            removeScriptTypeAttributes: true,
-            removeTagWhitespace: true,
-        });
+        let content = html;
         if(this.options.debug) {
             content = prettier.format(content, { parser: 'html', tabWidth: 4 });
+        } else {
+            content = minify(html, {
+                minifyCSS: true,
+                minifyJS: true,
+                collapseBooleanAttributes: true,
+                collapseWhitespace: true,
+                removeComments: true,
+                removeOptionalTags: true,
+                removeRedundantAttributes: true,
+                removeScriptTypeAttributes: true,
+                removeTagWhitespace: true,
+            });
         }
         this.addFile(filename, content);
     }

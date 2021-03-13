@@ -15,11 +15,11 @@ function projectElement(info, lang) {
     return html`
         <section class="project-item" id="${info.name.toLowerCase().replace(/ /g, '')}" title="${info.name}">
             <div class="project-text">
-                <h2>
-                    <a class="project-name" href="${extractData(info.link, lang)}" target="_blank">
-                        ${extractData(info.name, lang)}
-                    </a>
-                </h2>
+                <a href="${extractData(info.link, lang)}" target="_blank">
+                    <h2 class="project-name">
+                            ${extractData(info.name, lang)}
+                    </h2>
+                </a>
                 ${info.tags && html`
                     <div class="project-tags">${
                         extractData(info.tags, lang).map(tag => html`
@@ -53,7 +53,7 @@ function projectElement(info, lang) {
 }
 
 export function projectsView(lang = 'en', url = '/') {
-    return htmlTemplate('Roland Bernard - Home', html`
+    return htmlTemplate('Roland Bernard - Projects', html`
         <main>
             ${lang !== 'en' ? html`
                 <div class="note"><div>${{
@@ -81,6 +81,7 @@ export function projectsView(lang = 'en', url = '/') {
         }
         .project-more {
             display: block;
+            width: max-content;
         }
         .project-text {
             flex: 1 1 auto;

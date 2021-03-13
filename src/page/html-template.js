@@ -37,9 +37,12 @@ export function htmlTemplate(title, content, style, lang = 'en', url = '/') {
                     .main-content {
                         flex: 1 1 auto;
                     }
-                    a {
+                    a, a:active {
                         text-decoration: none;
                         color: var(--primary);
+                    }
+                    a:hover {
+                        color: var(--primary-light);
                     }
                     ${themeStyles()}
                     ${fontStyles()}
