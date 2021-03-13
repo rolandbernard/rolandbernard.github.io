@@ -62,6 +62,12 @@ function markdownHighlightStyles() {
 export function markdownStyles() {
     return css`
         ${markdownHighlightStyles()}
+        * {
+            font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
+        }
+        .md-header-1 {
+            font-size: 
+        }
     `;
 }
 
@@ -74,22 +80,38 @@ function escapeHtml(markdown) {
         .replace(/>/g, html`&gt;`);
 }
 
-function compileInlineConstructs(markdown) {
+function compileInlineConstructs(markdown, data) {
     let output = '';
     let offset = 0;
     let last_copy = 0;
     while (offset < markdown.length) {
-        if (markdown[offset] === '!') {
-            offset++;
-        } else if (markdown[offset] === '[') {
+        if (markdown[offset] === '\\') {
             output += markdown.substr(last_copy, offset - last_copy);
             offset++;
+            output += markdown[offset];
+            offset++;
+            last_copy = offset;
+        } else if (markdown.substr(offset, 2) === '![') {
+            output += markdown.substr(last_copy, offset - last_copy);
+            last_copy = offset;
+            offset += 2;
+            let depth = 0;
             const start = offset;
-            while (offset < markdown.length && markdown[offset] !== ']') {
+            while (offset < markdown.length && (markdown[offset] !== ']' || depth !== 0)) {
+                if (markdown[offset] === '\\') {
+                    offset++;
+                } else if (markdown[offset] === '[') {
+                    depth++;
+                } else if (markdown[offset] === ']') {
+                    depth--;
+                }
                 offset++;
             }
             const end = offset;
             offset++;
+            while (markdown[offset] === ' ' || markdown[offset] === '\t') {
+                offset++;
+            }
             if (markdown[offset] === '(') {
                 offset++;
                 const link_start = offset;
@@ -110,25 +132,118 @@ function compileInlineConstructs(markdown) {
                         }
                     }
                     offset++;
-                    output += html`
-                        <a
-                            class="md-bold"
-                            href="${markdown.substr(link_start, link_end - link_start).trim()}"
-                            title="${markdown.substr(title_start, title_end - title_start)}"
-                        >${compileInlineConstructs(markdown.substr(start, end - start))}</a>
-                    `;
+                    output += html`<img
+                        class="md-image"
+                        src="${markdown.substr(link_start, link_end - link_start).trim()}"
+                        title="${markdown.substr(title_start, title_end - title_start)}"
+                        alt="${markdown.substr(start, end - start)}"
+                    />`;
                     last_copy = offset;
                 } else {
                     offset++;
-                    output += html`
-                        <a
-                            class="md-bold"
-                            href="${markdown.substr(link_start, link_end - link_start).trim()}"
-                        >${compileInlineConstructs(markdown.substr(start, end - start))}</a>
-                    `;
+                    output += html`<img
+                        class="md-image"
+                        src="${markdown.substr(link_start, link_end - link_start).trim()}"
+                        alt="${markdown.substr(start, end - start)}"
+                    />`;
                     last_copy = offset;
                 }
             }
+        } else if (markdown[offset] === '[') {
+            output += markdown.substr(last_copy, offset - last_copy);
+            last_copy = offset;
+            offset++;
+            let depth = 0;
+            const start = offset;
+            while (offset < markdown.length && (markdown[offset] !== ']' || depth !== 0)) {
+                if (markdown[offset] === '\\') {
+                    offset++;
+                } else if (markdown[offset] === '[') {
+                    depth++;
+                } else if (markdown[offset] === ']') {
+                    depth--;
+                }
+                offset++;
+            }
+            const end = offset;
+            offset++;
+            if (markdown[start] === '^') {
+                const name = markdown.substr(start, end - start).toLowerCase();
+                output += html`<a
+                    class="md-footnote-ref"
+                    href="#fn:${name}"
+                >${data[name]?.id}</a>`;
+                last_copy = offset;
+            } else {
+                while (markdown[offset] === ' ' || markdown[offset] === '\t') {
+                    offset++;
+                }
+                if (markdown[offset] === '(') {
+                    offset++;
+                    const link_start = offset;
+                    while (offset < markdown.length && markdown[offset] !== ')' && markdown[offset] !== '"') {
+                        offset++;
+                    }
+                    const link_end = offset;
+                    if (markdown[offset] === '"') {
+                        offset++;
+                        const title_start = offset;
+                        while (offset < markdown.length && markdown[offset] !== ')' && markdown[offset] !== '"') {
+                            offset++;
+                        }
+                        const title_end = offset;
+                        if (markdown[offset] === '"') {
+                            while (offset < markdown.length && markdown[offset] !== ')') {
+                                offset++;
+                            }
+                        }
+                        offset++;
+                        output += html`<a
+                            class="md-link"
+                            href="${markdown.substr(link_start, link_end - link_start).trim()}"
+                            title="${markdown.substr(title_start, title_end - title_start)}"
+                        >${compileInlineConstructs(markdown.substr(start, end - start), data)}</a>`;
+                        last_copy = offset;
+                    } else {
+                        offset++;
+                        output += html`<a
+                            class="md-link"
+                            href="${markdown.substr(link_start, link_end - link_start).trim()}"
+                        >${compileInlineConstructs(markdown.substr(start, end - start), data)}</a>`;
+                        last_copy = offset;
+                    }
+                } else if (markdown[offset] === '[') {
+                    offset++;
+                    const name_start = offset;
+                    while (offset < markdown.length && markdown[offset] !== ']') {
+                        offset++;
+                    }
+                    const name_end = offset;
+                    if (markdown[offset] === ']') {
+                        offset++;
+                        const name = markdown.substr(name_start, name_end - name_start).toLowerCase();
+                        output += html`<a
+                            class="md-link"
+                            ${data[name]?.link ? `href="${data[name].link}"` : ''}
+                            ${data[name]?.title ? `title="${data[name].title}"` : ''}
+                        >${compileInlineConstructs(markdown.substr(start, end - start), data)}</a>`;
+                        last_copy = offset;
+                    }
+                }
+            }
+        } else if (markdown.substr(offset, 2) === '~~') {
+            output += markdown.substr(last_copy, offset - last_copy);
+            offset += 2;
+            const start = offset;
+            while (offset < markdown.length && markdown.substr(offset, 2) !== '~~') {
+                if (markdown[offset] === '\\') {
+                    offset++;
+                }
+                offset++;
+            }
+            output += html`<del class="md-strike">${compileInlineConstructs(markdown.substr(start, offset - start), data)}</del>`;
+            offset += 2;
+            last_copy = offset;
         } else if (markdown[offset] === '*') {
             output += markdown.substr(last_copy, offset - last_copy);
             if (markdown[offset + 1] === '*') {
@@ -136,20 +251,25 @@ function compileInlineConstructs(markdown) {
                 let single = false;
                 const start = offset;
                 while (offset < markdown.length && (markdown.substr(offset, 2) !== '**' || single)) {
-                    if (markdown[offset] === '*') {
+                    if (markdown[offset] === '\\') {
+                        offset++;
+                    } else if (markdown[offset] === '*') {
                         single = !single;
                     }
                     offset++;
                 }
-                output += html`<strong class="md-bold">${compileInlineConstructs(markdown.substr(start, offset - start))}</strong>`;
+                output += html`<strong class="md-bold">${compileInlineConstructs(markdown.substr(start, offset - start), data)}</strong>`;
                 offset += 2;
             } else {
                 offset++;
                 const start = offset;
                 while (offset < markdown.length && markdown[offset] !== '*') {
+                    if (markdown[offset] === '\\') {
+                        offset++;
+                    }
                     offset++;
                 }
-                output += html`<em class="md-italic">${compileInlineConstructs(markdown.substr(start, offset - start))}</em>`;
+                output += html`<em class="md-italic">${compileInlineConstructs(markdown.substr(start, offset - start), data)}</em>`;
                 offset++;
             }
             last_copy = offset;
@@ -160,20 +280,25 @@ function compileInlineConstructs(markdown) {
                 let single = false;
                 const start = offset;
                 while (offset < markdown.length && (markdown.substr(offset, 2) !== '__' || single)) {
-                    if (markdown[offset] === '_') {
+                    if (markdown[offset] === '\\') {
+                        offset++;
+                    } else if (markdown[offset] === '_') {
                         single = !single;
                     }
                     offset++;
                 }
-                output += html`<strong class="md-bold">${compileInlineConstructs(markdown.substr(start, offset - start))}</strong>`;
+                output += html`<strong class="md-bold">${compileInlineConstructs(markdown.substr(start, offset - start), data)}</strong>`;
                 offset += 2;
             } else {
                 offset++;
                 const start = offset;
                 while (offset < markdown.length && markdown[offset] !== '_') {
+                    if (markdown[offset] === '\\') {
+                        offset++;
+                    }
                     offset++;
                 }
-                output += html`<em class="md-italic">${compileInlineConstructs(markdown.substr(start, offset - start))}</em>`;
+                output += html`<em class="md-italic">${compileInlineConstructs(markdown.substr(start, offset - start), data)}</em>`;
                 offset++;
             }
             last_copy = offset;
@@ -183,6 +308,9 @@ function compileInlineConstructs(markdown) {
                 offset += 2;
                 const start = offset;
                 while (offset < markdown.length && markdown.substr(offset, 2) !== '``') {
+                    if (markdown[offset] === '\\') {
+                        offset++;
+                    }
                     offset++;
                 }
                 output += html`<code class="md-inline-code">${escapeHtml(markdown.substr(start, offset - start))}</code>`;
@@ -191,6 +319,9 @@ function compileInlineConstructs(markdown) {
                 offset++;
                 const start = offset;
                 while (offset < markdown.length && markdown[offset] !== '`') {
+                    if (markdown[offset] === '\\') {
+                        offset++;
+                    }
                     offset++;
                 }
                 output += html`<code class="md-inline-code">${escapeHtml(markdown.substr(start, offset - start))}</code>`;
@@ -205,9 +336,9 @@ function compileInlineConstructs(markdown) {
     return output;
 }
 
-function linesToParagraph(lines, paragrapgs) {
+function linesToParagraph(lines, paragrapgs, data) {
     if (lines.length !== 0 && lines.join(' ').trim().length !== 0) {
-        paragrapgs.push(html`<p class="md-paragraph">${compileInlineConstructs(lines.join(' '))}</p>`);
+        paragrapgs.push(html`<p class="md-paragraph">${compileInlineConstructs(lines.join(' '), data)}</p>`);
     }
     lines.splice(0);
 }
@@ -220,66 +351,121 @@ function generateHighliting(code, language) {
     }
 }
 
-function compileLines(lines) {
+function compileLines(lines, data) {
     const lines_to_convert = [];
     const converted_paragraphs = [];
     while (lines.length !== 0) {
         const line_orig = lines.shift();
         const line = line_orig.trim();
         if (line.length === 0) {
-            linesToParagraph(lines_to_convert, converted_paragraphs);
+            linesToParagraph(lines_to_convert, converted_paragraphs, data);
         } else if (line.startsWith('<') && line.endsWith('>')) {
-            linesToParagraph(lines_to_convert, converted_paragraphs);
+            linesToParagraph(lines_to_convert, converted_paragraphs, data);
             converted_paragraphs.push(line_orig);
         } else if (line.startsWith('#')) {
-            linesToParagraph(lines_to_convert, converted_paragraphs);
+            linesToParagraph(lines_to_convert, converted_paragraphs, data);
             let header_num = 1;
             while (line[header_num] === '#') {
                 header_num++;
             }
-            const text = compileInlineConstructs(line.substr(header_num).trim());
-            header_num = Math.min(header_num, 6);
-            converted_paragraphs.push(`<h${header_num} class="md-header-${header_num}">${text}</h${header_num}>`);
+            if (line.endsWith('}')) {
+                const match = line.match(/\{#([^}]*)\}$/);
+                const text = compileInlineConstructs(line.substr(header_num, line.length - header_num - match[0].length).trim(), data);
+                header_num = Math.min(header_num, 6);
+                converted_paragraphs.push(`<h${header_num} id="${match[1]}" class="md-header-${header_num}">${text}</h${header_num}>`);
+            } else {
+                const text = compileInlineConstructs(line.substr(header_num).trim(), data);
+                header_num = Math.min(header_num, 6);
+                converted_paragraphs.push(`<h${header_num} class="md-header-${header_num}">${text}</h${header_num}>`);
+            }
         } else if (line.startsWith('===') && !line.match(/[^=]/) && lines_to_convert.length !== 0) {
-            converted_paragraphs.push(html`<h1 class="md-header-1">${compileInlineConstructs(lines_to_convert.join(' '))}</h1>`);
+            converted_paragraphs.push(html`<h1 class="md-header-1">${compileInlineConstructs(lines_to_convert.join(' '), data)}</h1>`);
             lines_to_convert.splice(0);
         } else if (line.startsWith('---') && !line.match(/[^-]/) && lines_to_convert.length !== 0) {
-            converted_paragraphs.push(html`<h2 class="md-header-2">${compileInlineConstructs(lines_to_convert.join(' '))}</h2>`);
+            converted_paragraphs.push(html`<h2 class="md-header-2">${compileInlineConstructs(lines_to_convert.join(' '), data)}</h2>`);
             lines_to_convert.splice(0);
         } else if (
             line.startsWith('---') && !line.match(/[^-]/)
             || line.startsWith('***') && !line.match(/[^*]/)
             || line.startsWith('___') && !line.match(/[^_]/)
         ) {
-            linesToParagraph(lines_to_convert, converted_paragraphs);
+            linesToParagraph(lines_to_convert, converted_paragraphs, data);
             converted_paragraphs.push(html`<hr class="md-hrule"/>`);
         } else if (line.includes('|')) {
-            linesToParagraph(lines_to_convert, converted_paragraphs);
-        } else if (line.match(/^\s*([0-9]+[.)]|[+*-] )/)) {
-            linesToParagraph(lines_to_convert, converted_paragraphs);
+            linesToParagraph(lines_to_convert, converted_paragraphs, data);
+            const table = [ line.split('|') ];
+            while (lines[0].includes('|')) {
+                const next_line = lines.shift().trim();
+                table.push(next_line.split('|'));
+            }
+            let alignment;
+            if (table[1]?.[0]?.trim().match(/^:?-{3,}:?$/)) {
+                alignment = table[1]
+                    .map(field => field.trim())
+                    .map(field => (
+                        field.endsWith(':')
+                            ? field.startsWith(':')
+                                ? 'md-align-center'
+                                : 'md-align-right'
+                            : 'md-align-left'
+                    ));
+            }
+            converted_paragraphs.push(html`
+                <table class="md-table">${table.filter((_, i) => !alignment || i !== 1).map((row, i) => html`
+                    <tr class="md-table-row">${row
+                        .filter((field, j) => field.length !== 0 || (j !== 0 && j !== row.length))
+                        .map((field, j) => (
+                            (i === 0 && alignment)
+                                ? html`<th class="md-table-header ${alignment[j] || ''}">
+                                        ${compileInlineConstructs(field)}
+                                    </th>`
+                                : html`<td class="md-table-data ${alignment[j] || ''}">
+                                        ${compileInlineConstructs(field)}
+                                    </td>`
+                        ))
+                    }</tr>
+                `)}</table>
+            `);
+        } else if (line.match(/^\s*([0-9]+[.)]|-\s?\[[Xx ]?\]|[+*-] )/)) {
+            linesToParagraph(lines_to_convert, converted_paragraphs, data);
             const regex = /^\s*([0-9]+[.)]|[+*-] )/;
             function listTypeAndOrder(line) {
-                const match = line.match(regex);
+                const match = line.match(/^\s*([0-9]+[.)]|-\s?\[[Xx ]?\]|[+*-] )/);
                 if (match[0].includes(')')) {
-                    return [ /^\s*[0-9]+[)]/, true ];
+                    return [ /^\s*[0-9]+[)]/, 1 ];
                 } else if (match[0].includes('.')) {
-                    return [ /^\s*[0-9]+[.]/, true ];
+                    return [ /^\s*[0-9]+[.]/, 1 ];
+                } else if (match[0].includes('[')) {
+                    return [ /^\s*-\s?\[[Xx ]?\]/, 2 ];
                 } else if (match[0].includes('*')) {
-                    return [ /^\s*[*] /, false ];
+                    return [ /^\s*[*] /, 0 ];
                 } else if (match[0].includes('+')) {
-                    return [ /^\s*[+] /, false ];
+                    return [ /^\s*[+] /, 0 ];
                 } else if (match[0].includes('-')) {
-                    return [ /^\s*[-] /, false ];
+                    return [ /^\s*[-] /, 0 ];
                 }
             }
             function generateList() {
-                if (ordered) {
+                if (ordered === 1) {
                     return html`<ol class="md-ordered-list">${
-                        items.map(item => html`<li>${compileLines(item)}</li>`)
+                        items.map(item => html`<li>${compileLines(item, data)}</li>`)
                     }</ol>`;
-                } else {
+                } else if (ordered === 0) {
                     return html`<ul class="md-unordered-list">${
-                        items.map(item => html`<li>${compileLines(item)}</li>`)
+                        items.map(item => html`<li>${compileLines(item, data)}</li>`)
+                    }</ul>`;
+                } else if (ordered === 2) {
+                    return html`<ul class="md-todo-list">${
+                        items.map(item => {
+                            const match = item[0].match(/^\s?\[([Xx ]?)\]/);
+                            const checked = match[1]?.toLowerCase() === 'x' ? 'checked' : '';
+                            item[0] = item[0].replace(/^\s?\[([Xx ]?)\]/, '');
+                            return [html`
+                                <li>
+                                    <input type="checkbox" name="_" disabled ${checked} /><span>${compileLines(item, data)}</span>
+                                </li>`
+                            ]
+                        })
                     }</ul>`;
                 }
             }
@@ -344,7 +530,7 @@ function compileLines(lines) {
             }
             converted_paragraphs.push(generateList());
         } else if (line.startsWith('```') || line.startsWith('~~~')) {
-            linesToParagraph(lines_to_convert, converted_paragraphs);
+            linesToParagraph(lines_to_convert, converted_paragraphs, data);
             let code = '';
             while (lines.length !== 0 && lines[0].trim() !== line.substr(0, 3)) {
                 const next_line = lines.shift();
@@ -359,7 +545,7 @@ function compileLines(lines) {
             }
             converted_paragraphs.push(html`<code class="md-code hljs"><pre>${code}</pre></code>`);
         } else if (line_orig.startsWith('    ') || line_orig.startsWith('\t')) {
-            linesToParagraph(lines_to_convert, converted_paragraphs);
+            linesToParagraph(lines_to_convert, converted_paragraphs, data);
             let code = line_orig.substr(line_orig.startsWith('    ') ? 4 : 1) + '\n';
             let tmp_code = '';
             while (lines.length !== 0) {
@@ -379,7 +565,7 @@ function compileLines(lines) {
             }
             converted_paragraphs.push(html`<code class="md-code hljs"><pre>${escapeHtml(code)}</pre></code>`);
         } else if (line.startsWith('>')) {
-            linesToParagraph(lines_to_convert, converted_paragraphs);
+            linesToParagraph(lines_to_convert, converted_paragraphs, data);
             let quote_lines = [ line.substr(1) ];
             while (lines.length !== 0 && lines[0].trim().length !== 0) {
                 const next_line = lines.shift();
@@ -389,7 +575,42 @@ function compileLines(lines) {
                     quote_lines.push(next_line);
                 }
             }
-            converted_paragraphs.push(html`<div class="md-quote">${compileLines(quote_lines)}</div>`)
+            converted_paragraphs.push(html`<div class="md-quote">${compileLines(quote_lines, data)}</div>`)
+        } else if (line.match(/^\[(.*)\]:/)) {
+            linesToParagraph(lines_to_convert, converted_paragraphs, data);
+            const match = line.match(/^\[(.*)\]:(.*)/);
+            if (match[1].startsWith('^')) {
+                let fn_lines = [ match[2] ];
+                while (lines.length !== 0) {
+                    const next_line = lines.shift();
+                    const is_empty = next_line.trim().length === 0;
+                    if (next_line.startsWith('    ') || next_line.startsWith('\t')) {
+                        fn_lines.push(next_line.substr(next_line.startsWith('    ') ? 4 : 1));
+                    } else {
+                        if (!is_empty) {
+                            lines.unshift(next_line);
+                            break;
+                        } else {
+                            fn_lines.push(next_line);
+                        }
+                    }
+                }
+                const name = match[1].toLowerCase();
+                converted_paragraphs.push(html`
+                    <ol class="md-footnote" id="fn:${name}" start="${data[name]?.id}">
+                        <li>${compileLines(fn_lines)}</li>
+                    </ol>
+                `);
+            }
+        } else if (line.startsWith('[') && line.endsWith(']') && !line.substr(1, line.length - 2).match(/[(!^\]]/)) {
+            linesToParagraph(lines_to_convert, converted_paragraphs);
+            const to_wrap = converted_paragraphs.pop();
+            converted_paragraphs.push(html`
+                <div class="md-info-wrap">
+                    ${to_wrap}
+                    <p class="md-info">${compileInlineConstructs(line.substr(1, line.length - 2))}</p>
+                </div>
+            `);
         } else {
             let actual_line = line;
             if (line.endsWith('\\')) {
@@ -400,11 +621,36 @@ function compileLines(lines) {
             lines_to_convert.push(actual_line);
         }
     }
-    linesToParagraph(lines_to_convert, converted_paragraphs);
+    linesToParagraph(lines_to_convert, converted_paragraphs, data);
     return converted_paragraphs;
+}
+
+function getFootnoteRefs(lines) {
+    const data = {};
+    let footnote_id = 1;
+    for (const line_orig of lines) {
+        const line = line_orig.trim();
+        const match = line.match(/^\[(.*)\]:(.*)/);
+        if (match) {
+            if (match[1].startsWith('^')) {
+                data[match[1].toLowerCase()] = {
+                    id: footnote_id,
+                };
+                footnote_id++;
+            } else {
+                const link = match[2].match(/([^('"]*)([('"](.*)[)'"])?/);
+                data[match[1].toLowerCase()] = {
+                    link: link[1].trim(),
+                    title: link[3],
+                };
+            }
+        }
+    }
+    return data;
 }
 
 export function compileMarkdown(markdown) {
     const lines = markdown.split('\n');
-    return compileLines(lines);
+    const data = getFootnoteRefs(lines);
+    return compileLines(lines, data);
 }
