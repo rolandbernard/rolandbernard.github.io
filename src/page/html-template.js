@@ -15,6 +15,7 @@ export function htmlTemplate(title, content, style, lang = 'en', url = '/') {
                 <meta name="viewport" content="height=device-height,width=device-width,initial-scale=1.0" />
                 <link rel="shortcut icon" href="/favicon.svg" />
                 <meta name="description" content="Personal website of Roland Bernard">
+                <meta charset="UTF-8">
                 <style>
                     html {
                         scroll-behavior: smooth;
