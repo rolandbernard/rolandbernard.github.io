@@ -62,11 +62,123 @@ function markdownHighlightStyles() {
 export function markdownStyles() {
     return css`
         ${markdownHighlightStyles()}
-        * {
-            font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
+        .markdown {
+            font-family: OpenSans, Arial, Helvetica, sans-serif;
+            font-size: 1rem;
+            line-height: 150%;
+        }
+        .md-header-1, .md-header-2 {
+            padding-bottom: 0.1rem;
+            border-bottom: 1px solid #00000015;
         }
         .md-header-1 {
-            font-size: 
+            font-size: 2rem;
+            padding-left: 0.25rem;
+        }
+        .md-header-2 {
+            font-size: 1.5rem;
+            padding-left: 0.15rem;
+        }
+        .md-header-3 {
+            font-size: 1.25rem;
+        }
+        .md-header-4 {
+            font-size: 1rem;
+        }
+        .md-header-5 {
+            font-size: 0.85rem;
+        }
+        .md-header-6 {
+            font-size: 0.65rem;
+        }
+        .md-header-1, .md-header-2, .md-header-3,
+        .md-header-4, .md-header-5, .md-header-6 {
+            margin: 0.5rem 0rem;
+        }
+        .md-code pre {
+            padding: 0;
+            margin: 0;
+            font-family: 'Plex Mono', monospace;
+            font-size: 0.8rem;
+        }
+        .md-code  {
+            padding: 1rem;
+            border-radius: 4px;
+        }
+        .md-inline-code  {
+            background: #00000010;
+            padding: 0.1rem 0.25rem;
+            border-radius: 4px;
+            font-family: 'Plex Mono', monospace;
+            font-size: 0.8rem;
+            display: inline-block;
+        }
+        .md-quote {
+            border-left: 0.25rem solid #00000018;
+            padding-left: 1.25rem;
+        }
+        .md-hrule {
+            border: 0.125rem solid #00000018;
+            height: 0;
+        }
+        .md-todo-list {
+            list-style: none;
+            padding-left: 1rem; 
+        }
+        .md-todo-list > li {
+            display: flex;
+            align-items: center;
+        }
+        .md-todo-list > li > input {
+            margin-right: 0.5rem;
+        }
+        .md-paragraph {
+            margin: 1rem 0;
+        }
+        li > .md-paragraph {
+            margin: 0.5rem 0;
+        }
+        li > span > .md-paragraph {
+            margin: 0.5rem 0;
+        }
+        .md-link, .md-footnote-ref {
+            text-decoration: none;
+        }
+        .md-footnote-ref {
+            font-size: 0.75rem;
+            vertical-align: top;
+        }
+        .md-align-left {
+            text-align: left;
+        }
+        .md-align-right {
+            text-align: right;
+        }
+        .md-align-center {
+            text-align: center;
+        }
+        .md-table, .md-table-row, .md-table-data, .md-table-header {
+            border-collapse: collapse;
+            border: 1px solid #00000018;
+        }
+        .md-table-data, .md-table-header {
+            padding: 0.125rem 0.5rem;
+        }
+        .md-table-header {
+            font-weight: bold;
+            background: #0000000a;
+        }
+        .md-table-row:nth-child(odd) {
+            background: #00000005;
+        }
+        .md-info-wrap {
+            width: max-content;
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+        }
+        .md-info {
+            margin-top: 0.25rem;
         }
     `;
 }
@@ -115,10 +227,50 @@ function compileInlineConstructs(markdown, data) {
             if (markdown[offset] === '(') {
                 offset++;
                 const link_start = offset;
-                while (offset < markdown.length && markdown[offset] !== ')' && markdown[offset] !== '"') {
+                while (
+                    offset < markdown.length
+                    && markdown[offset] !== ')'
+                    && markdown[offset] !== '='
+                    && markdown[offset] !== '"'
+                ) {
                     offset++;
                 }
                 const link_end = offset;
+                let width;
+                let height;
+                if (markdown[offset] === '=') {
+                    offset++;
+                    const start_width = offset;
+                    while (
+                        markdown[offset] >= '0' && markdown[offset] <= '9'
+                        || markdown[offset] === ' ' || markdown[offset] === '\t'
+                    ) {
+                        offset++;
+                    }
+                    if (offset != start_width) {
+                        width = parseInt(markdown.substr(start_width, offset - start_width));
+                    }
+                    if (markdown[offset] === 'x') {
+                        offset++;
+                        const start_height = offset;
+                        while (
+                            markdown[offset] >= '0' && markdown[offset] <= '9'
+                            || markdown[offset] === ' ' || markdown[offset] === '\t'
+                        ) {
+                            offset++;
+                        }
+                        if (offset != start_height) {
+                            height = parseInt(markdown.substr(start_height, offset - start_height));
+                        }
+                    }
+                }
+                while (
+                    offset < markdown.length
+                    && markdown[offset] !== ')'
+                    && markdown[offset] !== '"'
+                ) {
+                    offset++;
+                }
                 if (markdown[offset] === '"') {
                     offset++;
                     const title_start = offset;
@@ -133,18 +285,22 @@ function compileInlineConstructs(markdown, data) {
                     }
                     offset++;
                     output += html`<img
-                        class="md-image"
+                        class="markdown md-image"
                         src="${markdown.substr(link_start, link_end - link_start).trim()}"
                         title="${markdown.substr(title_start, title_end - title_start)}"
                         alt="${markdown.substr(start, end - start)}"
+                        ${width ? `width="${width}"` : ''}
+                        ${height ? `height="${height}"` : ''}
                     />`;
                     last_copy = offset;
                 } else {
                     offset++;
                     output += html`<img
-                        class="md-image"
+                        class="markdown md-image"
                         src="${markdown.substr(link_start, link_end - link_start).trim()}"
                         alt="${markdown.substr(start, end - start)}"
+                        ${width ? `width="${width}"` : ''}
+                        ${height ? `height="${height}"` : ''}
                     />`;
                     last_copy = offset;
                 }
@@ -170,7 +326,7 @@ function compileInlineConstructs(markdown, data) {
             if (markdown[start] === '^') {
                 const name = markdown.substr(start, end - start).toLowerCase();
                 output += html`<a
-                    class="md-footnote-ref"
+                    class="markdown md-footnote-ref"
                     href="#fn:${name}"
                 >${data[name]?.id}</a>`;
                 last_copy = offset;
@@ -199,7 +355,7 @@ function compileInlineConstructs(markdown, data) {
                         }
                         offset++;
                         output += html`<a
-                            class="md-link"
+                            class="markdown md-link"
                             href="${markdown.substr(link_start, link_end - link_start).trim()}"
                             title="${markdown.substr(title_start, title_end - title_start)}"
                         >${compileInlineConstructs(markdown.substr(start, end - start), data)}</a>`;
@@ -207,7 +363,7 @@ function compileInlineConstructs(markdown, data) {
                     } else {
                         offset++;
                         output += html`<a
-                            class="md-link"
+                            class="markdown md-link"
                             href="${markdown.substr(link_start, link_end - link_start).trim()}"
                         >${compileInlineConstructs(markdown.substr(start, end - start), data)}</a>`;
                         last_copy = offset;
@@ -223,7 +379,7 @@ function compileInlineConstructs(markdown, data) {
                         offset++;
                         const name = markdown.substr(name_start, name_end - name_start).toLowerCase();
                         output += html`<a
-                            class="md-link"
+                            class="markdown md-link"
                             ${data[name]?.link ? `href="${data[name].link}"` : ''}
                             ${data[name]?.title ? `title="${data[name].title}"` : ''}
                         >${compileInlineConstructs(markdown.substr(start, end - start), data)}</a>`;
@@ -241,7 +397,7 @@ function compileInlineConstructs(markdown, data) {
                 }
                 offset++;
             }
-            output += html`<del class="md-strike">${compileInlineConstructs(markdown.substr(start, offset - start), data)}</del>`;
+            output += html`<del class="markdown md-strike">${compileInlineConstructs(markdown.substr(start, offset - start), data)}</del>`;
             offset += 2;
             last_copy = offset;
         } else if (markdown[offset] === '*') {
@@ -258,7 +414,7 @@ function compileInlineConstructs(markdown, data) {
                     }
                     offset++;
                 }
-                output += html`<strong class="md-bold">${compileInlineConstructs(markdown.substr(start, offset - start), data)}</strong>`;
+                output += html`<strong class="markdown md-bold">${compileInlineConstructs(markdown.substr(start, offset - start), data)}</strong>`;
                 offset += 2;
             } else {
                 offset++;
@@ -269,7 +425,7 @@ function compileInlineConstructs(markdown, data) {
                     }
                     offset++;
                 }
-                output += html`<em class="md-italic">${compileInlineConstructs(markdown.substr(start, offset - start), data)}</em>`;
+                output += html`<em class="markdown md-italic">${compileInlineConstructs(markdown.substr(start, offset - start), data)}</em>`;
                 offset++;
             }
             last_copy = offset;
@@ -287,7 +443,7 @@ function compileInlineConstructs(markdown, data) {
                     }
                     offset++;
                 }
-                output += html`<strong class="md-bold">${compileInlineConstructs(markdown.substr(start, offset - start), data)}</strong>`;
+                output += html`<strong class="markdown md-bold">${compileInlineConstructs(markdown.substr(start, offset - start), data)}</strong>`;
                 offset += 2;
             } else {
                 offset++;
@@ -298,7 +454,7 @@ function compileInlineConstructs(markdown, data) {
                     }
                     offset++;
                 }
-                output += html`<em class="md-italic">${compileInlineConstructs(markdown.substr(start, offset - start), data)}</em>`;
+                output += html`<em class="markdown md-italic">${compileInlineConstructs(markdown.substr(start, offset - start), data)}</em>`;
                 offset++;
             }
             last_copy = offset;
@@ -313,7 +469,7 @@ function compileInlineConstructs(markdown, data) {
                     }
                     offset++;
                 }
-                output += html`<code class="md-inline-code">${escapeHtml(markdown.substr(start, offset - start))}</code>`;
+                output += html`<code class="markdown md-inline-code">${escapeHtml(markdown.substr(start, offset - start))}</code>`;
                 offset += 2;
             } else {
                 offset++;
@@ -324,7 +480,7 @@ function compileInlineConstructs(markdown, data) {
                     }
                     offset++;
                 }
-                output += html`<code class="md-inline-code">${escapeHtml(markdown.substr(start, offset - start))}</code>`;
+                output += html`<code class="markdown md-inline-code">${escapeHtml(markdown.substr(start, offset - start))}</code>`;
                 offset++;
             }
             last_copy = offset;
@@ -338,7 +494,7 @@ function compileInlineConstructs(markdown, data) {
 
 function linesToParagraph(lines, paragrapgs, data) {
     if (lines.length !== 0 && lines.join(' ').trim().length !== 0) {
-        paragrapgs.push(html`<p class="md-paragraph">${compileInlineConstructs(lines.join(' '), data)}</p>`);
+        paragrapgs.push(html`<p class="markdown md-paragraph">${compileInlineConstructs(lines.join(' '), data)}</p>`);
     }
     lines.splice(0);
 }
@@ -372,17 +528,17 @@ function compileLines(lines, data) {
                 const match = line.match(/\{#([^}]*)\}$/);
                 const text = compileInlineConstructs(line.substr(header_num, line.length - header_num - match[0].length).trim(), data);
                 header_num = Math.min(header_num, 6);
-                converted_paragraphs.push(`<h${header_num} id="${match[1]}" class="md-header-${header_num}">${text}</h${header_num}>`);
+                converted_paragraphs.push(`<h${header_num} id="${match[1]}" class="markdown md-header-${header_num}">${text}</h${header_num}>`);
             } else {
                 const text = compileInlineConstructs(line.substr(header_num).trim(), data);
                 header_num = Math.min(header_num, 6);
-                converted_paragraphs.push(`<h${header_num} class="md-header-${header_num}">${text}</h${header_num}>`);
+                converted_paragraphs.push(`<h${header_num} class="markdown md-header-${header_num}">${text}</h${header_num}>`);
             }
         } else if (line.startsWith('===') && !line.match(/[^=]/) && lines_to_convert.length !== 0) {
-            converted_paragraphs.push(html`<h1 class="md-header-1">${compileInlineConstructs(lines_to_convert.join(' '), data)}</h1>`);
+            converted_paragraphs.push(html`<h1 class="markdown md-header-1">${compileInlineConstructs(lines_to_convert.join(' '), data)}</h1>`);
             lines_to_convert.splice(0);
         } else if (line.startsWith('---') && !line.match(/[^-]/) && lines_to_convert.length !== 0) {
-            converted_paragraphs.push(html`<h2 class="md-header-2">${compileInlineConstructs(lines_to_convert.join(' '), data)}</h2>`);
+            converted_paragraphs.push(html`<h2 class="markdown md-header-2">${compileInlineConstructs(lines_to_convert.join(' '), data)}</h2>`);
             lines_to_convert.splice(0);
         } else if (
             line.startsWith('---') && !line.match(/[^-]/)
@@ -390,8 +546,8 @@ function compileLines(lines, data) {
             || line.startsWith('___') && !line.match(/[^_]/)
         ) {
             linesToParagraph(lines_to_convert, converted_paragraphs, data);
-            converted_paragraphs.push(html`<hr class="md-hrule"/>`);
-        } else if (line.includes('|')) {
+            converted_paragraphs.push(html`<hr class="markdown md-hrule"/>`);
+        } else if (line.match(/^\|?(([^`]|`.*?`)*\|)+([^`]|`.*?`)*\|?$/)) {
             linesToParagraph(lines_to_convert, converted_paragraphs, data);
             const table = [ line.split('|') ];
             while (lines[0].includes('|')) {
@@ -411,15 +567,15 @@ function compileLines(lines, data) {
                     ));
             }
             converted_paragraphs.push(html`
-                <table class="md-table">${table.filter((_, i) => !alignment || i !== 1).map((row, i) => html`
-                    <tr class="md-table-row">${row
+                <table class="markdown md-table">${table.filter((_, i) => !alignment || i !== 1).map((row, i) => html`
+                    <tr class="markdown md-table-row">${row
                         .filter((field, j) => field.length !== 0 || (j !== 0 && j !== row.length))
                         .map((field, j) => (
                             (i === 0 && alignment)
-                                ? html`<th class="md-table-header ${alignment[j] || ''}">
+                                ? html`<th class="markdown md-table-header ${alignment?.[j] || ''}">
                                         ${compileInlineConstructs(field)}
                                     </th>`
-                                : html`<td class="md-table-data ${alignment[j] || ''}">
+                                : html`<td class="markdown md-table-data ${alignment?.[j] || ''}">
                                         ${compileInlineConstructs(field)}
                                     </td>`
                         ))
@@ -447,15 +603,15 @@ function compileLines(lines, data) {
             }
             function generateList() {
                 if (ordered === 1) {
-                    return html`<ol class="md-ordered-list">${
+                    return html`<ol class="markdown md-ordered-list">${
                         items.map(item => html`<li>${compileLines(item, data)}</li>`)
                     }</ol>`;
                 } else if (ordered === 0) {
-                    return html`<ul class="md-unordered-list">${
+                    return html`<ul class="markdown md-unordered-list">${
                         items.map(item => html`<li>${compileLines(item, data)}</li>`)
                     }</ul>`;
                 } else if (ordered === 2) {
-                    return html`<ul class="md-todo-list">${
+                    return html`<ul class="markdown md-todo-list">${
                         items.map(item => {
                             const match = item[0].match(/^\s?\[([Xx ]?)\]/);
                             const checked = match[1]?.toLowerCase() === 'x' ? 'checked' : '';
@@ -543,7 +699,7 @@ function compileLines(lines, data) {
             } else {
                 code = escapeHtml(code);
             }
-            converted_paragraphs.push(html`<code class="md-code hljs"><pre>${code}</pre></code>`);
+            converted_paragraphs.push(html`<code class="markdown md-code hljs"><pre>${code}</pre></code>`);
         } else if (line_orig.startsWith('    ') || line_orig.startsWith('\t')) {
             linesToParagraph(lines_to_convert, converted_paragraphs, data);
             let code = line_orig.substr(line_orig.startsWith('    ') ? 4 : 1) + '\n';
@@ -563,7 +719,7 @@ function compileLines(lines, data) {
                     }
                 }
             }
-            converted_paragraphs.push(html`<code class="md-code hljs"><pre>${escapeHtml(code)}</pre></code>`);
+            converted_paragraphs.push(html`<code class="markdown md-code hljs"><pre>${escapeHtml(code)}</pre></code>`);
         } else if (line.startsWith('>')) {
             linesToParagraph(lines_to_convert, converted_paragraphs, data);
             let quote_lines = [ line.substr(1) ];
@@ -575,7 +731,7 @@ function compileLines(lines, data) {
                     quote_lines.push(next_line);
                 }
             }
-            converted_paragraphs.push(html`<div class="md-quote">${compileLines(quote_lines, data)}</div>`)
+            converted_paragraphs.push(html`<div class="markdown md-quote">${compileLines(quote_lines, data)}</div>`)
         } else if (line.match(/^\[(.*)\]:/)) {
             linesToParagraph(lines_to_convert, converted_paragraphs, data);
             const match = line.match(/^\[(.*)\]:(.*)/);
@@ -597,7 +753,7 @@ function compileLines(lines, data) {
                 }
                 const name = match[1].toLowerCase();
                 converted_paragraphs.push(html`
-                    <ol class="md-footnote" id="fn:${name}" start="${data[name]?.id}">
+                    <ol class="markdown md-footnote" id="fn:${name}" start="${data[name]?.id}">
                         <li>${compileLines(fn_lines)}</li>
                     </ol>
                 `);
@@ -606,9 +762,9 @@ function compileLines(lines, data) {
             linesToParagraph(lines_to_convert, converted_paragraphs);
             const to_wrap = converted_paragraphs.pop();
             converted_paragraphs.push(html`
-                <div class="md-info-wrap">
+                <div class="markdown md-info-wrap">
                     ${to_wrap}
-                    <p class="md-info">${compileInlineConstructs(line.substr(1, line.length - 2))}</p>
+                    <p class="markdown md-info">${compileInlineConstructs(line.substr(1, line.length - 2))}</p>
                 </div>
             `);
         } else {
