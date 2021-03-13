@@ -74,20 +74,74 @@ function escapeHtml(markdown) {
         .replace(/>/g, html`&gt;`);
 }
 
-function compileSimpleEmphasis(markdown) {
+function compileInlineConstructs(markdown) {
     let output = '';
     let offset = 0;
     let last_copy = 0;
     while (offset < markdown.length) {
-        if (markdown[offset] === '*') {
+        if (markdown[offset] === '!') {
+            offset++;
+        } else if (markdown[offset] === '[') {
+            output += markdown.substr(last_copy, offset - last_copy);
+            offset++;
+            const start = offset;
+            while (offset < markdown.length && markdown[offset] !== ']') {
+                offset++;
+            }
+            const end = offset;
+            offset++;
+            if (markdown[offset] === '(') {
+                offset++;
+                const link_start = offset;
+                while (offset < markdown.length && markdown[offset] !== ')' && markdown[offset] !== '"') {
+                    offset++;
+                }
+                const link_end = offset;
+                if (markdown[offset] === '"') {
+                    offset++;
+                    const title_start = offset;
+                    while (offset < markdown.length && markdown[offset] !== ')' && markdown[offset] !== '"') {
+                        offset++;
+                    }
+                    const title_end = offset;
+                    if (markdown[offset] === '"') {
+                        while (offset < markdown.length && markdown[offset] !== ')') {
+                            offset++;
+                        }
+                    }
+                    offset++;
+                    output += html`
+                        <a
+                            class="md-bold"
+                            href="${markdown.substr(link_start, link_end - link_start).trim()}"
+                            title="${markdown.substr(title_start, title_end - title_start)}"
+                        >${compileInlineConstructs(markdown.substr(start, end - start))}</a>
+                    `;
+                    last_copy = offset;
+                } else {
+                    offset++;
+                    output += html`
+                        <a
+                            class="md-bold"
+                            href="${markdown.substr(link_start, link_end - link_start).trim()}"
+                        >${compileInlineConstructs(markdown.substr(start, end - start))}</a>
+                    `;
+                    last_copy = offset;
+                }
+            }
+        } else if (markdown[offset] === '*') {
             output += markdown.substr(last_copy, offset - last_copy);
             if (markdown[offset + 1] === '*') {
                 offset += 2;
+                let single = false;
                 const start = offset;
-                while (offset < markdown.length && markdown.substr(offset, 2) !== '**') {
+                while (offset < markdown.length && (markdown.substr(offset, 2) !== '**' || single)) {
+                    if (markdown[offset] === '*') {
+                        single = !single;
+                    }
                     offset++;
                 }
-                output += html`<strong class="md-bold">${compileSimpleEmphasis(markdown.substr(start, offset - start))}</strong>`;
+                output += html`<strong class="md-bold">${compileInlineConstructs(markdown.substr(start, offset - start))}</strong>`;
                 offset += 2;
             } else {
                 offset++;
@@ -95,7 +149,7 @@ function compileSimpleEmphasis(markdown) {
                 while (offset < markdown.length && markdown[offset] !== '*') {
                     offset++;
                 }
-                output += html`<em class="md-italic">${compileSimpleEmphasis(markdown.substr(start, offset - start))}</em>`;
+                output += html`<em class="md-italic">${compileInlineConstructs(markdown.substr(start, offset - start))}</em>`;
                 offset++;
             }
             last_copy = offset;
@@ -103,11 +157,15 @@ function compileSimpleEmphasis(markdown) {
             output += markdown.substr(last_copy, offset - last_copy);
             if (markdown[offset + 1] === '_') {
                 offset += 2;
+                let single = false;
                 const start = offset;
-                while (offset < markdown.length && markdown.substr(offset, 2) !== '__') {
+                while (offset < markdown.length && (markdown.substr(offset, 2) !== '__' || single)) {
+                    if (markdown[offset] === '_') {
+                        single = !single;
+                    }
                     offset++;
                 }
-                output += html`<strong class="md-bold">${compileSimpleEmphasis(markdown.substr(start, offset - start))}</strong>`;
+                output += html`<strong class="md-bold">${compileInlineConstructs(markdown.substr(start, offset - start))}</strong>`;
                 offset += 2;
             } else {
                 offset++;
@@ -115,7 +173,7 @@ function compileSimpleEmphasis(markdown) {
                 while (offset < markdown.length && markdown[offset] !== '_') {
                     offset++;
                 }
-                output += html`<em class="md-italic">${compileSimpleEmphasis(markdown.substr(start, offset - start))}</em>`;
+                output += html`<em class="md-italic">${compileInlineConstructs(markdown.substr(start, offset - start))}</em>`;
                 offset++;
             }
             last_copy = offset;
@@ -148,10 +206,10 @@ function compileSimpleEmphasis(markdown) {
 }
 
 function linesToParagraph(lines, paragrapgs) {
-    if (lines.length !== 0) {
-        paragrapgs.push(html`<p class="md-paragraph">${lines.join(' ')}</p>`);
-        lines.splice(0);
+    if (lines.length !== 0 && lines.join(' ').trim().length !== 0) {
+        paragrapgs.push(html`<p class="md-paragraph">${compileInlineConstructs(lines.join(' '))}</p>`);
     }
+    lines.splice(0);
 }
 
 function generateHighliting(code, language) {
@@ -163,39 +221,42 @@ function generateHighliting(code, language) {
 }
 
 function compileLines(lines) {
-    const converted_lines = [];
+    const lines_to_convert = [];
     const converted_paragraphs = [];
     while (lines.length !== 0) {
         const line_orig = lines.shift();
         const line = line_orig.trim();
         if (line.length === 0) {
-            linesToParagraph(converted_lines, converted_paragraphs);
+            linesToParagraph(lines_to_convert, converted_paragraphs);
+        } else if (line.startsWith('<') && line.endsWith('>')) {
+            linesToParagraph(lines_to_convert, converted_paragraphs);
+            converted_paragraphs.push(line_orig);
         } else if (line.startsWith('#')) {
-            linesToParagraph(converted_lines, converted_paragraphs);
+            linesToParagraph(lines_to_convert, converted_paragraphs);
             let header_num = 1;
             while (line[header_num] === '#') {
                 header_num++;
             }
-            const text = compileLines([ line.substr(header_num).trim() ]);
+            const text = compileInlineConstructs(line.substr(header_num).trim());
             header_num = Math.min(header_num, 6);
             converted_paragraphs.push(`<h${header_num} class="md-header-${header_num}">${text}</h${header_num}>`);
-        } else if (line.startsWith('===') && !line.match(/[^=]/) && converted_lines.length !== 0) {
-            converted_paragraphs.push(html`<h1 class="md-header-1">${converted_lines.join(' ')}</h1>`);
-            converted_lines.splice(0);
-        } else if (line.startsWith('---') && !line.match(/[^-]/) && converted_lines.length !== 0) {
-            converted_paragraphs.push(html`<h2 class="md-header-2">${converted_lines.join(' ')}</h2>`);
-            converted_lines.splice(0);
+        } else if (line.startsWith('===') && !line.match(/[^=]/) && lines_to_convert.length !== 0) {
+            converted_paragraphs.push(html`<h1 class="md-header-1">${compileInlineConstructs(lines_to_convert.join(' '))}</h1>`);
+            lines_to_convert.splice(0);
+        } else if (line.startsWith('---') && !line.match(/[^-]/) && lines_to_convert.length !== 0) {
+            converted_paragraphs.push(html`<h2 class="md-header-2">${compileInlineConstructs(lines_to_convert.join(' '))}</h2>`);
+            lines_to_convert.splice(0);
         } else if (
             line.startsWith('---') && !line.match(/[^-]/)
             || line.startsWith('***') && !line.match(/[^*]/)
             || line.startsWith('___') && !line.match(/[^_]/)
         ) {
-            linesToParagraph(converted_lines, converted_paragraphs);
+            linesToParagraph(lines_to_convert, converted_paragraphs);
             converted_paragraphs.push(html`<hr class="md-hrule"/>`);
         } else if (line.includes('|')) {
-            linesToParagraph(converted_lines, converted_paragraphs);
+            linesToParagraph(lines_to_convert, converted_paragraphs);
         } else if (line.match(/^\s*([0-9]+[.)]|[+*-] )/)) {
-            linesToParagraph(converted_lines, converted_paragraphs);
+            linesToParagraph(lines_to_convert, converted_paragraphs);
             const regex = /^\s*([0-9]+[.)]|[+*-] )/;
             function listTypeAndOrder(line) {
                 const match = line.match(regex);
@@ -232,6 +293,7 @@ function compileLines(lines) {
             let was_empty = false;
             while (lines.length !== 0) {
                 const next_line = lines.shift();
+                const is_empty = next_line.trim().length === 0;
                 if (next_line.match(regex)) {
                     let indent = 0;
                     while (next_line[indent] === ' ' || next_line[indent] === '\t') {
@@ -266,14 +328,14 @@ function compileLines(lines) {
                 } else if (next_line.substr(last_indent).startsWith('    ') || next_line.substr(last_indent).startsWith('\t')) {
                     items[items.length - 1].push(next_line.substr(last_indent + (next_line.substr(last_indent).startsWith('    ') ? 4 : 1)));
                 } else {
-                    if (was_empty) {
+                    if (!is_empty && was_empty) {
                         lines.unshift(next_line);
                         break;
                     } else {
                         items[items.length - 1].push(next_line);
                     }
                 }
-                was_empty  = next_line.trim().length === 0;
+                was_empty = is_empty;
             }
             while (nesting_stack.length !== 0) {
                 let sub_list = generateList();
@@ -282,7 +344,7 @@ function compileLines(lines) {
             }
             converted_paragraphs.push(generateList());
         } else if (line.startsWith('```') || line.startsWith('~~~')) {
-            linesToParagraph(converted_lines, converted_paragraphs);
+            linesToParagraph(lines_to_convert, converted_paragraphs);
             let code = '';
             while (lines.length !== 0 && lines[0].trim() !== line.substr(0, 3)) {
                 const next_line = lines.shift();
@@ -297,24 +359,27 @@ function compileLines(lines) {
             }
             converted_paragraphs.push(html`<code class="md-code hljs"><pre>${code}</pre></code>`);
         } else if (line_orig.startsWith('    ') || line_orig.startsWith('\t')) {
-            linesToParagraph(converted_lines, converted_paragraphs);
+            linesToParagraph(lines_to_convert, converted_paragraphs);
             let code = line_orig.substr(line_orig.startsWith('    ') ? 4 : 1) + '\n';
-            while (lines.length !== 0 && (lines[0].startsWith('    ') || lines[0].startsWith('\t'))) {
+            let tmp_code = '';
+            while (lines.length !== 0) {
                 const next_line = lines.shift();
-                code += next_line.substr(next_line.startsWith('    ') ? 4 : 1) + '\n';
+                const is_empty = next_line.trim().length === 0;
+                if (next_line.startsWith('    ') || next_line.startsWith('\t')) {
+                    code += tmp_code + next_line.substr(next_line.startsWith('    ') ? 4 : 1) + '\n';
+                    tmp_code = '';
+                } else {
+                    if (!is_empty) {
+                        lines.unshift(next_line);
+                        break;
+                    } else {
+                        tmp_code += next_line + '\n';
+                    }
+                }
             }
             converted_paragraphs.push(html`<code class="md-code hljs"><pre>${escapeHtml(code)}</pre></code>`);
-        // } else if (line.startsWith('[')) {
-            // linesToParagraph(converted_lines, converted_paragraphs);
-            // const to_wrap = converted_paragraphs.pop();
-            // converted_paragraphs.push(html`
-            //     <div class="md-info-wrap">
-            //         ${to_wrap}
-            //         <p class="md-info">${compileLines([ line.substr(1, line.length - 2) ])}</p>
-            //     </div>
-            // `);
         } else if (line.startsWith('>')) {
-            linesToParagraph(converted_lines, converted_paragraphs);
+            linesToParagraph(lines_to_convert, converted_paragraphs);
             let quote_lines = [ line.substr(1) ];
             while (lines.length !== 0 && lines[0].trim().length !== 0) {
                 const next_line = lines.shift();
@@ -332,10 +397,10 @@ function compileLines(lines) {
             } else if (line_orig.endsWith('  ')) {
                 actual_line += html`<br />`;
             }
-            converted_lines.push(compileSimpleEmphasis(actual_line));
+            lines_to_convert.push(actual_line);
         }
     }
-    linesToParagraph(converted_lines, converted_paragraphs);
+    linesToParagraph(lines_to_convert, converted_paragraphs);
     return converted_paragraphs;
 }
 
