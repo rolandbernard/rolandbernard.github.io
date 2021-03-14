@@ -54,8 +54,8 @@ int main(int argc, char** argv) {
 [Code Blöcke können auch _ohne_ Zeilennummern erstellt werden]
 
 Das wäre dann alles für heute.
+Noch einen schönen Tag und bis zum nächsten Mal.
 
-\
 \
 
 ---

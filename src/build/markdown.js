@@ -224,6 +224,7 @@ export function markdownStyles() {
         }
         .md-info {
             margin-top: 0.25rem;
+            text-align: center;
         }
         .md-inline-info {
             display: inline-flex;

@@ -83,7 +83,6 @@ export function homeView(lang = 'en', url = '/') {
     `, lang, url);
 }
 ```
-[]
 
 In this example the `homeView` function will be called by the builder with different `lang` and `url` arguments.
 The result will be a string containing the HTML code which will then be written to a certain file.
@@ -108,7 +107,6 @@ That is all I have to show for today, I am looking forward to writing an actual 
 
 Until then, have a nice day!
 
-\
 \
 
 ---

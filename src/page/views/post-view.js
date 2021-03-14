@@ -13,7 +13,7 @@ export function postView(lang = 'en', url = '/', post) {
         }
     }
     const [post_content, post_lang] = readPostFile(post.post, lang);
-    return htmlTemplate(`Roland Bernard - ${post.name}`, html`
+    return htmlTemplate(`Roland Bernard - ${extractData(post.name, lang)}`, html`
         <main class="post">
             ${lang !== post_lang ? html`
                 <div class="note"><div>${{
