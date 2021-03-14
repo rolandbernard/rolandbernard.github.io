@@ -81,6 +81,8 @@ export function markdownStyles() {
             font-size: 1rem;
             line-height: 150%;
             box-sizing: border-box;
+            padding: 0;
+            margin: 0;
         }
         .md-header-1, .md-header-2 {
             padding-bottom: 0.1rem;
@@ -111,15 +113,35 @@ export function markdownStyles() {
             margin: 0.5rem 0rem;
         }
         .md-code pre {
-            padding: 0;
+            padding: 1rem;
             margin: 0;
             font-family: 'Plex Mono', monospace;
             font-size: 0.9rem;
+            width: max-content;
         }
         .md-code {
-            padding: 1rem;
+            padding: 0;
+            margin: 0;
             border-radius: 4px;
             width: 100%;
+            display: flex;
+            flex-flow: row nowrap;
+        }
+        .md-code .md-code-content {
+            flex: 1 1 auto;
+        }
+        .md-code .md-lines {
+            flex: 0 0 auto;
+            display: flex;
+            flex-flow: column;
+            padding: 1rem 0.5rem;
+            border-right: 1px solid #ffffff20;
+            user-select: none;
+            text-align: right;
+        }
+        .md-code .md-lines .md-line {
+            font-family: 'Plex Mono', monospace;
+            font-size: 0.9rem;
         }
         .md-inline-code  {
             background: #00000010;
@@ -136,6 +158,10 @@ export function markdownStyles() {
         .md-hrule {
             border: 0.125rem solid #00000018;
             height: 0;
+        }
+        .md-ordered-list, .md-unordered-list, .md-footnote {
+            padding-left: 2.5rem; 
+            margin: 1rem 0;
         }
         .md-todo-list {
             list-style: none;
@@ -188,10 +214,10 @@ export function markdownStyles() {
             background: #00000005;
         }
         .md-info-wrap {
-            /* width: max-content; */
             display: flex;
             flex-flow: column;
             align-items: center;
+            margin: 1rem 0.5rem;
         }
         .md-info-wrap p {
             margin-bottom: 0;
@@ -714,6 +740,7 @@ function compileLines(lines, data) {
                 const next_line = lines.shift();
                 code += next_line + '\n';
             }
+            code = code.substr(0, code.length - 1); // Remove the trailing newline
             lines.shift();
             const language = line.replace(line.substr(0, 3), '').trim();
             if (language) {
@@ -721,7 +748,12 @@ function compileLines(lines, data) {
             } else {
                 code = escapeHtml(code);
             }
-            converted_paragraphs.push(html`<code class="markdown md-code hljs"><pre>${code}</pre></code>`);
+            converted_paragraphs.push(html`
+                <code class="markdown md-code hljs">
+                    <span class="markdown md-lines">${code.split('\n').map((_, i) => html`<span class="markdown md-line">${i + 1}</span>`)}</span>
+                    <span class="markdown md-code-content hljs"><pre class="markdown ">${code}</pre></span>
+                </code>
+            `);
         } else if (line_orig.startsWith('    ') || line_orig.startsWith('\t')) {
             linesToParagraph(lines_to_convert, converted_paragraphs, data);
             let code = line_orig.substr(line_orig.startsWith('    ') ? 4 : 1) + '\n';
@@ -741,7 +773,7 @@ function compileLines(lines, data) {
                     }
                 }
             }
-            converted_paragraphs.push(html`<code class="markdown md-code hljs"><pre>${escapeHtml(code)}</pre></code>`);
+            converted_paragraphs.push(html`<code class="markdown md-code hljs"><pre class="markdown ">${escapeHtml(code)}</pre></code>`);
         } else if (line.startsWith('>')) {
             linesToParagraph(lines_to_convert, converted_paragraphs, data);
             let quote_lines = [ line.substr(1) ];
