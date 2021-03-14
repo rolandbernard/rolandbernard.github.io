@@ -12,8 +12,8 @@ export const colors = [
 export function themeStyles() {
     return css`
         * {
-            --background-dark: #070022;
-            --background-darkish: #191330;
+            --background-dark: #220022;
+            --background-darkish: #2a1330;
             --background-light: #fdfdf6;
             --background-lighter: #FEFEFE;
             --primary: #001ec5;

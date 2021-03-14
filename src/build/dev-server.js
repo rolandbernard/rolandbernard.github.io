@@ -8,18 +8,19 @@ import http from 'http';
 const server = http.createServer((req, res) => serve(req, res, { public: 'dist/' }));
 
 server.listen(8080, () => {
-    console.log('Running at http://localhost:8080');
+    console.log(`[${(new Date()).toLocaleString()}] Running at http://localhost:8080`);
 });
 
 function build() {
     console.log(`[${(new Date()).toLocaleString()}] Started rebuilding...`);
     exec('node src/build/build.js -d', (err, _, stderr) => {
         if(stderr || err) {
-            console.error('Failed to compile:');
+            console.error(`[${(new Date()).toLocaleString()}] Failed rebuild:`);
             console.error(stderr);
+        } else {
+            console.log(`[${(new Date()).toLocaleString()}] Finished rebuild.`);
         }
     });
-    console.log(`[${(new Date()).toLocaleString()}] Finished rebuild.`);
 }
 
 let last_timeout = null;

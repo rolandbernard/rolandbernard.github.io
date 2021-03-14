@@ -46,8 +46,8 @@ export function postView(lang = 'en', url = '/', post) {
         .post {
             display: flex;
             flex-flow: column;
-            padding: 5rem 3rem;
-            padding-bottom: 7.5rem;
+            padding: 4rem 1rem;
+            padding-bottom: 5rem;
             align-items: center;
             font-family: OpenSans, Arial, Helvetica, sans-serif;
         }

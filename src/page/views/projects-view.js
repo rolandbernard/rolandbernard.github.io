@@ -67,11 +67,11 @@ export function projectsView(lang = 'en', url = '/') {
         ${backgroundStyles()}
         .project-item {
             padding: 1rem;
-            margin: 1rem;
+            margin: 1rem 0;
             display: flex;
             flex-flow: row;
             align-items: center;
-            width: 90%;
+            width: 100%;
             max-width: 70rem;
         }
         @media (max-width: 60rem) {
@@ -109,7 +109,7 @@ export function projectsView(lang = 'en', url = '/') {
             background: var(--background-light);
         }
         .project-desc {
-            margin: 1rem;
+            margin: 1rem 0.5rem;
         }
         .project-image {
             flex: 0 0 auto;

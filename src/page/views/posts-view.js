@@ -59,19 +59,20 @@ export function postsView(lang = 'en', url = '/') {
             align-items: center;
             justify-content: center;
             padding: 2.5rem 1rem;
-            padding-bottom: 7.5rem;
+            padding-bottom: 5rem;
             box-sizing: border-box;
         }
         .post-item {
-            padding: 1rem;
+            padding: 1rem 0;
             margin: 1rem;
             display: flex;
             flex-flow: column;
             align-items: start;
-            width: 90%;
+            width: 100%;
             max-width: 50rem;
             font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
             border-bottom: 1px solid #00000020;
+            box-sizing: border-box;
         }
         .post-name {
             font-size: 1.75rem;

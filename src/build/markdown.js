@@ -219,8 +219,8 @@ export function markdownStyles() {
             align-items: center;
             margin: 1rem 0.5rem;
         }
-        .md-info-wrap p {
-            margin-bottom: 0;
+        .md-info-wrap > p {
+            margin: 0;
         }
         .md-info {
             margin-top: 0.25rem;
@@ -788,8 +788,11 @@ function compileLines(lines, data) {
             converted_paragraphs.push(html`<div class="markdown md-quote">${compileLines(quote_lines, data)}</div>`)
         } else if (line.match(/^\[(.*)\]:/)) {
             linesToParagraph(lines_to_convert, converted_paragraphs, data);
-            const match = line.match(/^\[(.*)\]:(.*)/);
-            if (match[1].startsWith('^')) {
+            const items = [];
+            let start = -1;
+            let next_line = line;
+            while (next_line.match(/^\[(\^.*)\]:(.*)/)) {
+                const match = next_line.trim().match(/^\[(.*)\]:(.*)/);
                 let fn_lines = [ match[2] ];
                 while (lines.length !== 0) {
                     const next_line = lines.shift();
@@ -806,9 +809,17 @@ function compileLines(lines, data) {
                     }
                 }
                 const name = match[1].toLowerCase();
+                if (start < 0) {
+                    start = data[name]?.id;
+                }
+                items.push(html`<li id="fn:${name}">${compileLines(fn_lines)}</li>`);
+                next_line = lines.shift();
+            }
+            if (items.length > 0) {
+                lines.unshift(next_line);
                 converted_paragraphs.push(html`
-                    <ol class="markdown md-footnote" id="fn:${name}" start="${data[name]?.id}">
-                        <li>${compileLines(fn_lines)}</li>
+                    <ol class="markdown md-footnote" start="${start}">
+                        ${items}
                     </ol>
                 `);
             }
