@@ -13,7 +13,7 @@ function projectElement(info, lang) {
         }
     }
     return html`
-        <section class="project-item" id="${info.name.toLowerCase().replace(/ /g, '')}" title="${info.name}">
+        <section class="project-item" id="${extractData(info.name).toLowerCase().replace(/ /g, '')}" title="${extractData(info.name)}">
             <div class="project-text">
                 <a href="${extractData(info.link, lang)}" target="_blank">
                     <h2 class="project-name">

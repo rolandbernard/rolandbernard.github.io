@@ -15,7 +15,7 @@ function postElement(info, lang) {
         return string.replace(/[#<>/"'\\`%\|\-_*~]/g, '').substr(0, 200).replace(/\S*$/, '');
     }
     return html`
-        <article class="post-item" id="${info.name.toLowerCase().replace(/ /g, '')}" title="${info.name}">
+        <article class="post-item" id="${extractData(info.name).toLowerCase().replace(/ /g, '')}" title="${extractData(info.name)}">
             <a href="/${lang}/posts/${extractData(info.post, lang)}">
                 <h2 class="post-name">
                         ${extractData(info.name, lang)}

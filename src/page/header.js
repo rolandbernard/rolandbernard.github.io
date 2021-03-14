@@ -121,7 +121,7 @@ export function pageHeaderStyles() {
             display: block;
             background: var(--background-darkish);
             border: none;
-            padding: 1rem;
+            padding: 0.85rem;
         }
         .header .lang-select .lang-option span {
             color: white;

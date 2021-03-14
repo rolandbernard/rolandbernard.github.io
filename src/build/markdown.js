@@ -161,7 +161,7 @@ export function markdownStyles() {
         }
         .md-ordered-list, .md-unordered-list, .md-footnote {
             padding-left: 2.5rem; 
-            margin: 1rem 0;
+            margin: 0.5rem 0;
         }
         .md-todo-list {
             list-style: none;
@@ -187,7 +187,7 @@ export function markdownStyles() {
             text-decoration: none;
         }
         .md-footnote-ref {
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             vertical-align: top;
         }
         .md-align-left {
@@ -567,6 +567,26 @@ function compileLines(lines, data) {
         const line = line_orig.trim();
         if (line.length === 0) {
             linesToParagraph(lines_to_convert, converted_paragraphs, data);
+        } else if (line_orig.startsWith('    ') || line_orig.startsWith('\t')) {
+            linesToParagraph(lines_to_convert, converted_paragraphs, data);
+            let code = line_orig.substr(line_orig.startsWith('    ') ? 4 : 1) + '\n';
+            let tmp_code = '';
+            while (lines.length !== 0) {
+                const next_line = lines.shift();
+                const is_empty = next_line.trim().length === 0;
+                if (next_line.startsWith('    ') || next_line.startsWith('\t')) {
+                    code += tmp_code + next_line.substr(next_line.startsWith('    ') ? 4 : 1) + '\n';
+                    tmp_code = '';
+                } else {
+                    if (!is_empty) {
+                        lines.unshift(next_line);
+                        break;
+                    } else {
+                        tmp_code += next_line + '\n';
+                    }
+                }
+            }
+            converted_paragraphs.push(html`<code class="markdown md-code hljs"><pre class="markdown ">${escapeHtml(code)}</pre></code>`);
         } else if (line.startsWith('<') && line.endsWith('>')) {
             linesToParagraph(lines_to_convert, converted_paragraphs, data);
             converted_paragraphs.push(line_orig);
@@ -624,8 +644,8 @@ function compileLines(lines, data) {
                         .filter((field, j) => field.length !== 0 || (j !== 0 && j !== row.length))
                         .map((field, j) => (
                             (i === 0 && alignment)
-                                ? html`<th class="markdown md-table-header ${alignment?.[j] || ''}">${compileInlineConstructs(field)}</th>`
-                                : html`<td class="markdown md-table-data ${alignment?.[j] || ''}">${compileInlineConstructs(field)}</td>`
+                                ? html`<th class="markdown md-table-header ${alignment?.[j] || ''}">${compileInlineConstructs(field, data)}</th>`
+                                : html`<td class="markdown md-table-data ${alignment?.[j] || ''}">${compileInlineConstructs(field, data)}</td>`
                         ))
                     }</tr>
                 `)}</table>
@@ -754,26 +774,6 @@ function compileLines(lines, data) {
                     <span class="markdown md-code-content hljs"><pre class="markdown ">${code}</pre></span>
                 </code>
             `);
-        } else if (line_orig.startsWith('    ') || line_orig.startsWith('\t')) {
-            linesToParagraph(lines_to_convert, converted_paragraphs, data);
-            let code = line_orig.substr(line_orig.startsWith('    ') ? 4 : 1) + '\n';
-            let tmp_code = '';
-            while (lines.length !== 0) {
-                const next_line = lines.shift();
-                const is_empty = next_line.trim().length === 0;
-                if (next_line.startsWith('    ') || next_line.startsWith('\t')) {
-                    code += tmp_code + next_line.substr(next_line.startsWith('    ') ? 4 : 1) + '\n';
-                    tmp_code = '';
-                } else {
-                    if (!is_empty) {
-                        lines.unshift(next_line);
-                        break;
-                    } else {
-                        tmp_code += next_line + '\n';
-                    }
-                }
-            }
-            converted_paragraphs.push(html`<code class="markdown md-code hljs"><pre class="markdown ">${escapeHtml(code)}</pre></code>`);
         } else if (line.startsWith('>')) {
             linesToParagraph(lines_to_convert, converted_paragraphs, data);
             let quote_lines = [ line.substr(1) ];
@@ -791,7 +791,7 @@ function compileLines(lines, data) {
             const items = [];
             let start = -1;
             let next_line = line;
-            while (next_line.match(/^\[(\^.*)\]:(.*)/)) {
+            while (next_line?.match(/^\[(\^.*)\]:(.*)/)) {
                 const match = next_line.trim().match(/^\[(.*)\]:(.*)/);
                 let fn_lines = [ match[2] ];
                 while (lines.length !== 0) {
@@ -812,18 +812,20 @@ function compileLines(lines, data) {
                 if (start < 0) {
                     start = data[name]?.id;
                 }
-                items.push(html`<li id="fn:${name}">${compileLines(fn_lines)}</li>`);
+                items.push(html`<li id="fn:${name}">${compileLines(fn_lines, data)}</li>`);
                 next_line = lines.shift();
             }
             if (items.length > 0) {
-                lines.unshift(next_line);
+                if (next_line) {
+                    lines.unshift(next_line);
+                }
                 converted_paragraphs.push(html`
                     <ol class="markdown md-footnote" start="${start}">
                         ${items}
                     </ol>
                 `);
             }
-        } else if (line.startsWith('[') && line.endsWith(']') && !line.substr(1, line.length - 2).match(/[(!\]]/)) {
+        } else if (line.startsWith('[') && line.endsWith(']')) {
             linesToParagraph(lines_to_convert, converted_paragraphs);
             let inline = false;
             if (line[1] === '^') {
@@ -833,7 +835,7 @@ function compileLines(lines, data) {
             converted_paragraphs.push(html`
                 <figure class="markdown md-info-wrap ${inline ? 'md-inline-info' : ''}">
                     ${to_wrap}
-                    <figcaption class="markdown md-info">${compileInlineConstructs(line.substr(inline ? 2 : 1, line.length - (inline ? 3 : 2)))}</figcaption>
+                    <figcaption class="markdown md-info">${compileInlineConstructs(line.substr(inline ? 2 : 1, line.length - (inline ? 3 : 2)), data)}</figcaption>
                 </figure>
             `);
         } else {
