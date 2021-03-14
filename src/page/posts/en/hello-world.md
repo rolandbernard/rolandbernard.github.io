@@ -33,7 +33,7 @@ includes the feature to add code blocks with syntax highlighting and line number
 
 int main(int argc, char** argv) {
     printf("Hello World!\n");
-    return EXIT_SUCCESS;
+    return 0;
 }
 ```
 [This is a C program]

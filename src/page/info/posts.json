@@ -1,8 +1,14 @@
 [
     {
-        "name": "Hello World!",
+        "name": {
+            "en": "Hello World!",
+            "de": "Hallo Welt!"
+        },
         "published": "03.04.2021",
-        "tags": ["en", "first-post", "hello-world"],
+        "tags": {
+            "en": ["en", "first-post", "hello-world"],
+            "de": ["de", "erster-post", "hallo-welt"]
+        },
         "post": "hello-world"
     }
 ]
