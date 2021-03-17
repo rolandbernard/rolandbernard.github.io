@@ -3,6 +3,43 @@ import { html, css } from '../build/build-util.js';
 
 import { colors } from './theme.js';
 
+export function specialBackgroundStyles() {
+    return css`
+       .special-background-wrap {
+            margin-top: -2.6rem;
+            padding-top: 5rem;
+            padding-bottom: 7.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 100%;
+            color: ${colors[0][1]};
+        }
+        .special-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            clip-path: polygon(0 0, 100% 2.5rem, 100% 100%, 0 100%);
+            z-index: -1;
+            background: ${colors[0][0]};
+        }
+    `;
+}
+
+export function specialBackground(content) {
+    return html`
+        <div class="special-background-wrap">
+            <div class="special-background">
+                <div></div>
+            </div>
+            ${content}
+        </div>
+    `;
+}
+
 export function backgroundStyles() {
     return css`
        .background-wrap {

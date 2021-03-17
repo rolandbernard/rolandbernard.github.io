@@ -2,7 +2,7 @@
 import { html, css, readJsonFile } from '../../build/build-util.js';
 
 import { htmlTemplate } from '../html-template.js';
-import { background, backgroundStyles } from '../background.js';
+import { background, backgroundStyles, specialBackground, specialBackgroundStyles } from '../background.js';
 
 function experienceElement(info, lang) {
     function extractData(obj, lang) {
@@ -32,7 +32,7 @@ function experienceElement(info, lang) {
 export function homeView(lang = 'en', url = '/') {
     return htmlTemplate('Roland Bernard - Home', html`
         <main>
-           ${background(0, html`
+           ${specialBackground(html`
                 <a class="arrow-down" href="#exerience" title="Scroll down">
                     <span></span>
                 </a>
@@ -180,6 +180,7 @@ export function homeView(lang = 'en', url = '/') {
             </div>
         </main>
     `, css`
+        ${specialBackgroundStyles()}
         ${backgroundStyles()}
         .main-info-wrap {
             height: calc(100vh - 10rem);
@@ -333,6 +334,9 @@ export function homeView(lang = 'en', url = '/') {
             background: var(--primary);
             animation: elasticus 2s cubic-bezier(1, 0, 0, 1) infinite;
         }
+        .arrow-down:hover span:before {
+            background: var(--primary-light);
+        }
         .arrow-down span:after {
             flex: 0 0 auto;
             content: '';
@@ -345,6 +349,10 @@ export function homeView(lang = 'en', url = '/') {
             border-right: 0.14rem solid var(--primary);
             transform: rotate(135deg);
             margin-top: -1.4rem;
+        }
+        .arrow-down:hover span:after {
+            border-top-color: var(--primary-light);
+            border-right-color: var(--primary-light);
         }
         @keyframes elasticus {
             0% {
