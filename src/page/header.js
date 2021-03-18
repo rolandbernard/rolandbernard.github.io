@@ -109,17 +109,17 @@ export function pageHeaderStyles() {
             right: 0;
             z-index: 100;
             border-radius: 4px;
-            overflow: hidden;
             box-shadow: var(--shadow-small);
             clip-path: circle(0 at 100% 0);
             transition: clip-path 0.2s ease-in-out;
+            background: var(--background-darkish);
         }
-        .header .lang-select input:checked ~ .lang-select-options {
+        .header .lang-select input:checked ~ .lang-select-options,
+        .header .lang-select:focus-within .lang-select-options {
             clip-path: circle(200% at 100% 0);
         }
         .header .lang-select .lang-option {
             display: block;
-            background: var(--background-darkish);
             border: none;
             padding: 0.85rem;
         }
@@ -160,7 +160,10 @@ export function pageHeaderStyles() {
         }
         .header .link:hover span::after,
         .header .lang-select .lang-select-options .lang-option:hover span::after,
-        .header .lang-select:hover .lang-select-current::after {
+        .header .lang-select:hover .lang-select-current::after,
+        .header .link:focus-within span::after,
+        .header .lang-select .lang-select-options .lang-option:focus-within span::after,
+        .header .lang-select:focus-within .lang-select-current::after {
             transform: scaleX(1);
         }
     `;
@@ -190,7 +193,7 @@ export function pageHeader(lang = 'en', url = '/') {
                 }[lang]}</span></a>
                 <span class="header-spacer"></span>
                 <div class="lang-select">
-                    <input type="checkbox" aria-label="Open the language selection" />
+                    <input type="checkbox" aria-label="Open the language selection" tabindex="-1" />
                     <div class="lang-select-current">${lang.toUpperCase()}</div>
                     <div class="lang-select-options">
                         ${languages.map(language => html`
