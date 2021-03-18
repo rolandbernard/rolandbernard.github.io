@@ -18,7 +18,6 @@ export function htmlTemplate(title, content, style, lang = 'en', url = '/') {
                 <meta charset="UTF-8">
                 <style>
                     html {
-                        scroll-behavior: smooth;
                         height: 100%;
                     }
                     body {

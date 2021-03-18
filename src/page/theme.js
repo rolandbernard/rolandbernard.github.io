@@ -27,11 +27,15 @@ export function themeStyles() {
         }
         html {
             background: ${colors[1][0]};
+            scroll-behavior: smooth;
         }
         @media (prefers-reduced-motion) {
             *, *::after, *::before {
                 transition: none !important;
                 animation: none !important;
+            }
+            html {
+                scroll-behavior: auto;
             }
         }
     `;
