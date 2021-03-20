@@ -68,24 +68,6 @@ export function pageHeaderStyles() {
                 display: none;
             }
         }
-        .header .lang-select input {
-            appearance: none;
-            background: none;
-            border: none;
-            outline: none;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            margin: 0;
-            z-index: 10;
-            cursor: pointer;
-        }
-        .header .lang-select input:checked {
-            position: fixed;
-            cursor: auto;
-        }
         .header .lang-select:after {
             position: absolute;
             content: "";
@@ -114,14 +96,13 @@ export function pageHeaderStyles() {
             transition: clip-path 0.2s ease-in-out;
             background: var(--background-darkish);
         }
-        .header .lang-select input:checked ~ .lang-select-options,
         .header .lang-select:focus-within .lang-select-options {
             clip-path: circle(200% at 100% 0);
         }
         .header .lang-select .lang-option {
             display: block;
             border: none;
-            padding: 0.85rem;
+            padding: 1rem;
         }
         .header .lang-select .lang-option span {
             color: white;
@@ -192,8 +173,7 @@ export function pageHeader(lang = 'en', url = '/') {
                     'it': 'Posti',
                 }[lang]}</span></a>
                 <span class="header-spacer"></span>
-                <div class="lang-select">
-                    <input type="checkbox" aria-label="Open the language selection" tabindex="-1" />
+                <div class="lang-select" tabindex="-1">
                     <div class="lang-select-current">${lang.toUpperCase()}</div>
                     <div class="lang-select-options">
                         ${languages.map(language => html`
