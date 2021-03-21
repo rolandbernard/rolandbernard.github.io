@@ -225,6 +225,7 @@ export function homeView(lang = 'en', url = '/') {
         .main-info-text {
             margin: 1rem;
             text-align: center;
+            height: 6rem;
         }
         .main-info-name {
             font-family: Roland, OpenSans, Arial, Helvetica, sans-serif;

@@ -37,7 +37,18 @@ export function specialBackgroundStyles() {
             z-index: -1;
             background: ${colors[0][0]};
             overflow: hidden;
-            contain: strict;
+        }
+        @media (max-width: 500px) {
+            .special-background svg {
+                animation: none !important;
+                transform: translate(-50%, -50%) scale(1) !important;
+            }
+        }
+        @media (max-height: 500px) {
+            .special-background svg {
+                animation: none !important;
+                transform: translate(-50%, -50%) scale(1) !important;
+            }
         }
         .special-background svg {
             position: absolute;
@@ -47,7 +58,6 @@ export function specialBackgroundStyles() {
             transform-origin: 50% 50%;
             transform: translate(-50%, -50%) scale(0);
             animation-name: spawn-in;
-            contain: strict;
         }
         @media (prefers-reduced-motion) {
             .special-background svg {
@@ -60,7 +70,7 @@ export function specialBackgroundStyles() {
         }
         .special-background .right svg {
             top: 10vh;
-            left: 95vw;
+            left: 100vw;
         }
         .special-background .bottom-left svg {
             top: 105vh;
@@ -106,6 +116,7 @@ export function specialBackgroundStyles() {
             }
             100% {
                 transform: translate(-50%, -50%) scale(1);
+                will-change: none;
             }
         }
     `;
