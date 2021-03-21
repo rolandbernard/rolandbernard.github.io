@@ -2,7 +2,7 @@
 import { css } from '../build/build-util.js';
 
 export const colors = [
-    ['#E2C044', 'black'],
+    ['#E2C044', 'black', [0xE2, 0xC0, 0x44]],
     ['#E5E6E4', 'black'],
     ['#EE9480', 'black'],
     ['#A09BE7', 'black'],
