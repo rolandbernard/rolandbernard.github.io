@@ -50,6 +50,7 @@ export function postView(lang = 'en', url = '/', post) {
             padding-bottom: 5rem;
             align-items: center;
             font-family: OpenSans, Arial, Helvetica, sans-serif;
+            contain: content;
         }
         .post-content {
             width: 100%;
@@ -60,6 +61,7 @@ export function postView(lang = 'en', url = '/', post) {
             max-width: 50rem;
             border-bottom: 1px solid #00000020;
             margin-bottom: 1rem;
+            contain: content;
         }
         .post-name {
             font-size: 2.5rem;

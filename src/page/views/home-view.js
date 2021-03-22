@@ -195,7 +195,9 @@ export function homeView(lang = 'en', url = '/') {
             align-items: center;
             position: relative;
             margin-top: 1rem;
-            margin-bottom: 2.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            contain: content;
         }
         .main-info-image {
             flex: 0 0 auto;
@@ -207,6 +209,7 @@ export function homeView(lang = 'en', url = '/') {
             box-shadow: var(--shadow-small);
             pointer-events: none;
             animation: morph 50s ease-in-out infinite;
+            contain: strict;
         }
         @keyframes morph {
             0%, 100% { border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; } 
@@ -241,7 +244,7 @@ export function homeView(lang = 'en', url = '/') {
         }
         .home-divider {
             position: absolute;
-            bottom: -1rem;
+            bottom: 0;
             width: 80%;
             border-color: var(--primary);
             background: var(--primary);
@@ -253,6 +256,7 @@ export function homeView(lang = 'en', url = '/') {
             flex-flow: column;
             align-items: center;
             width: 100%;
+            contain: content;
         }
         .experience h1 {
             font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
@@ -286,6 +290,7 @@ export function homeView(lang = 'en', url = '/') {
             flex-flow: column;
             flex-flow: column;
             align-items: center;
+            contain: content;
         }
         .experience .experience-grid .sub-experience h2 {
             flex: 0 0 auto;
@@ -302,6 +307,7 @@ export function homeView(lang = 'en', url = '/') {
             align-items: center;
             padding: 0.5rem;
             text-align: center;
+            contain: content;
         }
         .experience .experience-grid .sub-experience .sub-experience-content {
             display: flex;
@@ -310,6 +316,7 @@ export function homeView(lang = 'en', url = '/') {
             align-items: center;
             flex: 1 1 auto;
             font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
+            contain: content;
         }
         .experience .experience-grid .sub-experience span {
             display: inline-block;
@@ -319,6 +326,7 @@ export function homeView(lang = 'en', url = '/') {
             top: 90vh;
             left: 50vw;
             transform: translate(-50%, -100%);
+            contain: layout;
         }
         .arrow-down span {
             display: flex;

@@ -61,6 +61,7 @@ export function postsView(lang = 'en', url = '/') {
             padding: 2.5rem 1rem;
             padding-bottom: 5rem;
             box-sizing: border-box;
+            contain: content;
         }
         .post-item {
             padding: 1rem 0;
@@ -73,6 +74,7 @@ export function postsView(lang = 'en', url = '/') {
             font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
             border-bottom: 1px solid #00000020;
             box-sizing: border-box;
+            contain: content;
         }
         .post-name {
             font-size: 1.75rem;

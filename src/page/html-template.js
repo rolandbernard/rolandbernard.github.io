@@ -17,6 +17,9 @@ export function htmlTemplate(title, content, style, lang = 'en', url = '/') {
                 <meta name="description" content="Personal website of Roland Bernard">
                 <meta charset="UTF-8">
                 <style>
+                    ${fontStyles()}
+                    ${themeStyles()}
+                    ${pageHeaderStyles()}
                     html {
                         height: 100%;
                     }
@@ -43,9 +46,9 @@ export function htmlTemplate(title, content, style, lang = 'en', url = '/') {
                     a:hover {
                         color: var(--primary-light);
                     }
-                    ${themeStyles()}
-                    ${fontStyles()}
-                    ${pageHeaderStyles()}
+                    img {
+                        contain: content;
+                    }
                     ${style}
                     ${pageFooterStyles()}
                 </style>

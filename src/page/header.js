@@ -19,10 +19,12 @@ export function pageHeaderStyles() {
             box-sizing: border-box;
             border-bottom: 2px solid var(--primary);
             z-index: 10;
+            contain: layout size;
         }
         .header-placeholder {
             height: 3rem;
             flex: 0 0 auto;
+            contain: strict;
         }
         .header .header-spacer {
             flex: 1 1 100%;
@@ -62,6 +64,7 @@ export function pageHeaderStyles() {
             text-align: center;
             cursor: pointer;
             position: relative;
+            outline: none;
         }
         @media (max-width: 350px) {
             .header .lang-select {

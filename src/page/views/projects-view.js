@@ -73,6 +73,7 @@ export function projectsView(lang = 'en', url = '/') {
             align-items: center;
             width: 100%;
             max-width: 70rem;
+            contain: content;
         }
         @media (max-width: 60rem) {
             .project-item {
@@ -90,6 +91,7 @@ export function projectsView(lang = 'en', url = '/') {
             display: flex;
             flex-flow: column;
             align-items: center;
+            contain: content;
         }
         .project-name {
             font-size: 1.5rem;

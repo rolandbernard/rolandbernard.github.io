@@ -23,6 +23,7 @@ export function pageFooterStyles() {
             box-shadow: var(--shadow-small);
             white-space: nowrap;
             overflow: hidden;
+            contain: content;
         }
         .footer-contacts a {
             padding-left: 0.25rem;

@@ -24,6 +24,7 @@ export function notFoundView(lang = 'en', url = '/') {
             font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
             user-select: none;
             text-align: center;
+            contain: content;
         }
         .not-found-title {
             font-size: 3rem;

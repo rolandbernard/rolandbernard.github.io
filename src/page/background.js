@@ -26,6 +26,7 @@ export function specialBackgroundStyles() {
             position: relative;
             width: 100%;
             color: ${colors[0][1]};
+            contain: content;
         }
         .special-background {
             position: absolute;
@@ -37,6 +38,7 @@ export function specialBackgroundStyles() {
             z-index: -1;
             background: ${colors[0][0]};
             overflow: hidden;
+            contain: strict;
         }
         @media (max-width: 500px) {
             .special-background svg {
@@ -53,8 +55,8 @@ export function specialBackgroundStyles() {
         .special-background svg {
             position: absolute;
             animation-fill-mode: forwards;
-            animation-timing-function: ease-out;
-            animation-duration: 1s;
+            animation-timing-function: cubic-bezier(.17,.84,.44,1);
+            animation-duration: 0.75s;
             transform-origin: 50% 50%;
             transform: translate(-50%, -50%) scale(0);
             animation-name: spawn-in;
@@ -84,28 +86,28 @@ export function specialBackgroundStyles() {
             .special-background .left svg:nth-child(${i + 1}) {
                 width: ${15 * (i + 1)}vw;
                 height: ${15 * (i + 1)}vh;
-                animation-delay: ${0.1 * (10 - i)}s;
+                animation-delay: ${0.25 * (10 - i)}s;
                 z-index: ${10 - i};
                 fill: rgb(${blendColors([[0xb5,0x30,0x5c], colors[0][2]], [(10 - i), i]).join(',')});
             }
             .special-background .right svg:nth-child(${i + 1}) {
                 width: ${15 * (i + 1)}vw;
                 height: ${15 * (i + 1)}vh;
-                animation-delay: ${0.1 * (10 - i)}s;
+                animation-delay: ${0.25 * (10 - i)}s;
                 z-index: ${10 - i};
                 fill: rgb(${blendColors([[0x5a,0x2d,0xac], colors[0][2]], [(10 - i), i]).join(',')});
             }
             .special-background .bottom-left svg:nth-child(${i + 1}) {
                 width: ${15 * (i + 1)}vw;
                 height: ${15 * (i + 1)}vh;
-                animation-delay: ${0.1 * (10 - i)}s;
+                animation-delay: ${0.25 * (10 - i)}s;
                 z-index: ${10 - i};
                 fill: rgb(${blendColors([[0x0e,0x88,0xb5], colors[0][2]], [(10 - i), i]).join(',')});
             }
             .special-background .bottom-right svg:nth-child(${i + 1}) {
                 width: ${15 * (i + 1)}vw;
                 height: ${15 * (i + 1)}vh;
-                animation-delay: ${0.1 * (10 - i)}s;
+                animation-delay: ${0.25 * (10 - i)}s;
                 z-index: ${10 - i};
                 fill: rgb(${blendColors([[0x22,0x8B,0x22], colors[0][2]], [(10 - i), i]).join(',')});
             }
@@ -171,6 +173,7 @@ export function backgroundStyles() {
             justify-content: center;
             position: relative;
             width: 100%;
+            contain: content;
         }
         .background {
             position: absolute;
@@ -180,6 +183,7 @@ export function backgroundStyles() {
             left: 0;
             clip-path: polygon(0 0, 100% 2.5rem, 100% 100%, 0 100%);
             z-index: -1;
+            contain: strict;
         }
     `;
 }
