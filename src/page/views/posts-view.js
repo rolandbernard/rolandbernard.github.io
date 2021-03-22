@@ -71,7 +71,7 @@ export function postsView(lang = 'en', url = '/') {
             align-items: start;
             width: 100%;
             max-width: 50rem;
-            font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
+            font-family: 'Open Sans', sans-serif;
             border-bottom: 1px solid #00000020;
             box-sizing: border-box;
             contain: content;
@@ -80,6 +80,7 @@ export function postsView(lang = 'en', url = '/') {
             font-size: 1.75rem;
             margin: 0;
             margin-bottom: 0.25rem;
+            font-family: 'IBM Plex Sans', 'Open Sans', sans-serif;
         }
         .post-info {
             display: flex;

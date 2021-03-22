@@ -13,7 +13,7 @@ server.listen(8080, () => {
 
 function build() {
     console.log(`[${(new Date()).toLocaleString()}] Started rebuilding...`);
-    exec('node src/build/build.js -d', (err, _, stderr) => {
+    exec('node src/build/build.js', (err, _, stderr) => {
         if(stderr || err) {
             console.error(`[${(new Date()).toLocaleString()}] Failed rebuild:`);
             console.error(stderr);

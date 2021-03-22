@@ -14,14 +14,14 @@ export function postView(lang = 'en', url = '/', post) {
     }
     const [post_content, post_lang] = readPostFile(post.post, lang);
     return htmlTemplate(`Roland Bernard - ${extractData(post.name, lang)}`, html`
+        ${lang !== post_lang ? html`
+            <div class="note"><div>${{
+                'en': 'Note: This page is not available in English.',
+                'de': 'Hinweis: Diese Seite ist nicht in deutscher Sprache verfügbar.',
+                'it': 'Nota: Questa pagina non è disponibile in italiano.',
+            }[lang]}</div></div>
+        ` : ''}
         <main class="post">
-            ${lang !== post_lang ? html`
-                <div class="note"><div>${{
-                    'en': 'Note: This page is not available in English.',
-                    'de': 'Hinweis: Diese Seite ist nicht in deutscher Sprache verfügbar.',
-                    'it': 'Nota: Questa pagina non è disponibile in italiano.',
-                }[lang]}</div></div>
-            ` : ''}
             <div class="post-head">
                 <h1 class="post-name">${extractData(post.name, lang)}</h1>
                 <p class="post-info">
@@ -49,7 +49,7 @@ export function postView(lang = 'en', url = '/', post) {
             padding: 4rem 1rem;
             padding-bottom: 5rem;
             align-items: center;
-            font-family: OpenSans, Arial, Helvetica, sans-serif;
+            font-family: 'Open Sans', sans-serif;
             contain: content;
         }
         .post-content {
@@ -67,6 +67,7 @@ export function postView(lang = 'en', url = '/', post) {
             font-size: 2.5rem;
             margin: 0;
             margin-bottom: 0.25rem;
+            font-family: 'IBM Plex Sans', 'Open Sans', sans-serif;
         }
         .post-info {
             display: flex;
@@ -94,7 +95,7 @@ export function postView(lang = 'en', url = '/', post) {
             width: 100%;
         }
         div.note div {
-            font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
+            font-family: 'Open Sans', sans-serif;
             font-size: 0.75rem;
             color: var(--background-darkish);
             display: flex;

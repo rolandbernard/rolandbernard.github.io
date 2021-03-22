@@ -86,7 +86,7 @@ export function projectsView(lang = 'en', url = '/') {
         }
         .project-text {
             flex: 1 1 auto;
-            font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
+            font-family: 'Open Sans', sans-serif;
             font-size: 1rem;
             display: flex;
             flex-flow: column;
@@ -95,6 +95,7 @@ export function projectsView(lang = 'en', url = '/') {
         }
         .project-name {
             font-size: 1.5rem;
+            font-family: 'IBM Plex Sans', 'Open Sans', sans-serif;
         }
         .project-tags {
             font-size: 0.85rem;
@@ -131,7 +132,7 @@ export function projectsView(lang = 'en', url = '/') {
             width: 100%;
         }
         div.note div {
-            font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
+            font-family: 'Open Sans', sans-serif;
             font-size: 0.75rem;
             color: var(--background-darkish);
             display: flex;

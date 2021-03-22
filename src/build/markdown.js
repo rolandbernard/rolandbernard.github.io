@@ -77,7 +77,7 @@ export function markdownStyles() {
     return css`
         ${markdownHighlightStyles()}
         .markdown {
-            font-family: OpenSans, Arial, Helvetica, sans-serif;
+            font-family: 'Open Sans', sans-serif;
             font-size: 1rem;
             line-height: 150%;
             box-sizing: border-box;
@@ -115,7 +115,7 @@ export function markdownStyles() {
         .md-code pre {
             padding: 1rem;
             margin: 0;
-            font-family: 'Plex Mono', monospace;
+            font-family: 'IBM Plex Mono', monospace;
             font-size: 0.9rem;
             width: max-content;
         }
@@ -140,14 +140,14 @@ export function markdownStyles() {
             text-align: right;
         }
         .md-code .md-lines .md-line {
-            font-family: 'Plex Mono', monospace;
+            font-family: 'IBM Plex Mono', monospace;
             font-size: 0.9rem;
         }
         .md-inline-code  {
             background: #00000010;
             padding: 0.1rem 0.25rem;
             border-radius: 4px;
-            font-family: 'Plex Mono', monospace;
+            font-family: 'IBM Plex Mono', monospace;
             font-size: 0.9rem;
             display: inline-block;
         }
@@ -207,7 +207,7 @@ export function markdownStyles() {
             padding: 0.125rem 0.5rem;
         }
         .md-table-header {
-            font-weight: bold;
+            font-weight: 500;
             background: #0000000a;
         }
         .md-table-row:nth-child(odd) {

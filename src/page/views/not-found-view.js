@@ -21,7 +21,7 @@ export function notFoundView(lang = 'en', url = '/') {
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
+            font-family: 'Open Sans', sans-serif;
             user-select: none;
             text-align: center;
             contain: content;

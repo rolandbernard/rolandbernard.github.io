@@ -19,7 +19,7 @@ export function pageFooterStyles() {
             font-size: 0.75rem;
             font-weight: 400;
             color: lightgray;
-            font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
+            font-family: 'Open Sans', sans-serif;
             box-shadow: var(--shadow-small);
             white-space: nowrap;
             overflow: hidden;

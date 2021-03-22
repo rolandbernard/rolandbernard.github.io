@@ -231,12 +231,12 @@ export function homeView(lang = 'en', url = '/') {
             height: 6rem;
         }
         .main-info-name {
-            font-family: Roland, OpenSans, Arial, Helvetica, sans-serif;
+            font-family: 'IBM Plex Sans', 'Open Sans', sans-serif;
             font-size: 2.25rem;
-            font-weight: bold;
+            font-weight: 500;
         }
         .main-info-desc {
-            font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
+            font-family: 'Open Sans', sans-serif;
             font-size: 1.25rem;
         }
         .main-info-desc span {
@@ -250,7 +250,7 @@ export function homeView(lang = 'en', url = '/') {
             background: var(--primary);
         }
         .experience {
-            font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
+            font-family: 'Open Sans', sans-serif;
             font-size: 1rem;
             display: flex;
             flex-flow: column;
@@ -259,7 +259,7 @@ export function homeView(lang = 'en', url = '/') {
             contain: content;
         }
         .experience h1 {
-            font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
+            font-family: 'Open Sans', sans-serif;
             /* font-weight: bold; */
             font-weight: 500;
             font-size: 1.75rem;
@@ -294,7 +294,7 @@ export function homeView(lang = 'en', url = '/') {
         }
         .experience .experience-grid .sub-experience h2 {
             flex: 0 0 auto;
-            font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
+            font-family: 'Open Sans', sans-serif;
             font-size: 1.25rem;
             text-decoration: underline;
             font-weight: normal;
@@ -315,7 +315,7 @@ export function homeView(lang = 'en', url = '/') {
             flex-flow: column;
             align-items: center;
             flex: 1 1 auto;
-            font-family: OpenSans, Roland, Arial, Helvetica, sans-serif;
+            font-family: 'Open Sans', sans-serif;
             contain: content;
         }
         .experience .experience-grid .sub-experience span {

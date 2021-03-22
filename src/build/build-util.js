@@ -23,6 +23,10 @@ export function readFile(filename) {
     return readFileSync(filename, { encoding: 'utf-8' });
 }
 
+export function readFileDataUrl(filename, mime) {
+    return `data:${mime};base64,${Buffer.from(readFile(filename)).toString('base64')}`;
+}
+
 export function readJsonFile(filename) {
     return JSON.parse(readFileSync(filename, { encoding: 'utf-8' }));
 }

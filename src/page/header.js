@@ -9,7 +9,7 @@ export function pageHeaderStyles() {
             top: 0;
             width: 100%;
             height: 3rem;
-            padding: 0.5rem;
+            padding: 0 0.5rem;
             background: var(--background-dark);
             display: flex;
             align-items: center;
@@ -38,7 +38,7 @@ export function pageHeaderStyles() {
         .header .link span {
             font-size: 1.2rem;
             font-weight: 400;
-            font-family: Roland, OpenSans, Arial, Helvetica, sans-serif;
+            font-family: 'IBM Plex Sans', 'Open Sans', sans-serif;
             font-style: normal;
             text-decoration: none;
             color: white;
@@ -50,9 +50,9 @@ export function pageHeaderStyles() {
         }
         .header .lang-select {
             padding: 0.5rem 1rem;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 400;
-            font-family: Roland, OpenSans, Arial, Helvetica, sans-serif;
+            font-family: 'IBM Plex Sans', 'Open Sans', sans-serif;
             font-style: normal;
             text-decoration: none;
             color: white;
