@@ -34,14 +34,23 @@ function projectElement(info, lang) {
                     </a>
                 </p>
             </div>
-            ${info.image && html`
-                <img
-                    class="project-image"
-                    src="/projimg/${extractData(info.image, lang)}"
-                    alt="Example image for the project"
-                    width="480" height="480"
-                />
-            `}
+            ${info.iframe
+                ? html`
+                    <iframe
+                        class="project-iframe"
+                        src="${info.iframe}"
+                        width="480" height="480"
+                    ></iframe>
+                `
+                : info.image && html`
+                    <img
+                        class="project-image"
+                        src="/projimg/${extractData(info.image, lang)}"
+                        alt="Example image for the project"
+                        width="480" height="480"
+                    />
+                `
+            }
             ${info.video && html`
                 <video class="project-image" autoplay loop muted playsinline width="480" height="480">
                     <source src="/projimg/${extractData(info.video, lang)}" type="video/mp4" >
@@ -113,6 +122,15 @@ export function projectsView(lang = 'en', url = '/') {
         }
         .project-desc {
             margin: 1rem 0.5rem;
+        }
+        .project-iframe {
+            flex: 0 0 auto;
+            width: 30rem;
+            height: 30rem;
+            border-radius: 4px;
+            margin: 1rem;
+            border: 0;
+            padding: 0;
         }
         .project-image {
             flex: 0 0 auto;

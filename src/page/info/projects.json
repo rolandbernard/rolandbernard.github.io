@@ -78,6 +78,7 @@
             "de": "Eine Webanwendung zur Erstellung von Kartenvisualisierungen",
             "it": "Un'applicazione web per creare visualizzazioni di mappe"
         },
+        "-iframe": "https://rolandbernard.github.io/geo-draw/#/demo/covid-world-newest",
         "link": "https://github.com/rolandbernard/geo-draw",
         "image": "geo-draw.jpeg",
         "tags": [ "visualization", "map", "lit-element", "lit-html", "rust" ],
