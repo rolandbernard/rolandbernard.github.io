@@ -78,6 +78,7 @@ export function postsView(lang = 'en', url = '/') {
         }
         .post-name {
             font-size: 1.75rem;
+            font-weight: 500;
             margin: 0;
             margin-bottom: 0.25rem;
             font-family: 'IBM Plex Sans', 'Open Sans', sans-serif;

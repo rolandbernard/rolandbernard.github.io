@@ -86,28 +86,28 @@ export function specialBackgroundStyles() {
             .special-background .left svg:nth-child(${i + 1}) {
                 width: ${15 * (i + 1)}vw;
                 height: ${15 * (i + 1)}vh;
-                animation-delay: ${0.25 * (10 - i)}s;
+                animation-delay: ${0.25 * (9 - i)}s;
                 z-index: ${10 - i};
                 fill: rgb(${blendColors([[0xb5,0x30,0x5c], colors[0][2]], [(10 - i), i]).join(',')});
             }
             .special-background .right svg:nth-child(${i + 1}) {
                 width: ${15 * (i + 1)}vw;
                 height: ${15 * (i + 1)}vh;
-                animation-delay: ${0.25 * (10 - i)}s;
+                animation-delay: ${0.25 * (9 - i)}s;
                 z-index: ${10 - i};
                 fill: rgb(${blendColors([[0x5a,0x2d,0xac], colors[0][2]], [(10 - i), i]).join(',')});
             }
             .special-background .bottom-left svg:nth-child(${i + 1}) {
                 width: ${15 * (i + 1)}vw;
                 height: ${15 * (i + 1)}vh;
-                animation-delay: ${0.25 * (10 - i)}s;
+                animation-delay: ${0.25 * (9 - i)}s;
                 z-index: ${10 - i};
                 fill: rgb(${blendColors([[0x0e,0x88,0xb5], colors[0][2]], [(10 - i), i]).join(',')});
             }
             .special-background .bottom-right svg:nth-child(${i + 1}) {
                 width: ${15 * (i + 1)}vw;
                 height: ${15 * (i + 1)}vh;
-                animation-delay: ${0.25 * (10 - i)}s;
+                animation-delay: ${0.25 * (9 - i)}s;
                 z-index: ${10 - i};
                 fill: rgb(${blendColors([[0x22,0x8B,0x22], colors[0][2]], [(10 - i), i]).join(',')});
             }
@@ -167,7 +167,7 @@ export function backgroundStyles() {
        .background-wrap {
             margin-top: -2.6rem;
             padding-top: 5rem;
-            padding-bottom: 7.5rem;
+            padding-bottom: 5rem;
             display: flex;
             align-items: center;
             justify-content: center;

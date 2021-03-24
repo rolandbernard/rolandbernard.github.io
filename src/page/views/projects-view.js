@@ -130,6 +130,7 @@ export function projectsView(lang = 'en', url = '/') {
             align-items: center;
             justify-content: center;
             width: 100%;
+            z-index: 10;
         }
         div.note div {
             font-family: 'Open Sans', sans-serif;

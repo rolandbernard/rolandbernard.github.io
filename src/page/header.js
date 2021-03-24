@@ -58,8 +58,6 @@ export function pageHeaderStyles() {
             color: white;
             appearance: none;
             background: none;
-            border-radius: 0px;
-            border-style: dashed;
             border: none;
             text-align: center;
             cursor: pointer;
@@ -105,7 +103,7 @@ export function pageHeaderStyles() {
         .header .lang-select .lang-option {
             display: block;
             border: none;
-            padding: 1rem;
+            padding: 0.5rem 1rem;
         }
         .header .lang-select .lang-option span {
             color: white;
@@ -173,7 +171,7 @@ export function pageHeader(lang = 'en', url = '/') {
                 <a class="link" href="/${lang}/posts"><span>${{
                     'en': 'Posts',
                     'de': 'Posts',
-                    'it': 'Posti',
+                    'it': 'Post',
                 }[lang]}</span></a>
                 <span class="header-spacer"></span>
                 <div class="lang-select" tabindex="-1">
