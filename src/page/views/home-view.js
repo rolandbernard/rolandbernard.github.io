@@ -209,7 +209,7 @@ export function homeView(lang = 'en', url = '/') {
             box-shadow: var(--shadow-small);
             pointer-events: none;
             animation: morph 50s ease-in-out infinite;
-            contain: strict;
+            contain: content;
         }
         @keyframes morph {
             0%, 100% { border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; } 
