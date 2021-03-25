@@ -40,13 +40,13 @@ export function specialBackgroundStyles() {
             overflow: hidden;
             contain: strict;
         }
-        @media (max-width: 500px) {
+        @media (max-width: 700px) {
             .special-background svg {
                 animation: none !important;
                 transform: translate(-50%, -50%) scale(1) !important;
             }
         }
-        @media (max-height: 500px) {
+        @media (max-height: 700px) {
             .special-background svg {
                 animation: none !important;
                 transform: translate(-50%, -50%) scale(1) !important;
@@ -158,7 +158,7 @@ export function specialBackground(content) {
                 <div class="right">
                     ${[...Array(10)].map((_, i) => html`
                         <svg viewBox="0 0 200 200">
-                          <path d="M28.3,-57.7C30.3,-47.9,21.1,-27.4,22,-16C22.8,-4.6,33.7,-2.3,38.8,2.9C43.9,8.2,43.2,16.4,41.7,26.5C40.1,36.7,37.7,48.8,30.6,53.1C23.5,57.4,11.7,53.9,2.9,48.9C-6,43.8,-11.9,37.4,-25.9,37.1C-39.9,36.8,-61.9,42.6,-67.2,37.5C-72.5,32.3,-61.1,16.2,-50,6.4C-39,-3.4,-28.4,-6.8,-25.6,-16.4C-22.8,-25.9,-28,-41.6,-25,-50.9C-22.1,-60.2,-11,-63.1,1.1,-64.9C13.2,-66.7,26.3,-67.5,28.3,-57.7Z" transform="translate(100 100)" />
+                          <path d="M28.3,-57.7C30.3,-47.9,21.1,-27.4,22,-16C22.8,-4.6,33.7,-2.3,38.8,2.9C43.9,8.2,43.2,16.4,41.7,26.5C40.1,36.7,37.7,48.8,30.6,53.1C23.5,57.4,11.7,53.9,2.9,48.9C-6,43.8,-11.9,37.4,-25.9,37.1C-39.9,36.8,-61.9,42.6,-67.2,37.5C-72.5,32.3,-61.1,16.2,-50,6.4C-39,-3.4,-28.4,-6.8,-25.6,-16.4C-22.8,-25.9,-28,-41.6,-25,-50.9C-22.1,-60.2,-11,-63.1,1.1,-64.9C13.2,-66.7,26.3,-67.5,28.3,-57.7Z" transform="translate(100 100) rotate(${-i * 2})" />
                         </svg>
                     `)}
                 </div>

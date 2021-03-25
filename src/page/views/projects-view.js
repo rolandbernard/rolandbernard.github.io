@@ -104,6 +104,7 @@ export function projectsView(lang = 'en', url = '/') {
         }
         .project-name {
             font-size: 1.5rem;
+            font-weight: 500;
             font-family: 'IBM Plex Sans', 'Open Sans', sans-serif;
         }
         .project-tags {
@@ -148,7 +149,7 @@ export function projectsView(lang = 'en', url = '/') {
             align-items: center;
             justify-content: center;
             width: 100%;
-            z-index: 10;
+            z-index: 1;
         }
         div.note div {
             font-family: 'Open Sans', sans-serif;
