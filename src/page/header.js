@@ -105,6 +105,12 @@ export function pageHeaderStyles() {
             border: none;
             padding: 0.5rem 1rem;
         }
+        .header .lang-select .lang-option:first-child {
+            padding-top: 0.75rem;
+        }
+        .header .lang-select .lang-option:last-child {
+            padding-bottom: 1rem;
+        }
         .header .lang-select .lang-option span {
             color: white;
             position: relative;
