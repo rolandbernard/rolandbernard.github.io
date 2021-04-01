@@ -84,7 +84,7 @@ In this example the `homeView` function will be called by the builder with diffe
 `url` arguments.  The result will be a string containing the HTML code which will then be written to
 a certain file.  The functions `html`and `css` are not doing anything special and are manly used to
 get syntax highlighting in text editors.  If you would like to know more about how the website is
-implemented, you can look at the [GitHub repository](https://github.com/rolandbernard/rolandbernard.github.io).
+implemented, you can look at the [GitHub repository][github].
 
 Some other thing my Markdown converter supports are tables, images and footnotes[^1].
 Here are some small examples to show how those might look:

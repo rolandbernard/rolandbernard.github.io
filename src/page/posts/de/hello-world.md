@@ -1,11 +1,11 @@
 
 Hier sind wir, ich habe mir eine persönliche Website erstellt und dies ist mein erster Post. Ich
 schreibe diesen Post aber weniger wegen des Inhalts und mehr nur um mein Build-System und meinen
-Markdown-Compiler zu testen.  Dieser Text hier ist auch wichtig um zu testen, ob das Veröffentlichen
+Markdown-Compiler zu testen.  Dieser Post ist nur hier um zu testen, ob das Veröffentlichen
 desselben Posts in verschiedenen Sprachen wie erwartet funktioniert.  Dieser Text enthält nicht
-dieselben Informationen wie die englische Version und dies ist so mit Absicht. Der Inhalt ist mir,
-für diesen Post, nämlich nicht wichtig.  Ich bin kein großer Autor und darum geht es mir hierbei
-auch nicht.  Ich werde in diesem Post aber mein Build-System etwas beschreiben und einige Markdown
+dieselben Informationen wie die englische Version und dies ist beabsichtigt. Der Inhalt ist mir, für
+diesen Post, nämlich nicht wichtig.  Ich bin kein großer Autor und darum geht es mir hierbei auch
+nicht.  Ich werde in diesem Post aber mein Build-System etwas beschreiben und einige Markdown
 Elemente austesten.
 
 Fangen wir damit an, dass es auf dieser Seite kein JavaScript gibt, zumindest nicht im Browser. Die
@@ -24,10 +24,10 @@ Die Webseite besteht aus folgenden Ansichten:
 Alle diese Ansichten teilen sich dabei einige Komponenten. Der Header zum Beispiel und der Footer
 haben in allen diesen Ansichten den gleichen Aufbau.  Diese Komponenten werden deshalb auch nicht
 jedes Mal neu erstellt, sondern einmal implementiert und dann wiederverwendet. Auch alle Posts
-verwenden ein einheitliches Template, der Inhalt wird dabei aus Markdown compiliert.  Was der
-Generator der Website auch macht, ist die HTML Dokumente mithilfe von terser komprimieren.
+verwenden ein einheitliches Template, der Inhalt wird dabei aus Markdown compiliert.  Der Generator
+der Website komprimieren die HTML Dokumente zusätzlich noch mithilfe von [terser][terser].
 
-Hier sind einige Dinge die der Markdown Compiler darstellen kann:
+Hier sind einige Dinge die der Markdown Compiler unterstützt:
 
 ```C
 #include <stdio.h>
@@ -48,11 +48,14 @@ int main(int argc, char** argv) {
             * views
 [Code Blöcke können auch _ohne_ Zeilennummern erstellt werden]
 
-Das wäre dann alles für heute.
-Noch einen schönen Tag und bis zum nächsten Mal.
+Das wäre dann alles für jetzt.
 
 \
 
 ---
 
 [^1]: Dies ist eine Fußnote
+
+[terser]: https://terser.org/ "terser"
+[hljs]: https://highlightjs.org/ "highlight.js"
+[github]: https://github.com/rolandbernard/rolandbernard.github.io "Github"
