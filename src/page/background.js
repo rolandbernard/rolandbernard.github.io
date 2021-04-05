@@ -55,11 +55,11 @@ export function specialBackgroundStyles() {
         .special-background svg {
             position: absolute;
             animation-fill-mode: forwards;
-            animation-iteration-count: 1, infinite;
-            animation-timing-function: cubic-bezier(.17,.84,.44,1), ease-in-out;
+            animation-iteration-count: 1;
+            animation-timing-function: cubic-bezier(.17,.84,.44,1);
             transform-origin: 50% 50%;
             transform: translate(-50%, -50%) scale(0);
-            animation-name: spawn-in, special-morph;
+            animation-name: spawn-in;
         }
         @media (prefers-reduced-motion) {
             .special-background svg {
@@ -69,49 +69,49 @@ export function specialBackgroundStyles() {
         .special-background .left svg {
             top: 0;
             left: 0;
-            animation-duration: 0.85s, 70s;
+            animation-duration: 0.85s;
         }
         .special-background .right svg {
             top: 10vh;
             left: 100vw;
-            animation-duration: 0.65s, 45s;
+            animation-duration: 0.65s;
         }
         .special-background .bottom-left svg {
             top: 105vh;
             left: 0;
-            animation-duration: 0.75s, 50s;
+            animation-duration: 0.75s;
         }
         .special-background .bottom-right svg {
             top: 100vh;
             left: 100vw;
-            animation-duration: 0.70s, 45s;
+            animation-duration: 0.70s;
         }
         ${[...Array(10)].map((_, i) => css`
             .special-background .left svg:nth-child(${i + 1}) {
                 width: ${15 * (i + 1)}vw;
                 height: ${15 * (i + 1)}vh;
-                animation-delay: ${0.25 * (9 - i)}s, ${1 * (9 - i) + 0.85}s;
+                animation-delay: ${0.25 * (9 - i)}s;
                 z-index: ${10 - i};
                 fill: rgb(${blendColors([[0xb5,0x30,0x5c], colors[0][2]], [(10 - i), i]).join(',')});
             }
             .special-background .right svg:nth-child(${i + 1}) {
                 width: ${15 * (i + 1)}vw;
                 height: ${15 * (i + 1)}vh;
-                animation-delay: ${0.25 * (9 - i)}s, ${1 * (9 - i) + 0.65}s;
+                animation-delay: ${0.25 * (9 - i)}s;
                 z-index: ${10 - i};
                 fill: rgb(${blendColors([[0x5a,0x2d,0xac], colors[0][2]], [(10 - i), i]).join(',')});
             }
             .special-background .bottom-left svg:nth-child(${i + 1}) {
                 width: ${15 * (i + 1)}vw;
                 height: ${15 * (i + 1)}vh;
-                animation-delay: ${0.25 * (9 - i)}s, ${1 * (9 - i) + 0.75}s;
+                animation-delay: ${0.25 * (9 - i)}s;
                 z-index: ${10 - i};
                 fill: rgb(${blendColors([[0x0e,0x88,0xb5], colors[0][2]], [(10 - i), i]).join(',')});
             }
             .special-background .bottom-right svg:nth-child(${i + 1}) {
                 width: ${15 * (i + 1)}vw;
                 height: ${15 * (i + 1)}vh;
-                animation-delay: ${0.25 * (9 - i)}s, ${1 * (9 - i) + 0.70}s;
+                animation-delay: ${0.25 * (9 - i)}s;
                 z-index: ${10 - i};
                 fill: rgb(${blendColors([[0x22,0x8B,0x22], colors[0][2]], [(10 - i), i]).join(',')});
             }
@@ -122,23 +122,6 @@ export function specialBackgroundStyles() {
             }
             100% {
                 transform: translate(-50%, -50%) scale(1);
-            }
-        }
-        @keyframes special-morph {
-            0%, 100% {
-                transform: translate(-50%, -50%) scale(1) rotate(0deg);
-            }
-            20% {
-                transform: translate(-51%, -50%) scale(0.99) rotate(3deg);
-            }
-            40% {
-                transform: translate(-49%, -51%) scale(1.01) rotate(1deg);
-            }
-            60% {
-                transform: translate(-51%, -51%) scale(0.98) rotate(-2deg);
-            }
-            80% {
-                transform: translate(-50.5%, -49.5%) scale(0.97) rotate(-3deg);
             }
         }
     `;
