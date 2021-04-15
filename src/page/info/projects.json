@@ -36,6 +36,18 @@
         "desc": "This is a small JIT compiler for a version of the BASIC programming language, running on the x86-64 or 64-bit ARM (aarch64) architecture."
     },
     {
+        "name": "kleine RISC-V",
+        "info": {
+            "en": "A small and simple rv32i core written in Verilog",
+            "de": "Ein kleiner und einfacher rv32i Core, geschrieben in Verilog",
+            "it": "Un piccolo e semplice core rv32i scritto in Verilog"
+        },
+        "link": "https://github.com/rolandbernard/kleine-riscv",
+        "image": "kleine-riscv.jpeg",
+        "tags": [ "verilog", "risc-v", "rv32i", "riscv32" ],
+        "desc": "This is a small RISC-V core written in synthesizable Verilog that supports the RV32I unprivileged ISA and parts of the privileged ISA, namely M-mode. This is only the RISC-V core and does not include any other peripherals."
+    },
+    {
         "name": "Wakan",
         "info": {
             "en": "A small interpreted toy programming language",
