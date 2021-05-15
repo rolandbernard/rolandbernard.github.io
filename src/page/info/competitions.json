@@ -1,5 +1,9 @@
 [
     {
+        "name": "Google Code Jam 2020 & 2021",
+        "link": "https://codingcompetitions.withgoogle.com/codejam/"
+    },
+    {
         "name": "Reply Code Challenge Standard 2021",
         "link": "https://challenges.reply.com/"
     },
@@ -50,10 +54,6 @@
             "it": "88° al mondo (1° in Italia)"
         },
         "link": "https://codingcompetitions.withgoogle.com/hashcode/"
-    },
-    {
-        "name": "Google Code Jam 2020",
-        "link": "https://codingcompetitions.withgoogle.com/codejam/"
     },
     {
         "name": {
