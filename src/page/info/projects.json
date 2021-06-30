@@ -1,5 +1,29 @@
 [
     {
+        "name": "kleine RISC-V",
+        "info": {
+            "en": "A small and simple rv32i core written in Verilog",
+            "de": "Ein kleiner und einfacher rv32i Core, geschrieben in Verilog",
+            "it": "Un piccolo e semplice core rv32i scritto in Verilog"
+        },
+        "link": "https://github.com/rolandbernard/kleine-riscv",
+        "image": "kleine-riscv.jpeg",
+        "tags": [ "verilog", "risc-v", "rv32i", "riscv32" ],
+        "desc": "This is a small RISC-V core written in synthesizable Verilog that supports the RV32I unprivileged ISA and parts of the privileged ISA, namely M-mode. This is only the RISC-V core and does not include any other peripherals."
+    },
+    {
+        "name": "BASIC Jit",
+        "info": {
+            "en": "A JIT compiler for the BASIC programming language",
+            "de": "Ein JIT-Compiler für die Programmiersprache BASIC",
+            "it": "Un compilatore JIT per il linguaggio di programmazione BASIC"
+        },
+        "link": "https://github.com/rolandbernard/basic-jit",
+        "video": "basic-jit.mp4",
+        "tags": [ "basic", "jit", "jit-compiler", "x86-64", "aarch64" ],
+        "desc": "This is a small JIT compiler for a version of the BASIC programming language, running on the x86-64 or 64-bit ARM (aarch64) architecture."
+    },
+    {
         "name": "Marvin",
         "info": {
             "en": "A keystroke launcher for Linux",
@@ -22,30 +46,6 @@
         "image": "tumbleweed.jpeg",
         "tags": [ "llvm", "compiler", "programming-language" ],
         "desc": "Tumbleweed is a small strongly typed programming language. Just like real tumbleweed this programming language is useless and unwanted."
-    },
-    {
-        "name": "BASIC Jit",
-        "info": {
-            "en": "A JIT compiler for the BASIC programming language",
-            "de": "Ein JIT-Compiler für die Programmiersprache BASIC",
-            "it": "Un compilatore JIT per il linguaggio di programmazione BASIC"
-        },
-        "link": "https://github.com/rolandbernard/basic-jit",
-        "video": "basic-jit.mp4",
-        "tags": [ "basic", "jit", "jit-compiler", "x86-64", "aarch64" ],
-        "desc": "This is a small JIT compiler for a version of the BASIC programming language, running on the x86-64 or 64-bit ARM (aarch64) architecture."
-    },
-    {
-        "name": "kleine RISC-V",
-        "info": {
-            "en": "A small and simple rv32i core written in Verilog",
-            "de": "Ein kleiner und einfacher rv32i Core, geschrieben in Verilog",
-            "it": "Un piccolo e semplice core rv32i scritto in Verilog"
-        },
-        "link": "https://github.com/rolandbernard/kleine-riscv",
-        "image": "kleine-riscv.jpeg",
-        "tags": [ "verilog", "risc-v", "rv32i", "riscv32" ],
-        "desc": "This is a small RISC-V core written in synthesizable Verilog that supports the RV32I unprivileged ISA and parts of the privileged ISA, namely M-mode. This is only the RISC-V core and does not include any other peripherals."
     },
     {
         "name": "Wakan",
@@ -129,6 +129,22 @@
         "desc": "A simple general software 3D graphics API written in C. The implementation still needs a lot of optimisation."
     },
     {
+        "name": "ryoko",
+        "info": "A web application for easy task organization and management",
+        "link": "https://github.com/rolandbernard/ryoko",
+        "image": "ryoko.jpeg",
+        "tags": [ "progressive-web-app", "single-page-app", "university-project", "teamwork", "task-manager" ],
+        "desc": "A web application for easy task organization and management. Do you want to boost your productivity and agility of your development? With Ryoko you are able to effectively plan your tasks and manage your projects. It is build with developers in mind and facilitates effective collaboration."
+    },
+    {
+        "name": "daro",
+        "info": "Daro is a simple interpreted programming language written in Java",
+        "link": "https://github.com/rolandbernard/daro",
+        "image": "daro.jpeg",
+        "tags": [ "game", "programming-language", "ide", "university-project" ],
+        "desc": "We aimed to make a game that teaches people the basics of coding using a simple, self-designed programming language. The idea was to create simple puzzles with increasing difficulty that ask the player to solve programming-related problems, such as finding the minimum in an array, creating sums etc. In addition to the game, the language can also be used stand-alone using the cli interface of the interpreter or in the purpose build IDE."
+    },
+    {
         "name": "Tested",
         "info": "This is a small program to run language independent file based tests.",
         "link": "https://github.com/rolandbernard/tested",
@@ -153,28 +169,12 @@
         "desc": "This software tries to solve a version of the vehicle routing problem. It uses a genetic algorithm to optimize the routes of multiple workers serving multiple clients at different locations with different priorities.The actual algorithm is implemented in C++ and is used by the UI, which is written using the React framework, using Web Assembly."
     },
     {
-        "name": "Calculator",
-        "info": "One of my first programming projects",
-        "link": "https://github.com/rolandbernard/calculator",
-        "image": "calculator.jpeg",
-        "tags": [ "calculator", "port", "old-project", "old-stuff" ],
-        "desc": "This is one of my oldest projects, and as such it is quite bad. I myself don't realy know what exactly is going in. I wrote it before I had any formal education in computer science or programming. It was originaly developed to be run on a Arduino compatible microcontroller and was later ported to Visual C++ and SDL.I have now made the program compile and run using g++ or clang++. I have not changed more than neccesary, and therefore the program still contains memory leaks, compiling it will generate a lot of warnings and is generaly not programmed well."
-    },
-    {
         "name": "Tinycloud",
         "info": "Web application focused on storing files",
         "link": "https://github.com/rolandbernard/tinycloud",
         "image": "tinycloud.jpeg",
         "tags": [ "cloud-storage", "web-application" ],
         "desc": "Tinycloud is a small web application focused on storing and sharing files."
-    },
-    {
-        "name": "Suedtirol Weather",
-        "info": "Web frontend for displaying the weather data of the Open Data Hub Südtirol",
-        "link": "https://github.com/rolandbernard/suedtirol-weather",
-        "image": "suedtirol-weather.jpeg",
-        "tags": [ "open-data", "weather-app", "angular" ],
-        "desc": "Web frontend for displaying the weather data of the Open Data Hub Südtirol, written using the Angular framework."
     },
     {
         "name": "Terminal Image Renderer",
@@ -185,12 +185,28 @@
         "desc": "Implements a way to draw image buffers to termnal in C. The implementation only supports terminals with true color and the ability to display Unicode block characters."
     },
     {
+        "name": "Suedtirol Weather",
+        "info": "Web frontend for displaying the weather data of the Open Data Hub Südtirol",
+        "link": "https://github.com/rolandbernard/suedtirol-weather",
+        "image": "suedtirol-weather.jpeg",
+        "tags": [ "open-data", "weather-app", "angular" ],
+        "desc": "Web frontend for displaying the weather data of the Open Data Hub Südtirol, written using the Angular framework."
+    },
+    {
         "name": "Chat",
         "info": "A small chat server and client in the terminal",
         "link": "https://github.com/rolandbernard/chat",
         "image": "chat.jpeg",
         "tags": [ "chat", "socket-programming" ],
         "desc": "This is a simple chat server and client that can be run in the terminal."
+    },
+    {
+        "name": "Calculator",
+        "info": "One of my first programming projects",
+        "link": "https://github.com/rolandbernard/calculator",
+        "image": "calculator.jpeg",
+        "tags": [ "calculator", "port", "old-project", "old-stuff" ],
+        "desc": "This is one of my oldest projects, and as such it is quite bad. I myself don't realy know what exactly is going in. I wrote it before I had any formal education in computer science or programming. It was originaly developed to be run on a Arduino compatible microcontroller and was later ported to Visual C++ and SDL.I have now made the program compile and run using g++ or clang++. I have not changed more than neccesary, and therefore the program still contains memory leaks, compiling it will generate a lot of warnings and is generaly not programmed well."
     },
     {
         "name": "nopiano",
