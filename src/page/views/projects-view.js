@@ -1,10 +1,42 @@
 
+import gm from 'gm';
+
 import { html, css, readJsonFile } from '../../build/build-util.js';
 
 import { htmlTemplate } from '../html-template.js';
 import { background, backgroundStyles } from '../background.js';
 
-function projectElement(info, lang) {
+async function imageElement(url) {
+    let { width, height } = await new Promise(res => {
+        gm(`assets/projimg/${url}`).size((err, size) => {
+            if (!err) {
+                res(size);
+            } else {
+                res({
+                    width: 480,
+                    height: 480
+                });
+            }
+        });
+    });
+    if (width > height) {
+        height = 480 * height / width;
+        width = 480;
+    } else {
+        width = 480 * width / height;
+        height = 480;
+    }
+    return html`
+        <img
+            class="project-image"
+            src="/projimg/${url}"
+            alt="Example image for the project"
+            width="${width}" height="${height}"
+        />
+    `;
+}
+
+async function projectElement(info, lang) {
     function extractData(obj, lang) {
         if (typeof(obj) === 'string' || obj instanceof Array) {
             return obj;
@@ -42,14 +74,7 @@ function projectElement(info, lang) {
                         width="480" height="480"
                     ></iframe>
                 `
-                : info.image && html`
-                    <img
-                        class="project-image"
-                        src="/projimg/${extractData(info.image, lang)}"
-                        alt="Example image for the project"
-                        width="480" height="480"
-                    />
-                `
+                : info.image && await imageElement(extractData(info.image, lang))
             }
             ${info.video && html`
                 <video class="project-image" autoplay loop muted playsinline width="480" height="480">
@@ -61,7 +86,7 @@ function projectElement(info, lang) {
     `;
 }
 
-export function projectsView(lang = 'en', url = '/') {
+export async function projectsView(lang = 'en', url = '/') {
     return htmlTemplate('Roland Bernard - Projects', html`
         <main>
             ${lang !== 'en' ? html`
@@ -70,7 +95,12 @@ export function projectsView(lang = 'en', url = '/') {
                     'it': 'Nota: Questa pagina è disponibile solo in inglese.',
                 }[lang]}</div></div>
             ` : ''}
-            ${readJsonFile('src/page/info/projects.json').map((el, i) => background(i + 1, projectElement(el, lang)))}
+            ${await Promise.all(
+                readJsonFile('src/page/info/projects.json')
+                    .map(async (el, i) =>
+                        background(i + 1, await projectElement(el, lang))
+                    )
+            )}
         </main>
     `, css`
         ${backgroundStyles()}

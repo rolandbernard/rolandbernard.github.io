@@ -9,19 +9,22 @@ import { projectsView } from '../page/views/projects-view.js';
 import { postsView } from '../page/views/posts-view.js';
 import { postView } from '../page/views/post-view.js';
 
-const debug = process.argv.includes('-d');
+(async () => {
+    const debug = process.argv.includes('-d');
 
-const builder = new Builder('dist/', { debug: debug });
+    const builder = new Builder('dist/', { debug: debug });
 
-builder.copyDirContent('assets/');
+    builder.copyDirContent('assets/');
 
-for(const path of ['', ...languages]) {
-    const lang = path || 'en';
-    builder.generateHtmlFile(`${path}/404.html`, lang, notFoundView);
-    builder.generateHtmlFile(`${path}/index.html`, lang, homeView);
-    builder.generateHtmlFile(`${path}/projects.html`, lang, projectsView);
-    builder.generateHtmlFile(`${path}/posts.html`, lang, postsView);
-    readJsonFile('src/page/info/posts.json').forEach(post => {
-        builder.generateHtmlFile(`${path}/posts/${post.post}.html`, lang, postView, post);
-    });
-}
+    for(const path of ['', ...languages]) {
+        const lang = path || 'en';
+        await builder.generateHtmlFile(`${path}/404.html`, lang, notFoundView);
+        await builder.generateHtmlFile(`${path}/index.html`, lang, homeView);
+        await builder.generateHtmlFile(`${path}/projects.html`, lang, projectsView);
+        await builder.generateHtmlFile(`${path}/posts.html`, lang, postsView);
+        await Promise.all(readJsonFile('src/page/info/posts.json').map(async post => {
+            await builder.generateHtmlFile(`${path}/posts/${post.post}.html`, lang, postView, post);
+        }));
+    }
+})();
+

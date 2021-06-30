@@ -16,5 +16,8 @@
     "html-minifier-terser": "^5.1.1",
     "prettier": "^2.2.0",
     "serve": "^11.3.2"
+  },
+  "dependencies": {
+    "gm": "^1.23.1"
   }
 }

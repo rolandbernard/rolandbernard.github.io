@@ -43,7 +43,7 @@ export function pageFooterStyles() {
             color: lightgray;
         }
         .footer-copyright {
-            padding-top: 0.25rem;
+            padding-top: 0.5rem;
         }
         .link-disabled {
             opacity: 0.5;

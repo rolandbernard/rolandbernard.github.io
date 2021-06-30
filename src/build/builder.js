@@ -13,8 +13,8 @@ export class Builder {
         mkdirSync(this.output_dir, { recursive: true });
     }
     
-    generateHtmlFile(filename, lang, func, ...args) {
-        this.addHtmlFile(filename, func(lang, `/${filename}`, ...args));
+    async generateHtmlFile(filename, lang, func, ...args) {
+        this.addHtmlFile(filename, await func(lang, `/${filename}`, ...args));
     }
 
     addHtmlFile(filename, html) {
