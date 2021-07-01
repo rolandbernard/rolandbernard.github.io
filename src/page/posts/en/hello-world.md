@@ -97,7 +97,7 @@ Switzerland | Bern | 41,285 km²
 Germany  | Berlin  | 357,022 km²
 [^This is a table]
 
-![The Mandelbrot set](/projimg/mandelbrot.jpeg=250x "The Mandelbrot set")
+![The Mandelbrot set](/projimg/mandelbrot.jpg=250x "The Mandelbrot set")
 [^This is a section of the Mandelbrot set]
 
 That is all I have to show for today, I am looking forward to writing an actual post, but that might take a while.

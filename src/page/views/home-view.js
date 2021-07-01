@@ -45,7 +45,7 @@ export function homeView(lang = 'en', url = '/') {
                     }[lang]}"
                 >
                     <div class="main-info">
-                        <img class="main-info-image" src="/img/profile.jpeg" alt="Not a photo of me" width="160" height="160" />
+                        <img class="main-info-image" src="/img/profile.jpg" alt="Not a photo of me" width="160" height="160" />
                         <div class="main-info-text">
                             <div class="main-info-name">Roland Bernard</div>
                             <div class="main-info-desc">
