@@ -51,7 +51,7 @@ export function htmlTemplate(title, content, style, lang = 'en', url = '/') {
                     ${style}
                     ${pageFooterStyles()}
                 </style>
-                <style>${fontStyles()}</style>
+                ${fontStyles()}
             </head>
             <body>
                 ${pageHeader(lang, url)}
