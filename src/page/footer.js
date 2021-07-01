@@ -51,15 +51,11 @@ export function pageFooterStyles() {
     `;
 }
 
-export function pageFooter(lang = 'en', url = '/') {
+export function pageFooter() {
     return html`
         <footer class="footer">
             <span class="footer-contacts">
-                <a class="link-disabled" href="mailto:forbidden">
-                    ${readFile("src/page/icons/mail.svg")}
-                    <span>Mail</span>
-                </a>
-                <a href="https://github.com/rolandbernard">
+                <a rel="noreferrer" href="https://github.com/rolandbernard">
                     ${readFile("src/page/icons/github.svg")}
                     <span>GitHub</span>
                 </a>

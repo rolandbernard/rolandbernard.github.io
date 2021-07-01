@@ -15,7 +15,7 @@ function experienceElement(info, lang) {
     return html`
         <div class="experience-item">
             <span>
-                <a href="${extractData(info.link, lang)}" target="_blank" title="${extractData(info.name, lang)}">
+                <a rel="noreferrer" href="${extractData(info.link, lang)}" target="_blank" title="${extractData(info.name, lang)}">
                     ${extractData(info.name, lang)}
                 </a>
                 ${info.time && html`
@@ -150,9 +150,9 @@ export function homeView(lang = 'en', url = '/') {
                                     ${readJsonFile('src/page/info/projects.json').slice(0, 9).map(el => experienceElement(el, lang))}
                                     <span class="experience-item">
                                         <a href="/${lang}/projects">${{
-                                            'en': 'More',
-                                            'de': 'Mehr',
-                                            'it': 'Altro',
+                                            'en': 'More project',
+                                            'de': 'Mehr Projekte',
+                                            'it': 'Altri progetti',
                                         }[lang]}</a>
                                     </span>
                                 </div>

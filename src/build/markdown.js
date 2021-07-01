@@ -408,6 +408,7 @@ function compileInlineConstructs(markdown, data) {
                         }
                         offset++;
                         output += html`<a
+                            rel="noreferrer"
                             class="markdown md-link"
                             href="${markdown.substr(link_start, link_end - link_start).trim()}"
                             title="${markdown.substr(title_start, title_end - title_start)}"
@@ -416,6 +417,7 @@ function compileInlineConstructs(markdown, data) {
                     } else {
                         offset++;
                         output += html`<a
+                            rel="noreferrer"
                             class="markdown md-link"
                             href="${markdown.substr(link_start, link_end - link_start).trim()}"
                         >${compileInlineConstructs(markdown.substr(start, end - start), data)}</a>`;
@@ -432,6 +434,7 @@ function compileInlineConstructs(markdown, data) {
                         offset++;
                         const name = markdown.substr(name_start, name_end - name_start).toLowerCase();
                         output += html`<a
+                            rel="noreferrer"
                             class="markdown md-link"
                             ${data[name]?.link ? `href="${data[name].link}"` : ''}
                             ${data[name]?.title ? `title="${data[name].title}"` : ''}

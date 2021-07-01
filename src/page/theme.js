@@ -5,7 +5,7 @@ export const colors = [
     ['#E2C044', 'black', [0xE2, 0xC0, 0x44]],
     ['#E5E6E4', 'black'],
     ['#EE9480', 'black'],
-    ['#A09BE7', 'black'],
+    ['#e8ff99', 'black'],
     ['#99E1D9', 'black'], 
 ];
 

@@ -47,7 +47,7 @@ async function projectElement(info, lang) {
     return html`
         <section class="project-item" id="${extractData(info.name).toLowerCase().replace(/ /g, '')}" title="${extractData(info.name)}">
             <div class="project-text">
-                <a href="${extractData(info.link, lang)}" target="_blank">
+                <a rel="noreferrer" href="${extractData(info.link, lang)}" target="_blank">
                     <h2 class="project-name">
                             ${extractData(info.name, lang)}
                     </h2>
@@ -61,7 +61,7 @@ async function projectElement(info, lang) {
                 `}
                 <p class="project-desc">
                     <span>${extractData(info.desc, lang)}</span>
-                    <a class="project-more" href="${extractData(info.link, lang)}" target="_blank">
+                    <a rel="noreferrer" class="project-more" href="${extractData(info.link, lang)}" target="_blank">
                         More
                     </a>
                 </p>
