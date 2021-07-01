@@ -28,6 +28,7 @@ async function imageElement(url) {
     }
     return html`
         <img
+            loading="lazy"
             class="project-image"
             src="/projimg/${url}"
             alt="Example image for the project"
@@ -62,19 +63,19 @@ async function projectElement(info, lang) {
                 <p class="project-desc">
                     <span>${extractData(info.desc, lang)}</span>
                     <a rel="noreferrer" class="project-more" href="${extractData(info.link, lang)}" target="_blank">
-                        More
+                        More on this project
                     </a>
                 </p>
             </div>
-            ${info.iframe
-                ? html`
-                    <iframe
-                        class="project-iframe"
-                        src="${info.iframe}"
-                        width="480" height="480"
-                    ></iframe>
-                `
-                : info.image && await imageElement(extractData(info.image, lang))
+            ${info.iframe && html`
+                <iframe
+                    class="project-iframe"
+                    src="${info.iframe}"
+                    width="480" height="480"
+                ></iframe>
+            `}
+            ${info.image
+                && await imageElement(extractData(info.image, lang))
             }
             ${info.video && html`
                 <video class="project-image" autoplay loop muted playsinline width="480" height="480">
