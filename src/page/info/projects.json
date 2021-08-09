@@ -12,6 +12,18 @@
         "desc": "This is a small RISC-V core written in synthesizable Verilog that supports the RV32I unprivileged ISA and parts of the privileged ISA, namely M-mode. This is only the RISC-V core and does not include any other peripherals."
     },
     {
+        "name": "Marvin",
+        "info": {
+            "en": "An app launcher for Linux and Windows",
+            "de": "Ein Anwendungsstarter für Linux und Windows",
+            "it": "Un lanciatore di applicazioni per Linux e Windows"
+        },
+        "link": "https://github.com/rolandbernard/marvin",
+        "image": "marvin.png",
+        "tags": [ "electron", "linux", "windows", "application-launcher" ],
+        "desc": "This is an app launcher for Linux and Windows."
+    },
+    {
         "name": "BASIC Jit",
         "info": {
             "en": "A JIT compiler for the BASIC programming language",
@@ -22,18 +34,6 @@
         "video": "basic-jit.mp4",
         "tags": [ "basic", "jit", "jit-compiler", "x86-64", "aarch64" ],
         "desc": "This is a small JIT compiler for a version of the BASIC programming language, running on the x86-64 or 64-bit ARM (aarch64) architecture."
-    },
-    {
-        "name": "Marvin",
-        "info": {
-            "en": "A keystroke launcher for Linux",
-            "de": "Ein Anwendungsstarter für Linux",
-            "it": "Un lanciatore di applicazioni per Linux"
-        },
-        "link": "https://github.com/rolandbernard/marvin",
-        "image": "marvin.jpg",
-        "tags": [ "launcher", "electron", "linux", "application-launcher", "menu" ],
-        "desc": "This is a keystroke launcher for Linux. It is build using electron but it has not been ported to Windows or MacOs yet."
     },
     {
         "name": "Tumbleweed",
