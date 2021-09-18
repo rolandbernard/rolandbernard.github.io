@@ -1,9 +1,5 @@
 [
     {
-        "name": "Google Code Jam 2020 & 2021",
-        "link": "https://codingcompetitions.withgoogle.com/codejam/"
-    },
-    {
         "name": "Reply Code Challenge Standard 2021",
         "link": "https://challenges.reply.com/"
     },
@@ -19,6 +15,14 @@
             "it": "38° al mondo"
         },
         "link": "https://challenges.reply.com/"
+    },
+    {
+        "name": "Google Kick Start 2020 & 2021",
+        "link": "https://codingcompetitions.withgoogle.com/kickstart/"
+    },
+    {
+        "name": "Google Code Jam 2020 & 2021",
+        "link": "https://codingcompetitions.withgoogle.com/codejam/"
     },
     {
         "name": {
@@ -67,10 +71,6 @@
             "it": "Campione regionale"
         },
         "link": "https://www.olifis.it/"
-    },
-    {
-        "name": "Google Kick Start 2020",
-        "link": "https://codingcompetitions.withgoogle.com/kickstart/"
     },
     {
         "name": {
