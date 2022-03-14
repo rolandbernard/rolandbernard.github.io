@@ -8,10 +8,10 @@ export function notFoundView(lang = 'en', url = '/') {
         <main class="not-found-container">
             <div class="not-found-title">404</div>
             <div class="not-found-text">${{
-                'en':'Page cannot be found',
-                'de':'Seite konnte nicht gefunden werden',
-                'it':'Sito non poteva essere trovato',
-            }[lang]}</div>
+            'en': 'Page cannot be found',
+            'de': 'Seite konnte nicht gefunden werden',
+            'it': 'Sito non poteva essere trovato',
+        }[lang]}</div>
         </main>
     `, css`
         .not-found-container {

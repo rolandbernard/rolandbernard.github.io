@@ -6,7 +6,7 @@ export const colors = [
     ['#E5E6E4', 'black'],
     ['#EE9480', 'black'],
     ['#e8ff99', 'black'],
-    ['#99E1D9', 'black'], 
+    ['#99E1D9', 'black'],
 ];
 
 export function themeStyles() {

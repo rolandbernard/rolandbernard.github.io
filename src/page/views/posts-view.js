@@ -5,7 +5,7 @@ import { htmlTemplate } from '../html-template.js';
 
 function postElement(info, lang) {
     function extractData(obj, lang) {
-        if (typeof(obj) === 'string' || obj instanceof Array) {
+        if (typeof (obj) === 'string' || obj instanceof Array) {
             return obj;
         } else {
             return obj[lang] || Object.values(obj)[0];
@@ -26,20 +26,19 @@ function postElement(info, lang) {
                     <span class="post-date">${extractData(info.published, lang)}</span>
                 `}
                 ${info.tags && html`
-                    <span class="post-tags">${
-                        extractData(info.tags, lang).map(tag => html`
+                    <span class="post-tags">${extractData(info.tags, lang).map(tag => html`
                             <span>${tag}</span>
                         `)
-                    }</span>
+            }</span>
                 `}
             </p>
             <p class="post-preview">
                 ${extractText(readPostFile(extractData(info.post, lang), lang)[0])}
                 <a href="/${lang}/posts/${extractData(info.post, lang)}">${{
-                    "en": "more...",
-                    "de": "mehr...",
-                    "it": "altro...",
-                }[lang]}</a>
+            "en": "more...",
+            "de": "mehr...",
+            "it": "altro...",
+        }[lang]}</a>
             </p>
         </article>
     `;

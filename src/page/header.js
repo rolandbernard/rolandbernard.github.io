@@ -163,22 +163,22 @@ export function pageHeader(lang = 'en', url = '/') {
         <header class="header">
             <nav class="header-nav">
                 <a class="link" href="/${lang}"><span>${{
-                    'en': 'Home',
-                    'de': 'Home',
-                    'it': 'Home',
-                }[lang]}</span></a>
+            'en': 'Home',
+            'de': 'Home',
+            'it': 'Home',
+        }[lang]}</span></a>
                 <span class="line-seperator"></span>
                 <a class="link" href="/${lang}/projects"><span>${{
-                    'en': 'Projects',
-                    'de': 'Projekte',
-                    'it': 'Progetti',
-                }[lang]}</span></a>
+            'en': 'Projects',
+            'de': 'Projekte',
+            'it': 'Progetti',
+        }[lang]}</span></a>
                 <span class="line-seperator"></span>
                 <a class="link" href="/${lang}/posts"><span>${{
-                    'en': 'Posts',
-                    'de': 'Posts',
-                    'it': 'Post',
-                }[lang]}</span></a>
+            'en': 'Posts',
+            'de': 'Posts',
+            'it': 'Post',
+        }[lang]}</span></a>
                 <span class="header-spacer"></span>
                 <div class="lang-select" tabindex="-1">
                     <div class="lang-select-current">${lang.toUpperCase()}</div>

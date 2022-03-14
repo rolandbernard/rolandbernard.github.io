@@ -8,7 +8,12 @@
         },
         "link": "https://github.com/rolandbernard/kleine-riscv",
         "image": "kleine-riscv.jpg",
-        "tags": [ "verilog", "risc-v", "rv32i", "riscv32" ],
+        "tags": [
+            "verilog",
+            "risc-v",
+            "rv32i",
+            "riscv32"
+        ],
         "desc": "This is a small RISC-V core written in synthesizable Verilog that supports the RV32I unprivileged ISA and parts of the privileged ISA, namely M-mode. This is only the RISC-V core and does not include any other peripherals."
     },
     {
@@ -20,7 +25,12 @@
         },
         "link": "https://github.com/rolandbernard/marvin",
         "image": "marvin.png",
-        "tags": [ "electron", "linux", "windows", "application-launcher" ],
+        "tags": [
+            "electron",
+            "linux",
+            "windows",
+            "application-launcher"
+        ],
         "desc": "This is an app launcher for Linux and Windows."
     },
     {
@@ -32,7 +42,13 @@
         },
         "link": "https://github.com/rolandbernard/basic-jit",
         "video": "basic-jit.mp4",
-        "tags": [ "basic", "jit", "jit-compiler", "x86-64", "aarch64" ],
+        "tags": [
+            "basic",
+            "jit",
+            "jit-compiler",
+            "x86-64",
+            "aarch64"
+        ],
         "desc": "This is a small JIT compiler for a version of the BASIC programming language, running on the x86-64 or 64-bit ARM (aarch64) architecture."
     },
     {
@@ -44,7 +60,11 @@
         },
         "link": "https://github.com/rolandbernard/tumbleweed",
         "image": "tumbleweed.jpg",
-        "tags": [ "llvm", "compiler", "programming-language" ],
+        "tags": [
+            "llvm",
+            "compiler",
+            "programming-language"
+        ],
         "desc": "Tumbleweed is a small strongly typed programming language. Just like real tumbleweed this programming language is useless and unwanted."
     },
     {
@@ -56,7 +76,10 @@
         },
         "link": "https://github.com/rolandbernard/wakan",
         "image": "wakan.jpg",
-        "tags": [ "programming-language", "interpreter" ],
+        "tags": [
+            "programming-language",
+            "interpreter"
+        ],
         "desc": "Wakan is a small programming language designed as an educational project. It was not designed for any particular application and is not complete."
     },
     {
@@ -68,7 +91,9 @@
         },
         "link": "https://github.com/rolandbernard/roland-font",
         "video": "roland-font.mp4",
-        "tags": [ "font" ],
+        "tags": [
+            "font"
+        ],
         "desc": "I was wondering how one would go about creating a font. I did a bit of research and created this font as my first font using Inkscape, FontForge, Python, FontTools and Fontmake."
     },
     {
@@ -80,7 +105,11 @@
         },
         "link": "https://github.com/rolandbernard/regex",
         "image": "regex.jpg",
-        "tags": [ "regex", "regular-expression", "library" ],
+        "tags": [
+            "regex",
+            "regular-expression",
+            "library"
+        ],
         "desc": "A small regular expression library for C. This regex implementation first compiles the regex into a NFA and then transforms that NFA into a DFA. The DFA can then be appliend to an input string of length n in O(n)."
     },
     {
@@ -93,7 +122,13 @@
         "-iframe": "https://rolandbernard.github.io/geo-draw/#/demo/covid-world-newest",
         "link": "https://github.com/rolandbernard/geo-draw",
         "image": "geo-draw.jpg",
-        "tags": [ "visualization", "map", "lit-element", "lit-html", "rust" ],
+        "tags": [
+            "visualization",
+            "map",
+            "lit-element",
+            "lit-html",
+            "rust"
+        ],
         "desc": "This is a simple web application that allows the generation of map visualizations. All the processing happens on the client and the server can simply be a static web server. This is only a small project I started, to learn lit-html/LitElement, WebGl and try out the Rust programming language a bit more."
     },
     {
@@ -105,7 +140,12 @@
         },
         "link": "https://github.com/rolandbernard/pathtrace",
         "image": "pathtrace.jpg",
-        "tags": [ "pathtracing", "c", "openmp", "experiment" ],
+        "tags": [
+            "pathtracing",
+            "c",
+            "openmp",
+            "experiment"
+        ],
         "desc": "A simple path tracing implementation written in C. You should probably not use it because it is insanely slow and noisy."
     },
     {
@@ -117,7 +157,11 @@
         },
         "link": "https://github.com/rolandbernard/parsed",
         "image": "parsed.jpg",
-        "tags": [ "parser", "parser-generator", "recursive-descent-parser" ],
+        "tags": [
+            "parser",
+            "parser-generator",
+            "recursive-descent-parser"
+        ],
         "desc": "A small parser generator that generates recursive descent parsers. It also generates a lexer form the token defined in the grammar.This parser generator is relatively simple. It can handle direct left recursion, but indirect recursion will result in an infinite loop."
     },
     {
@@ -125,7 +169,10 @@
         "info": "A simple general software 3D graphics API written in C",
         "link": "https://github.com/rolandbernard/sgx",
         "image": "sgx.jpg",
-        "tags": [ "3d-graphics", "graphics-api" ],
+        "tags": [
+            "3d-graphics",
+            "graphics-api"
+        ],
         "desc": "A simple general software 3D graphics API written in C. The implementation still needs a lot of optimisation."
     },
     {
@@ -133,7 +180,13 @@
         "info": "A web application for easy task organization and management",
         "link": "https://github.com/rolandbernard/ryoko",
         "image": "ryoko.jpg",
-        "tags": [ "progressive-web-app", "single-page-app", "university-project", "teamwork", "task-manager" ],
+        "tags": [
+            "progressive-web-app",
+            "single-page-app",
+            "university-project",
+            "teamwork",
+            "task-manager"
+        ],
         "desc": "A web application for easy task organization and management. Do you want to boost your productivity and agility of your development? With Ryoko you are able to effectively plan your tasks and manage your projects. It is build with developers in mind and facilitates effective collaboration."
     },
     {
@@ -141,7 +194,12 @@
         "info": "Daro is a simple interpreted programming language written in Java",
         "link": "https://github.com/rolandbernard/daro",
         "image": "daro.jpg",
-        "tags": [ "game", "programming-language", "ide", "university-project" ],
+        "tags": [
+            "game",
+            "programming-language",
+            "ide",
+            "university-project"
+        ],
         "desc": "We aimed to make a game that teaches people the basics of coding using a simple, self-designed programming language. The idea was to create simple puzzles with increasing difficulty that ask the player to solve programming-related problems, such as finding the minimum in an array, creating sums etc. In addition to the game, the language can also be used stand-alone using the cli interface of the interpreter or in the purpose build IDE."
     },
     {
@@ -149,7 +207,11 @@
         "info": "This is a small program to run language independent file based tests.",
         "link": "https://github.com/rolandbernard/tested",
         "image": "tested.jpg",
-        "tags": [ "testing", "testing-tools", "language-independent" ],
+        "tags": [
+            "testing",
+            "testing-tools",
+            "language-independent"
+        ],
         "desc": "This is a small program to run language independent file based tests. The test runner will run all the test inside the given directories. Test instructions are specified using line comments at the very beginning of a file."
     },
     {
@@ -157,7 +219,12 @@
         "info": "Mandelbrot visualization written in C++ and OpenCL",
         "link": "https://github.com/rolandbernard/mandelbrot",
         "image": "mandelbrot.jpg",
-        "tags": [ "visualization", "opencl", "fractal", "mandelbrot" ],
+        "tags": [
+            "visualization",
+            "opencl",
+            "fractal",
+            "mandelbrot"
+        ],
         "desc": "Mandelbrot visualization written in C++ and OpenCL."
     },
     {
@@ -165,7 +232,15 @@
         "info": "This software tries to solve a version of the vehicle routing problem",
         "link": "https://github.com/rolandbernard/task-planner",
         "image": "task-planner.jpg",
-        "tags": [ "optimization", "cpp", "webassembly", "vrp", "genetic-algorithm", "react", "material-ui" ],
+        "tags": [
+            "optimization",
+            "cpp",
+            "webassembly",
+            "vrp",
+            "genetic-algorithm",
+            "react",
+            "material-ui"
+        ],
         "desc": "This software tries to solve a version of the vehicle routing problem. It uses a genetic algorithm to optimize the routes of multiple workers serving multiple clients at different locations with different priorities.The actual algorithm is implemented in C++ and is used by the UI, which is written using the React framework, using Web Assembly."
     },
     {
@@ -173,7 +248,10 @@
         "info": "Web application focused on storing files",
         "link": "https://github.com/rolandbernard/tinycloud",
         "image": "tinycloud.jpg",
-        "tags": [ "cloud-storage", "web-application" ],
+        "tags": [
+            "cloud-storage",
+            "web-application"
+        ],
         "desc": "Tinycloud is a small web application focused on storing and sharing files."
     },
     {
@@ -181,7 +259,10 @@
         "info": "A way to draw image buffers to termnal",
         "link": "https://github.com/rolandbernard/tir",
         "image": "tir.jpg",
-        "tags": [ "image-display", "terminal-based" ],
+        "tags": [
+            "image-display",
+            "terminal-based"
+        ],
         "desc": "Implements a way to draw image buffers to termnal in C. The implementation only supports terminals with true color and the ability to display Unicode block characters."
     },
     {
@@ -189,7 +270,11 @@
         "info": "Web frontend for displaying the weather data of the Open Data Hub Südtirol",
         "link": "https://github.com/rolandbernard/suedtirol-weather",
         "image": "suedtirol-weather.jpg",
-        "tags": [ "open-data", "weather-app", "angular" ],
+        "tags": [
+            "open-data",
+            "weather-app",
+            "angular"
+        ],
         "desc": "Web frontend for displaying the weather data of the Open Data Hub Südtirol, written using the Angular framework."
     },
     {
@@ -197,7 +282,10 @@
         "info": "A small chat server and client in the terminal",
         "link": "https://github.com/rolandbernard/chat",
         "image": "chat.jpg",
-        "tags": [ "chat", "socket-programming" ],
+        "tags": [
+            "chat",
+            "socket-programming"
+        ],
         "desc": "This is a simple chat server and client that can be run in the terminal."
     },
     {
@@ -205,14 +293,24 @@
         "info": "One of my first programming projects",
         "link": "https://github.com/rolandbernard/calculator",
         "image": "calculator.jpg",
-        "tags": [ "calculator", "port", "old-project", "old-stuff" ],
+        "tags": [
+            "calculator",
+            "port",
+            "old-project",
+            "old-stuff"
+        ],
         "desc": "This is one of my oldest projects, and as such it is quite bad. I myself don't realy know what exactly is going in. I wrote it before I had any formal education in computer science or programming. It was originaly developed to be run on a Arduino compatible microcontroller and was later ported to Visual C++ and SDL.I have now made the program compile and run using g++ or clang++. I have not changed more than neccesary, and therefore the program still contains memory leaks, compiling it will generate a lot of warnings and is generaly not programmed well."
     },
     {
         "name": "nopiano",
         "info": "Program playing a piano note for every key press",
         "link": "https://github.com/rolandbernard/nopiano",
-        "tags": [ "music", "piano", "xlib", "portaudio" ],
+        "tags": [
+            "music",
+            "piano",
+            "xlib",
+            "portaudio"
+        ],
         "desc": "Program playing a piano note for every key press. The application will grab the hole keyboard (You can leave using ESC). Every row of your keyboard will be assigned to one octave(A-G#). By pressing shift you can move everything up one octave and by pressing control down."
     },
     {
@@ -220,7 +318,10 @@
         "info": "Visualization of the A-Star path finding algorithm written in java",
         "link": "https://github.com/rolandbernard/astart",
         "video": "astar.mp4",
-        "tags": [ "visualization", "pathfinding" ],
+        "tags": [
+            "visualization",
+            "pathfinding"
+        ],
         "desc": "Visualization of the A-Star path finding algorithm written in Java."
     },
     {
@@ -228,7 +329,13 @@
         "info": "Virtual peer-to-peer classrooms throught a web application",
         "link": "https://github.com/rolandbernard/classroom",
         "image": "classroom.jpg",
-        "tags": [ "webrtc", "socket-io", "react", "material-ui", "quill" ],
+        "tags": [
+            "webrtc",
+            "socket-io",
+            "react",
+            "material-ui",
+            "quill"
+        ],
         "desc": "This application was inspired by the COVID-19-Virus out brake and the resulting school closings in many countries. The application allows users to create new virtual classrooms and using the rooms id other users can join the room as listeners. The creator of a room is able to talk to the listeners and write in a rich text editor, all using peer-to-peer connections. The speaker can also allow certain listeners to talk and manipulate the editor. Listeners that have a question can use the 'Ask to speak' button to notify the speaker that they want to talk. The speaker also has the option to kick users if he so desires. There is no video, mainly because I find that to be useless and the fact that it would use up valuable bandwidth for people with a poor internet connection."
     }
 ]

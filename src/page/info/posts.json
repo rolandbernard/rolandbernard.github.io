@@ -6,8 +6,16 @@
         },
         "published": "03.04.2021",
         "tags": {
-            "en": ["en", "first-post", "hello-world"],
-            "de": ["de", "erster-post", "hallo-welt"]
+            "en": [
+                "en",
+                "first-post",
+                "hello-world"
+            ],
+            "de": [
+                "de",
+                "erster-post",
+                "hallo-welt"
+            ]
         },
         "post": "hello-world"
     }

@@ -6,7 +6,7 @@ import { htmlTemplate } from '../html-template.js';
 
 export function postView(lang = 'en', url = '/', post) {
     function extractData(obj, lang) {
-        if (typeof(obj) === 'string' || obj instanceof Array) {
+        if (typeof (obj) === 'string' || obj instanceof Array) {
             return obj;
         } else {
             return obj[lang] || Object.values(obj)[0];
@@ -29,11 +29,10 @@ export function postView(lang = 'en', url = '/', post) {
                         <span class="post-date">${extractData(post.published, lang)}</span>
                     `}
                     ${post.tags && html`
-                        <span class="post-tags">${
-                            extractData(post.tags, lang).map(tag => html`
+                        <span class="post-tags">${extractData(post.tags, lang).map(tag => html`
                                 <span>${tag}</span>
                             `)
-                        }</span>
+            }</span>
                     `}
                 </p>
             </div>

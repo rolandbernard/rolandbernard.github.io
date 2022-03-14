@@ -39,7 +39,7 @@ async function imageElement(url) {
 
 async function projectElement(info, lang) {
     function extractData(obj, lang) {
-        if (typeof(obj) === 'string' || obj instanceof Array) {
+        if (typeof (obj) === 'string' || obj instanceof Array) {
             return obj;
         } else {
             return obj[lang] || Object.values(obj)[0];
@@ -54,11 +54,10 @@ async function projectElement(info, lang) {
                     </h2>
                 </a>
                 ${info.tags && html`
-                    <div class="project-tags">${
-                        extractData(info.tags, lang).map(tag => html`
+                    <div class="project-tags">${extractData(info.tags, lang).map(tag => html`
                             <span>${tag}</span>
                         `)
-                    }</div>
+            }</div>
                 `}
                 <p class="project-desc">
                     <span>${extractData(info.desc, lang)}</span>
@@ -75,8 +74,8 @@ async function projectElement(info, lang) {
                 ></iframe>
             `}
             ${info.image
-                && await imageElement(extractData(info.image, lang))
-            }
+        && await imageElement(extractData(info.image, lang))
+        }
             ${info.video && html`
                 <video class="project-image" autoplay loop muted playsinline width="480" height="480">
                     <source src="/projimg/${extractData(info.video, lang)}" type="video/mp4" >
@@ -92,9 +91,9 @@ export async function projectsView(lang = 'en', url = '/') {
         <main>
             ${lang !== 'en' ? html`
                 <div class="note"><div>${{
-                    'de': 'Hinweis: Diese Seite ist nur in englischer Sprache verfügbar.',
-                    'it': 'Nota: Questa pagina è disponibile solo in inglese.',
-                }[lang]}</div></div>
+                'de': 'Hinweis: Diese Seite ist nur in englischer Sprache verfügbar.',
+                'it': 'Nota: Questa pagina è disponibile solo in inglese.',
+            }[lang]}</div></div>
             ` : ''}
             ${await Promise.all(
                 readJsonFile('src/page/info/projects.json')

@@ -11,9 +11,9 @@
             "it": "2020 - oggi"
         },
         "info": {
-            "en": "Faculty of Computer Science",
-            "de": "Fakultät für Informatik",
-            "it": "Facoltà di Informatica"
+            "en": "Computer Science",
+            "de": "Informatik",
+            "it": "Informatica"
         },
         "link": "http://www.unibz.it"
     },
@@ -25,9 +25,9 @@
         },
         "time": "2015 - 2020",
         "info": {
-            "en": "Subject area computer science",
-            "de": "Fachrichtung Informatik",
-            "it": "Area tematica informatica"
+            "en": "Computer Science",
+            "de": "Informatik",
+            "it": "Informatica"
         },
         "link": "http://tfobz.it"
     }
