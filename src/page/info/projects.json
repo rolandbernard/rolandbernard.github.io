@@ -52,6 +52,72 @@
         "desc": "This is a small JIT compiler for a version of the BASIC programming language, running on the x86-64 or 64-bit ARM (aarch64) architecture."
     },
     {
+        "name": "Regex",
+        "info": {
+            "en": "A small regular expression C library",
+            "de": "Eine C-Bibliothek für reguläre Ausdrücke",
+            "it": "Una libreria C di espressioni regolari"
+        },
+        "link": "https://github.com/rolandbernard/regex",
+        "image": "regex.jpg",
+        "tags": [
+            "regex",
+            "regular-expression",
+            "library"
+        ],
+        "desc": "A small regular expression library for C. This regex implementation first compiles the regex into a NFA and then transforms that NFA into a DFA. The DFA can then be appliend to an input string of length n in O(n)."
+    },
+    {
+        "name": "Roland Font",
+        "info": {
+            "en": "My first attempt at creating a font",
+            "de": "Mein erster Versuch, eine Schriftart zu erstellen",
+            "it": "Il mio primo tentativo di creare un font"
+        },
+        "link": "https://github.com/rolandbernard/roland-font",
+        "video": "roland-font.mp4",
+        "tags": [
+            "font"
+        ],
+        "desc": "I was wondering how one would go about creating a font. I did a bit of research and created this font as my first font using Inkscape, FontForge, Python, FontTools and Fontmake."
+    },
+    {
+        "name": "Pathtrace",
+        "info": {
+            "en": "A simple path tracing implementation written in C",
+            "de": "Eine path tracing Implementierung, geschrieben in C",
+            "it": "Una implementazione di path tracing scritta in C"
+        },
+        "link": "https://github.com/rolandbernard/pathtrace",
+        "image": "pathtrace.jpg",
+        "tags": [
+            "pathtracing",
+            "c",
+            "openmp",
+            "experiment"
+        ],
+        "desc": "A simple path tracing implementation written in C. You should probably not use it because it is insanely slow and noisy."
+    },
+    {
+        "name": "Geo Draw",
+        "info": {
+            "en": "A simple web application for creating map visualizations",
+            "de": "Eine Webanwendung zur Erstellung von Kartenvisualisierungen",
+            "it": "Un'applicazione web per creare visualizzazioni di mappe"
+        },
+        "-iframe": "https://rolandbernard.github.io/geo-draw/#/demo/covid-world-newest",
+        "link": "https://github.com/rolandbernard/geo-draw",
+        "image": "geo-draw.jpg",
+        "tags": [
+            "visualization",
+            "map",
+            "lit-element",
+            "lit-html",
+            "rust"
+        ],
+        "desc": "This is a simple web application that allows the generation of map visualizations. All the processing happens on the client and the server can simply be a static web server."
+    },
+    {
         "name": "Tumbleweed",
         "info": {
             "en": "A small compiled toy programming language",
@@ -81,72 +147,6 @@
             "interpreter"
         ],
         "desc": "Wakan is a small programming language designed as an educational project. It was not designed for any particular application and is not complete."
-    },
-    {
-        "name": "Roland Font",
-        "info": {
-            "en": "My first attempt at creating a font",
-            "de": "Mein erster Versuch, eine Schriftart zu erstellen",
-            "it": "Il mio primo tentativo di creare un font"
-        },
-        "link": "https://github.com/rolandbernard/roland-font",
-        "video": "roland-font.mp4",
-        "tags": [
-            "font"
-        ],
-        "desc": "I was wondering how one would go about creating a font. I did a bit of research and created this font as my first font using Inkscape, FontForge, Python, FontTools and Fontmake."
-    },
-    {
-        "name": "Regex",
-        "info": {
-            "en": "A small regular expression C library",
-            "de": "Eine C-Bibliothek für reguläre Ausdrücke",
-            "it": "Una libreria C di espressioni regolari"
-        },
-        "link": "https://github.com/rolandbernard/regex",
-        "image": "regex.jpg",
-        "tags": [
-            "regex",
-            "regular-expression",
-            "library"
-        ],
-        "desc": "A small regular expression library for C. This regex implementation first compiles the regex into a NFA and then transforms that NFA into a DFA. The DFA can then be appliend to an input string of length n in O(n)."
-    },
-    {
-        "name": "Geo Draw",
-        "info": {
-            "en": "A simple web application for creating map visualizations",
-            "de": "Eine Webanwendung zur Erstellung von Kartenvisualisierungen",
-            "it": "Un'applicazione web per creare visualizzazioni di mappe"
-        },
-        "-iframe": "https://rolandbernard.github.io/geo-draw/#/demo/covid-world-newest",
-        "link": "https://github.com/rolandbernard/geo-draw",
-        "image": "geo-draw.jpg",
-        "tags": [
-            "visualization",
-            "map",
-            "lit-element",
-            "lit-html",
-            "rust"
-        ],
-        "desc": "This is a simple web application that allows the generation of map visualizations. All the processing happens on the client and the server can simply be a static web server. This is only a small project I started, to learn lit-html/LitElement, WebGl and try out the Rust programming language a bit more."
-    },
-    {
-        "name": "Pathtrace",
-        "info": {
-            "en": "A simple path tracing implementation written in C",
-            "de": "Eine path tracing Implementierung, geschrieben in C",
-            "it": "Una implementazione di path tracing scritta in C"
-        },
-        "link": "https://github.com/rolandbernard/pathtrace",
-        "image": "pathtrace.jpg",
-        "tags": [
-            "pathtracing",
-            "c",
-            "openmp",
-            "experiment"
-        ],
-        "desc": "A simple path tracing implementation written in C. You should probably not use it because it is insanely slow and noisy."
     },
     {
         "name": "Parsed",
