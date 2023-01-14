@@ -168,11 +168,6 @@ export function pageHeader(lang = 'en', url = '/') {
             'it': 'Home',
         }[lang]}</span></a>
                 <span class="line-seperator"></span>
-                <a class="link" href="/${lang}/projects"><span>${{
-            'en': 'Projects',
-            'de': 'Projekte',
-            'it': 'Progetti',
-        }[lang]}</span></a>
                 <span class="line-seperator"></span>
                 <a class="link" href="/${lang}/posts"><span>${{
             'en': 'Posts',
