@@ -8,9 +8,6 @@ export function homeView(lang = 'en', url = '/') {
     return htmlTemplate('Roland Bernard - Home', html`
         <main>
            ${specialBackground(html`
-                <a class="arrow-down" href="#exerience" title="Scroll down">
-                    <span></span>
-                </a>
                 <section
                     class="main-info-wrap"
                     title="${{
@@ -23,19 +20,6 @@ export function homeView(lang = 'en', url = '/') {
                         <img class="main-info-image" src="/img/profile.jpg" alt="Not a photo of me" width="160" height="160" />
                         <div class="main-info-text">
                             <div class="main-info-name">Roland Bernard</div>
-                            <div class="main-info-desc">
-                                ${{
-            'en': html`
-                                    <span>Software Developer</span> & <span>Computer Science Student.</span>
-                                `,
-            'de': html`
-                                    <span>Software-Entwickler</span> & <span>Informatik-Student.</span>
-                                `,
-            'it': html`
-                                    <span>Sviluppatore di software</span> e <span>studente di informatica.</span>
-                                `,
-        }[lang]}
-                            </div>
                         </div>
                         <hr class="home-divider" />
                     </div>
@@ -79,6 +63,9 @@ export function homeView(lang = 'en', url = '/') {
             }
         }
         .main-info-text {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             margin: 1rem;
             text-align: center;
             height: 6rem;
@@ -93,7 +80,7 @@ export function homeView(lang = 'en', url = '/') {
             font-size: 1.25rem;
         }
         .main-info-desc span {
-            display:inline-block;
+            display: inline-block;
         }
         .home-divider {
             position: absolute;

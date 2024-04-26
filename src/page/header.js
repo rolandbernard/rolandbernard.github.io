@@ -167,24 +167,7 @@ export function pageHeader(lang = 'en', url = '/') {
             'de': 'Home',
             'it': 'Home',
         }[lang]}</span></a>
-                <span class="line-seperator"></span>
-                <span class="line-seperator"></span>
-                <a class="link" href="/${lang}/posts"><span>${{
-            'en': 'Posts',
-            'de': 'Posts',
-            'it': 'Post',
-        }[lang]}</span></a>
                 <span class="header-spacer"></span>
-                <div class="lang-select" tabindex="-1">
-                    <div class="lang-select-current">${lang.toUpperCase()}</div>
-                    <div class="lang-select-options">
-                        ${languages.map(language => html`
-                            <a class="lang-option" href="${changeUrlLanguage(url, language)}">
-                                <span>${language.toUpperCase()}</span>
-                            </a>
-                        `)}
-                    </div>
-                </div>
             </nav>
         </header>
     `;

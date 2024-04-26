@@ -5,7 +5,6 @@ import { join, dirname } from 'path';
 import { rmSync, mkdirSync, writeFileSync, readdirSync, copyFileSync, statSync } from 'fs';
 
 export class Builder {
-    
     constructor(output_dir, options = { debug: false }) {
         this.options = options;
         this.output_dir = output_dir;
@@ -56,5 +55,4 @@ export class Builder {
             }
         }
     }
-
 }
