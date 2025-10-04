@@ -18,6 +18,7 @@ export function htmlTemplate(title, content, style, lang = 'en', url = '/') {
                 <meta charset="UTF-8">
                 <style>
                     html {
+                        background: var(--background-dark) !important;
                         height: 100%;
                     }
                     body {

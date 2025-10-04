@@ -17,7 +17,6 @@ export function pageHeaderStyles() {
             user-select: none;
             box-shadow: var(--shadow-large);
             box-sizing: border-box;
-            border-bottom: 2px solid var(--primary);
             z-index: 10;
             contain: layout size;
         }
