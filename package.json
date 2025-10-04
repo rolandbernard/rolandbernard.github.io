@@ -6,7 +6,7 @@
   "scripts": {
     "dist": "node src/build/build.js",
     "dev": "node src/build/dev-server.js",
-    "predeploy": "yarn dist",
+    "predeploy": "npm run dist",
     "deploy": "gh-pages -d dist"
   },
   "type": "module",

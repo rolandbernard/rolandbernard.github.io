@@ -3,7 +3,6 @@ import { html } from '../build/build-util.js';
 
 import { fontStyles } from './fonts.js';
 import { themeStyles } from './theme.js';
-import { pageHeader, pageHeaderStyles } from './header.js';
 import { pageFooter, pageFooterStyles } from './footer.js';
 
 export function htmlTemplate(title, content, style, lang = 'en', url = '/') {
@@ -48,14 +47,12 @@ export function htmlTemplate(title, content, style, lang = 'en', url = '/') {
                         contain: content;
                     }
                     ${themeStyles()}
-                    ${pageHeaderStyles()}
                     ${style}
                     ${pageFooterStyles()}
                 </style>
                 ${fontStyles()}
             </head>
             <body>
-                ${pageHeader(lang, url)}
                 <div class="page-content">
                     <div class="main-content">
                         ${content}
